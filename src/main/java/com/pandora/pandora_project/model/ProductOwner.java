@@ -21,4 +21,9 @@ public class ProductOwner extends User{
 
     List<Member> members;
 
+    public ProductOwner() {
+        super();
+        this.product = null;
+        this.members = null;
+    }
 }

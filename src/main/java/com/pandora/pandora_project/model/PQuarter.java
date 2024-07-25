@@ -23,4 +23,10 @@ public class PQuarter {
     int target;
 
     int done;
+
+    public PQuarter(String period, int target, int done) {
+        this.period = period;
+        this.target = target;
+        this.done = done;
+    }
 }

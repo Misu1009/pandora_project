@@ -14,6 +14,7 @@ import lombok.Setter;
 @Entity
 @Table(name = "kquarter")
 public class KQuarter {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
@@ -35,5 +36,17 @@ public class KQuarter {
     int on_schedule;
 
     int late;
+
+    public KQuarter(String period, int target, int done, Double cust_focus, Double integrity, Double teamwork, Double cpoe, int on_schedule, int late) {
+        this.period = period;
+        this.target = target;
+        this.done = done;
+        this.cust_focus = cust_focus;
+        this.integrity = integrity;
+        this.teamwork = teamwork;
+        this.cpoe = cpoe;
+        this.on_schedule = on_schedule;
+        this.late = late;
+    }
 
 }

@@ -34,4 +34,13 @@ public class Subtask {
 
     Feature feature;
 
+    public Subtask(String code, String name, String status, Date start_date, Date end_date) {
+        this.code = code;
+        this.name = name;
+        this.status = status;
+        this.start_date = start_date;
+        this.end_date = end_date;
+        this.member = null;
+        this.feature = null;
+    }
 }

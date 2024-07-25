@@ -22,4 +22,11 @@ public class Member extends User{
     List<Subtask> subtasks;
 
     ProductOwner product_owner;
+
+    public Member() {
+        super();
+        this.kpi = null;
+        this.subtasks = null;
+        this.product_owner = null;
+    }
 }

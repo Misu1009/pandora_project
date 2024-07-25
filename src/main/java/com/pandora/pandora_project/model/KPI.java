@@ -16,6 +16,7 @@ import lombok.Setter;
 @Entity
 @Table(name = "kpi")
 public class KPI {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
@@ -23,4 +24,9 @@ public class KPI {
     Double final_score;
 
     List<KQuarter> kquarters;
+
+    public KPI(Double final_score) {
+        this.final_score = final_score;
+        this.kquarters = null;
+    }
 }

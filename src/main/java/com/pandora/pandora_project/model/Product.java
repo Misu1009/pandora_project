@@ -33,4 +33,14 @@ public class Product {
     List<Feature> features;
 
     ProductOwner product_owner;
+
+    public Product(String id_blueprint, String name, String mico, Double kpi_product_score) {
+        this.id_blueprint = id_blueprint;
+        this.name = name;
+        this.mico = mico;
+        this.kpi_product_score = kpi_product_score;
+        this.quarters = null;
+        this.features = null;
+        this.product_owner = null;
+    }
 }

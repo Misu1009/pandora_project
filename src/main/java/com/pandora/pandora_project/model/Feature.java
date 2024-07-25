@@ -35,4 +35,13 @@ public class Feature {
 
     List<Subtask> subtasks;
 
+    public Feature(String code, String name, String status, String strategic_topic, Date start_date, Date end_date) {
+        this.code = code;
+        this.name = name;
+        this.status = status;
+        this.strategic_topic = strategic_topic;
+        this.start_date = start_date;
+        this.end_date = end_date;
+        this.subtasks = null;
+    }
 }

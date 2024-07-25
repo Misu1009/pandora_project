@@ -31,4 +31,14 @@ public class User {
     String eselon_tier;
 
     String password;
+
+    public User(String name, String udomain, String division, String email, String biro, String eselon_tier, String password) {
+        this.name = name;
+        this.udomain = udomain;
+        this.division = division;
+        this.email = email;
+        this.biro = biro;
+        this.eselon_tier = eselon_tier;
+        this.password = password;
+    }
 }

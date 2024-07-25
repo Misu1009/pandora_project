@@ -19,4 +19,8 @@ public class PMO extends User{
 
     List<ProductOwner> product_owners;
 
+    public PMO() {
+        super();
+        this.product_owners = null;
+    }
 }
