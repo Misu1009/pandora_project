@@ -20,19 +20,14 @@ public class Feature {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
-
     String code;
-
     String name;
-
     String status;
-
     String strategic_topic;
-
     Date start_date;
-
     Date end_date;
 
+    @OneToMany(mappedBy = "feature", cascade = CascadeType.REMOVE, orphanRemoval = true)
     List<Subtask> subtasks;
 
     public Feature(String code, String name, String status, String strategic_topic, Date start_date, Date end_date) {

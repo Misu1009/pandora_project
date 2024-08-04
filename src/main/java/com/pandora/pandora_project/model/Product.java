@@ -19,20 +19,20 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
-
     String id_blueprint;
-
     String name;
-
     String mico;
-
     Double kpi_product_score;
 
+    @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE, orphanRemoval = true)
     List<PQuarter> quarters;
 
+    @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE, orphanRemoval = true)
     List<Feature> features;
 
-    ProductOwner product_owner;
+    @OneToOne(cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @JoinColumn(name = "productowner_id", nullable = true)
+    ProductOwner productowner;
 
     public Product(String id_blueprint, String name, String mico, Double kpi_product_score) {
         this.id_blueprint = id_blueprint;
@@ -41,6 +41,6 @@ public class Product {
         this.kpi_product_score = kpi_product_score;
         this.quarters = null;
         this.features = null;
-        this.product_owner = null;
+        this.productowner = null;
     }
 }

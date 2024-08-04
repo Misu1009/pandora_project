@@ -17,11 +17,8 @@ public class PQuarter {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
-
     String period;
-
     int target;
-
     int done;
 
     public PQuarter(String period, int target, int done) {

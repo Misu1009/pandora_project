@@ -17,10 +17,11 @@ import lombok.Setter;
 @Table(name = "pmo")
 public class PMO extends User{
 
-    List<ProductOwner> product_owners;
+    @OneToMany(mappedBy = "pmo", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    List<ProductOwner> productowners;
 
-    public PMO() {
-        super();
-        this.product_owners = null;
+    public PMO(String name, String udomain, String division, String email, String biro, String eselon_tier, String password) {
+        super(name, udomain, division, email, biro, eselon_tier, password);
+        this.productowners = null;
     }
 }

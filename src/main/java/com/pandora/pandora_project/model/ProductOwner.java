@@ -14,15 +14,17 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "product_owner")
+@Table(name = "productowner")
 public class ProductOwner extends User{
 
+    @OneToOne(mappedBy = "productowner")
     Product product;
 
+    @OneToMany(mappedBy = "productowner", cascade = CascadeType.REMOVE, orphanRemoval = true)
     List<Member> members;
 
-    public ProductOwner() {
-        super();
+    public ProductOwner(String name, String udomain, String division, String email, String biro, String eselon_tier, String password) {
+        super(name, udomain, division, email, biro, eselon_tier, password);
         this.product = null;
         this.members = null;
     }

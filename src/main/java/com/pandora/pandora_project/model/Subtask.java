@@ -19,19 +19,18 @@ public class Subtask {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
-
     String code;
-
     String name;
-
     String status;
-
     Date start_date;
-
     Date end_date;
 
+    @ManyToOne
+    @JoinColumn(name="member_id", nullable = false)
     Member member;
 
+    @ManyToOne
+    @JoinColumn(name="feature_id", nullable = false)
     Feature feature;
 
     public Subtask(String code, String name, String status, Date start_date, Date end_date) {

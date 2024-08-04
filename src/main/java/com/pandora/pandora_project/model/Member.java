@@ -17,16 +17,22 @@ import lombok.Setter;
 @Table(name = "member")
 public class Member extends User{
 
+    @OneToOne(cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @JoinColumn(name = "kpi_id")
     KPI kpi;
 
+    @OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE, orphanRemoval = true)
     List<Subtask> subtasks;
 
-    ProductOwner product_owner;
+    @ManyToOne
+    @JoinColumn(name="productowner_id")
+    ProductOwner productowner;
 
-    public Member() {
-        super();
+    public Member(String name, String udomain, String division, String email, String biro, String eselon_tier, String password) {
+        super(name, udomain, division, email, biro, eselon_tier, password);
         this.kpi = null;
         this.subtasks = null;
-        this.product_owner = null;
+        this.productowner = null;
     }
 }
+// nambah super constructor

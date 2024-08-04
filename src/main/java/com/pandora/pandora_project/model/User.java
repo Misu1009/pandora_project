@@ -17,21 +17,13 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
-
     String name;
-
     String udomain;
-
     String division;
-
     String email;
-
     String biro;
-
     String eselon_tier;
-
     String password;
-
     public User(String name, String udomain, String division, String email, String biro, String eselon_tier, String password) {
         this.name = name;
         this.udomain = udomain;
