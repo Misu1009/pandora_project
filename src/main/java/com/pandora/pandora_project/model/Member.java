@@ -21,9 +21,11 @@ public class Member extends User{
     @JoinColumn(name = "kpi_id")
     KPI kpi;
 
+    @JsonIgnoreProperties("member")
     @OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE, orphanRemoval = true)
     List<Subtask> subtasks;
 
+    @JsonIgnoreProperties("members")
     @ManyToOne
     @JoinColumn(name="productowner_id")
     ProductOwner productowner;

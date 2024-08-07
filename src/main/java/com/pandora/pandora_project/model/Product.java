@@ -30,6 +30,7 @@ public class Product {
     @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE, orphanRemoval = true)
     List<Feature> features;
 
+    @JsonIgnoreProperties("product")
     @OneToOne(cascade = CascadeType.REMOVE, orphanRemoval = true)
     @JoinColumn(name = "productowner_id", nullable = true)
     ProductOwner productowner;

@@ -17,9 +17,11 @@ import lombok.Setter;
 @Table(name = "productowner")
 public class ProductOwner extends User{
 
+    @JsonIgnoreProperties("productowner")
     @OneToOne(mappedBy = "productowner")
     Product product;
 
+    @JsonIgnoreProperties("productowner")
     @OneToMany(mappedBy = "productowner", cascade = CascadeType.REMOVE, orphanRemoval = true)
     List<Member> members;
 

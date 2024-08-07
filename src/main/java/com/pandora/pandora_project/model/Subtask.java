@@ -25,10 +25,12 @@ public class Subtask {
     Date start_date;
     Date end_date;
 
+    @JsonIgnoreProperties("subtasks")
     @ManyToOne
     @JoinColumn(name="member_id", nullable = false)
     Member member;
 
+    @JsonIgnoreProperties("subtasks")
     @ManyToOne
     @JoinColumn(name="feature_id", nullable = false)
     Feature feature;

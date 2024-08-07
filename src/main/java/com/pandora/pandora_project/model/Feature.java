@@ -27,6 +27,7 @@ public class Feature {
     Date start_date;
     Date end_date;
 
+    @JsonIgnoreProperties("feature")
     @OneToMany(mappedBy = "feature", cascade = CascadeType.REMOVE, orphanRemoval = true)
     List<Subtask> subtasks;
 
@@ -40,3 +41,4 @@ public class Feature {
         this.subtasks = null;
     }
 }
+//Menambahkan json ignore 7:55 6/8/2024

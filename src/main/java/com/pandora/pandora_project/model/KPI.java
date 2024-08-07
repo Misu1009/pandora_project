@@ -22,6 +22,7 @@ public class KPI {
     Long id;
     Double final_score;
 
+
     @OneToMany(mappedBy = "kpi", cascade = CascadeType.REMOVE, orphanRemoval = true)
     List<KQuarter> kquarters;
 
