@@ -15,9 +15,10 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table(name = "pmo")
+//@DiscriminatorValue("pmo")
 public class PMO extends User{
 
-    @OneToMany(mappedBy = "pmo", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true)
     List<ProductOwner> productowners;
 
     public PMO(String name, String udomain, String division, String email, String biro, String eselon_tier, String password) {

@@ -15,6 +15,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table(name = "member")
+//@DiscriminatorValue("member")
 public class Member extends User{
 
     @OneToOne(cascade = CascadeType.REMOVE, orphanRemoval = true)

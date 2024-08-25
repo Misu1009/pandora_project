@@ -15,6 +15,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table(name = "productowner")
+//@DiscriminatorValue("productowner")
 public class ProductOwner extends User{
 
     @JsonIgnoreProperties("productowner")

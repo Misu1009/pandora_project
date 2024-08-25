@@ -24,10 +24,10 @@ public class Product {
     String mico;
     Double kpi_product_score;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true)
     List<PQuarter> quarters;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true)
     List<Feature> features;
 
     @JsonIgnoreProperties("product")
