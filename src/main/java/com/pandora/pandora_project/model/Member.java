@@ -15,8 +15,17 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table(name = "member")
-//@DiscriminatorValue("member")
-public class Member extends User{
+public class Member{
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    Long id;
+    String name;
+    String udomain;
+    String division;
+    String email;
+    String biro;
+    String eselon_tier;
+    String password;
 
     @OneToOne(cascade = CascadeType.REMOVE, orphanRemoval = true)
     @JoinColumn(name = "kpi_id")
@@ -32,10 +41,16 @@ public class Member extends User{
     ProductOwner productowner;
 
     public Member(String name, String udomain, String division, String email, String biro, String eselon_tier, String password) {
-        super(name, udomain, division, email, biro, eselon_tier, password);
+        this.name = name;
+        this.udomain = udomain;
+        this.division = division;
+        this.email = email;
+        this.biro = biro;
+        this.eselon_tier = eselon_tier;
+        this.password = password;
+
         this.kpi = null;
         this.subtasks = null;
         this.productowner = null;
     }
 }
-// nambah super constructor

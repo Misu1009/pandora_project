@@ -15,8 +15,17 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table(name = "productowner")
-//@DiscriminatorValue("productowner")
-public class ProductOwner extends User{
+public class ProductOwner{
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    Long id;
+    String name;
+    String udomain;
+    String division;
+    String email;
+    String biro;
+    String eselon_tier;
+    String password;
 
     @JsonIgnoreProperties("productowner")
     @OneToOne(mappedBy = "productowner")
@@ -27,8 +36,16 @@ public class ProductOwner extends User{
     List<Member> members;
 
     public ProductOwner(String name, String udomain, String division, String email, String biro, String eselon_tier, String password) {
-        super(name, udomain, division, email, biro, eselon_tier, password);
+        this.name = name;
+        this.udomain = udomain;
+        this.division = division;
+        this.email = email;
+        this.biro = biro;
+        this.eselon_tier = eselon_tier;
+        this.password = password;
+
         this.product = null;
         this.members = null;
     }
+
 }

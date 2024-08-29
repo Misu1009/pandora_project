@@ -15,14 +15,30 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table(name = "pmo")
-//@DiscriminatorValue("pmo")
-public class PMO extends User{
+public class PMO {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    Long id;
+    String name;
+    String udomain;
+    String division;
+    String email;
+    String biro;
+    String eselon_tier;
+    String password;
 
     @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true)
     List<ProductOwner> productowners;
 
     public PMO(String name, String udomain, String division, String email, String biro, String eselon_tier, String password) {
-        super(name, udomain, division, email, biro, eselon_tier, password);
+        this.name = name;
+        this.udomain = udomain;
+        this.division = division;
+        this.email = email;
+        this.biro = biro;
+        this.eselon_tier = eselon_tier;
+        this.password = password;
+
         this.productowners = null;
     }
 }
