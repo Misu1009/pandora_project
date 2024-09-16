@@ -22,7 +22,6 @@ public class KPI {
     Long id;
     Double final_score;
 
-
     @OneToMany(cascade=CascadeType.ALL, orphanRemoval = true)
     List<KQuarter> kquarters;
 

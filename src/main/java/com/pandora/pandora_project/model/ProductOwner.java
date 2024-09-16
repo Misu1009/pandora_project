@@ -28,7 +28,7 @@ public class ProductOwner{
     String password;
 
     @JsonIgnoreProperties("productowner")
-    @OneToOne(mappedBy = "productowner")
+    @OneToOne(mappedBy = "productowner", cascade=CascadeType.ALL)
     Product product;
 
     @JsonIgnoreProperties("productowner")

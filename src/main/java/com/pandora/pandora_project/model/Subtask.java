@@ -25,15 +25,15 @@ public class Subtask {
     Date start_date;
     Date end_date;
 
-    @JsonIgnoreProperties("subtasks")
-    @ManyToOne
-    @JoinColumn(name="member_id", nullable = true)
-    Member member;
+//    @JsonIgnoreProperties("subtasks")
+//    @ManyToOne
+//    @JoinColumn(name="member_id", nullable = true)
+//    Member member;
 
-    @JsonIgnoreProperties("subtasks")
-    @ManyToOne
-    @JoinColumn(name="feature_id", nullable = true)
-    Feature feature;
+//    @JsonIgnoreProperties("subtasks")
+//    @ManyToOne
+//    @JoinColumn(name="feature_id", nullable = true)
+//    Feature feature;
 
     public Subtask(String code, String name, String status, Date start_date, Date end_date) {
         this.code = code;
@@ -41,7 +41,7 @@ public class Subtask {
         this.status = status;
         this.start_date = start_date;
         this.end_date = end_date;
-        this.member = null;
-        this.feature = null;
+//        this.member = null;
+//        this.feature = null;
     }
 }

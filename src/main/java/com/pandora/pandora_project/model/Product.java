@@ -31,7 +31,7 @@ public class Product {
     List<Feature> features;
 
     @JsonIgnoreProperties("product")
-    @OneToOne(cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToOne()
     @JoinColumn(name = "productowner_id", nullable = true)
     ProductOwner productowner;
 

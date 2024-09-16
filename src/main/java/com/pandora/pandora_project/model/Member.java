@@ -31,8 +31,9 @@ public class Member{
     @JoinColumn(name = "kpi_id")
     KPI kpi;
 
-    @JsonIgnoreProperties("member")
-    @OneToMany(mappedBy = "member", cascade=CascadeType.ALL, orphanRemoval = true)
+//    mappedBy = "member",
+//    @JsonIgnoreProperties("member")
+    @OneToMany(cascade=CascadeType.ALL, orphanRemoval = true)
     List<Subtask> subtasks;
 
     @JsonIgnoreProperties("members")
