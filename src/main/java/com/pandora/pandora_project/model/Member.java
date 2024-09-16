@@ -32,7 +32,7 @@ public class Member{
     KPI kpi;
 
     @JsonIgnoreProperties("member")
-    @OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(mappedBy = "member", cascade=CascadeType.ALL, orphanRemoval = true)
     List<Subtask> subtasks;
 
     @JsonIgnoreProperties("members")

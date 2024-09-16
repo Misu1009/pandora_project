@@ -23,7 +23,7 @@ public class KPI {
     Double final_score;
 
 
-    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(cascade=CascadeType.ALL, orphanRemoval = true)
     List<KQuarter> kquarters;
 
     public KPI(Double final_score) {

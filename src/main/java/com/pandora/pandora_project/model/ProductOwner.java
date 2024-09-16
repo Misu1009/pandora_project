@@ -32,7 +32,7 @@ public class ProductOwner{
     Product product;
 
     @JsonIgnoreProperties("productowner")
-    @OneToMany(mappedBy = "productowner", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(mappedBy = "productowner", cascade=CascadeType.ALL, orphanRemoval = true)
     List<Member> members;
 
     public ProductOwner(String name, String udomain, String division, String email, String biro, String eselon_tier, String password) {

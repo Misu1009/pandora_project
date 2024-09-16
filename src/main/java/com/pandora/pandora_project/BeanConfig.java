@@ -20,7 +20,7 @@ public class BeanConfig {
             KpiRepository kpiRepository,
             KquarterRepository kquarterRepository,
             PMORepository pmoRepository,
-            PQuarterRepository pQuarterRepository,
+            PQuarterRepository pquarterRepository,
             ProductRepository productRepository,
             ProductOwnerRepository productOwnerRepository,
             SubtaskRepository subtaskRepository
@@ -37,7 +37,7 @@ public class BeanConfig {
                     "blabla"
             );
 
-            ProductOwner productOwner1 = new ProductOwner(
+            ProductOwner productowner1 = new ProductOwner(
                     "Vincent",
                     "u12345",
                     "GPOLS",
@@ -46,7 +46,7 @@ public class BeanConfig {
                     "s1",
                     "blabla"
             );
-            ProductOwner productOwner2 = new ProductOwner(
+            ProductOwner productowner2 = new ProductOwner(
                     "Vincent",
                     "u12345",
                     "GPOLS",
@@ -106,22 +106,22 @@ public class BeanConfig {
                     4.0
             );
 
-            PQuarter pQuarter1a = new PQuarter(
+            PQuarter pquarter1a = new PQuarter(
                     "Q1",
                     10,
                     5
             );
-            PQuarter pQuarter1b = new PQuarter(
+            PQuarter pquarter1b = new PQuarter(
                     "Q1",
                     10,
                     5
             );
-            PQuarter pQuarter2a = new PQuarter(
+            PQuarter pquarter2a = new PQuarter(
                     "Q1",
                     10,
                     5
             );
-            PQuarter pQuarter2b = new PQuarter(
+            PQuarter pquarter2b = new PQuarter(
                     "Q1",
                     10,
                     5
@@ -217,7 +217,7 @@ public class BeanConfig {
                     new GregorianCalendar(2010, Calendar.JUNE, 22).getTime()
             );
 
-            KQuarter kQuarter1aa = new KQuarter(
+            KQuarter kquarter1aa = new KQuarter(
                     "Q1",
                     20,
                     20,
@@ -228,7 +228,7 @@ public class BeanConfig {
                     10,
                     0
             );
-            KQuarter kQuarter1ab = new KQuarter(
+            KQuarter kquarter1ab = new KQuarter(
                     "Q1",
                     20,
                     20,
@@ -239,7 +239,7 @@ public class BeanConfig {
                     10,
                     0
             );
-            KQuarter kQuarter1ba = new KQuarter(
+            KQuarter kquarter1ba = new KQuarter(
                     "Q1",
                     20,
                     20,
@@ -250,7 +250,7 @@ public class BeanConfig {
                     10,
                     0
             );
-            KQuarter kQuarter1bb = new KQuarter(
+            KQuarter kquarter1bb = new KQuarter(
                     "Q1",
                     20,
                     20,
@@ -261,7 +261,7 @@ public class BeanConfig {
                     10,
                     0
             );
-            KQuarter kQuarter2aa = new KQuarter(
+            KQuarter kquarter2aa = new KQuarter(
                     "Q1",
                     20,
                     20,
@@ -272,7 +272,7 @@ public class BeanConfig {
                     10,
                     0
             );
-            KQuarter kQuarter2ab = new KQuarter(
+            KQuarter kquarter2ab = new KQuarter(
                     "Q1",
                     20,
                     20,
@@ -283,7 +283,7 @@ public class BeanConfig {
                     10,
                     0
             );
-            KQuarter kQuarter2ba = new KQuarter(
+            KQuarter kquarter2ba = new KQuarter(
                     "Q1",
                     20,
                     20,
@@ -294,7 +294,7 @@ public class BeanConfig {
                     10,
                     0
             );
-            KQuarter kQuarter2bb = new KQuarter(
+            KQuarter kquarter2bb = new KQuarter(
                     "Q1",
                     20,
                     20,
@@ -319,28 +319,92 @@ public class BeanConfig {
                     3.84
             );
 
+            pmo.setProductowners(List.of(productowner1, productowner2));
 
-//            feature1.setSubtasks(List.of(subtask1a));
-//
-//            kpi1.setKquarters(List.of(kQuarter1a));
-//
-//            member1.setKpi(kpi1);
-//            member1.setSubtasks(List.of(subtask1a));
-//            member1.setProductowner(productOwner1);
-//
-//            pmo.setProductowners(List.of(productOwner1));
-//
-//            product1.setQuarters(List.of(pQuarter1a));
-//            product1.setFeatures(List.of(feature1));
-//            product1.setProductowner(productOwner1);
-//
-//            productOwner1.setProduct(product1);
-//            productOwner1.setMembers(List.of(member1));
-//
-//            subtask1a.setMember(member1);
-//            subtask1a.setFeature(feature1);
 
-            //------------------------------------------- 1
+            productowner1.setMembers(List.of(member1a, member1b));
+            productowner2.setMembers(List.of(member2a, member2b));
+
+            member1a.setKpi(kpi1a);
+            member1b.setKpi(kpi1b);
+            member2a.setKpi(kpi2a);
+            member2b.setKpi(kpi2b);
+
+            kpi1a.setKquarters(List.of(kquarter1aa, kquarter1ab));
+            kpi1b.setKquarters(List.of(kquarter1ba, kquarter1bb));
+            kpi2a.setKquarters(List.of(kquarter2aa, kquarter2ab));
+            kpi2b.setKquarters(List.of(kquarter2ba, kquarter2bb));
+
+            productowner1.setProduct(product1);
+            productowner2.setProduct(product2);
+
+            product1.setFeatures(List.of(feature1a, feature1b));
+            product2.setFeatures(List.of(feature2a, feature2b));
+
+            feature1a.setSubtasks(List.of(subtask1aa, subtask1ab));
+            feature1b.setSubtasks(List.of(subtask1ba, subtask1bb));
+            feature2a.setSubtasks(List.of(subtask2aa, subtask2ab));
+            feature2b.setSubtasks(List.of(subtask2ba, subtask2bb));
+
+            product1.setPquarters(List.of(pquarter1a, pquarter1b));
+            product2.setPquarters(List.of(pquarter2a, pquarter2b));
+
+            member1a.setSubtasks(List.of(subtask1aa, subtask1ab));
+            member1b.setSubtasks(List.of(subtask1ba, subtask1bb));
+            member2a.setSubtasks(List.of(subtask2aa, subtask2ab));
+            member2b.setSubtasks(List.of(subtask2ba, subtask2bb));
+
+            // Bidirectional
+            subtask1aa.setMember(member1a);
+            subtask1ab.setMember(member1a);
+            subtask1ba.setMember(member1b);
+            subtask1bb.setMember(member1b);
+            subtask2aa.setMember(member2a);
+            subtask2ab.setMember(member2a);
+            subtask2ba.setMember(member2b);
+            subtask2bb.setMember(member2b);
+
+            subtask1aa.setFeature(feature1a);
+            subtask1ab.setFeature(feature1a);
+            subtask1ba.setFeature(feature1b);
+            subtask1bb.setFeature(feature1b);
+            subtask2aa.setFeature(feature2a);
+            subtask2ab.setFeature(feature2a);
+            subtask2ba.setFeature(feature2b);
+            subtask2bb.setFeature(feature2b);
+
+            member1a.setProductowner(productowner1);
+            member1b.setProductowner(productowner1);
+            member2a.setProductowner(productowner2);
+            member2b.setProductowner(productowner2);
+
+            product1.setProductowner(productowner1);
+            product2.setProductowner(productowner2);
+
+            // upload via repository
+            pquarterRepository.saveAll(List.of(pquarter1a, pquarter1b, pquarter2a, pquarter2b));
+            featureRepository.saveAll(List.of(feature1a, feature1b, feature2a, feature2b));
+            subtaskRepository.saveAll(
+                    List.of(
+                            subtask1aa, subtask1ab, subtask1ba, subtask1bb,
+                            subtask2aa, subtask2ab, subtask2ba, subtask2bb
+                    ));
+            kquarterRepository.saveAll(
+                    List.of(
+                            kquarter1aa, kquarter1ab, kquarter1ba, kquarter1bb,
+                            kquarter2aa, kquarter2ab, kquarter2ba,kquarter2bb
+                    ));
+
+            pmoRepository.save(pmo);
+            productOwnerRepository.saveAll(List.of(productowner1, productowner2));
+            memberRepository.saveAll(List.of(member1a, member1b, member2a, member2b));
+            kpiRepository.saveAll(List.of(kpi1a, kpi1b, kpi2a, kpi2b));
+            productRepository.saveAll(List.of(product1, product2));
+
+
+
+
+
 
 
         };

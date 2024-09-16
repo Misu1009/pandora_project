@@ -28,7 +28,7 @@ public class Feature {
     Date end_date;
 
     @JsonIgnoreProperties("feature")
-    @OneToMany(mappedBy = "feature", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(mappedBy = "feature", cascade=CascadeType.ALL, orphanRemoval = true)
     List<Subtask> subtasks;
 
     public Feature(String code, String name, String status, String strategic_topic, Date start_date, Date end_date) {

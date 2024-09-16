@@ -24,10 +24,10 @@ public class Product {
     String mico;
     Double kpi_product_score;
 
-    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true)
-    List<PQuarter> quarters;
+    @OneToMany(cascade=CascadeType.ALL, orphanRemoval = true)
+    List<PQuarter> pquarters;
 
-    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(cascade=CascadeType.ALL, orphanRemoval = true)
     List<Feature> features;
 
     @JsonIgnoreProperties("product")
@@ -40,7 +40,7 @@ public class Product {
         this.name = name;
         this.mico = mico;
         this.kpi_product_score = kpi_product_score;
-        this.quarters = null;
+        this.pquarters = null;
         this.features = null;
         this.productowner = null;
     }

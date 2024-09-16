@@ -27,12 +27,12 @@ public class Subtask {
 
     @JsonIgnoreProperties("subtasks")
     @ManyToOne
-    @JoinColumn(name="member_id", nullable = false)
+    @JoinColumn(name="member_id", nullable = true)
     Member member;
 
     @JsonIgnoreProperties("subtasks")
     @ManyToOne
-    @JoinColumn(name="feature_id", nullable = false)
+    @JoinColumn(name="feature_id", nullable = true)
     Feature feature;
 
     public Subtask(String code, String name, String status, Date start_date, Date end_date) {

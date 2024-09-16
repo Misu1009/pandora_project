@@ -27,7 +27,7 @@ public class PMO {
     String eselon_tier;
     String password;
 
-    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(cascade=CascadeType.ALL, orphanRemoval = true)
     List<ProductOwner> productowners;
 
     public PMO(String name, String udomain, String division, String email, String biro, String eselon_tier, String password) {
