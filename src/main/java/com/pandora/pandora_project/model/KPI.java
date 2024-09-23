@@ -1,5 +1,6 @@
 package com.pandora.pandora_project.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -12,7 +13,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "kpi")
 public class KPI {
@@ -28,5 +28,10 @@ public class KPI {
     public KPI(Double final_score) {
         this.final_score = final_score;
         this.kquarters = null;
+    }
+
+    public KPI() {
+        this.kquarters = new ArrayList<>();
+        this.kquarters.add(new KQuarter("Q1"));
     }
 }

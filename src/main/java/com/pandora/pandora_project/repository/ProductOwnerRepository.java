@@ -6,4 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProductOwnerRepository extends JpaRepository<ProductOwner, Long> {
+    ProductOwner findbyemail(String email);
+
+    ProductOwner findbyudomain(String udomain);
 }

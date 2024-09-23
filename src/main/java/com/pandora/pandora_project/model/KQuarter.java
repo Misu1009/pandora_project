@@ -40,4 +40,8 @@ public class KQuarter {
         this.late = late;
     }
 
+    public KQuarter(String period) {
+        this.period = period;
+    }
+
 }

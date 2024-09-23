@@ -171,56 +171,64 @@ public class BeanConfig {
                     "Connecting To Bitcoin Network",
                     "On Progress",
                     new GregorianCalendar(2010, Calendar.MAY, 22).getTime(),
-                    new GregorianCalendar(2010, Calendar.JUNE, 22).getTime()
+                    new GregorianCalendar(2010, Calendar.JUNE, 22).getTime(),
+                    "Udomain"
             );
             Subtask subtask1ab = new Subtask(
                     "S0008",
                     "Connecting To Bitcoin Network",
                     "On Progress",
                     new GregorianCalendar(2010, Calendar.MAY, 22).getTime(),
-                    new GregorianCalendar(2010, Calendar.JUNE, 22).getTime()
+                    new GregorianCalendar(2010, Calendar.JUNE, 22).getTime(),
+                    "Udomain"
             );
             Subtask subtask1ba = new Subtask(
                     "S0008",
                     "Connecting To Bitcoin Network",
                     "On Progress",
                     new GregorianCalendar(2010, Calendar.MAY, 22).getTime(),
-                    new GregorianCalendar(2010, Calendar.JUNE, 22).getTime()
+                    new GregorianCalendar(2010, Calendar.JUNE, 22).getTime(),
+                    "Udomain"
             );
             Subtask subtask1bb = new Subtask(
                     "S0008",
                     "Connecting To Bitcoin Network",
                     "On Progress",
                     new GregorianCalendar(2010, Calendar.MAY, 22).getTime(),
-                    new GregorianCalendar(2010, Calendar.JUNE, 22).getTime()
+                    new GregorianCalendar(2010, Calendar.JUNE, 22).getTime(),
+                    "Udomain"
             );
             Subtask subtask2aa = new Subtask(
                     "S0008",
                     "Connecting To Bitcoin Network",
                     "On Progress",
                     new GregorianCalendar(2010, Calendar.MAY, 22).getTime(),
-                    new GregorianCalendar(2010, Calendar.JUNE, 22).getTime()
+                    new GregorianCalendar(2010, Calendar.JUNE, 22).getTime(),
+                    "Udomain"
             );
             Subtask subtask2ab = new Subtask(
                     "S0008",
                     "Connecting To Bitcoin Network",
                     "On Progress",
                     new GregorianCalendar(2010, Calendar.MAY, 22).getTime(),
-                    new GregorianCalendar(2010, Calendar.JUNE, 22).getTime()
+                    new GregorianCalendar(2010, Calendar.JUNE, 22).getTime(),
+                    "Udomain"
             );
             Subtask subtask2ba = new Subtask(
                     "S0008",
                     "Connecting To Bitcoin Network",
                     "On Progress",
                     new GregorianCalendar(2010, Calendar.MAY, 22).getTime(),
-                    new GregorianCalendar(2010, Calendar.JUNE, 22).getTime()
+                    new GregorianCalendar(2010, Calendar.JUNE, 22).getTime(),
+                    "Udomain"
             );
             Subtask subtask2bb = new Subtask(
                     "S0008",
                     "Connecting To Bitcoin Network",
                     "On Progress",
                     new GregorianCalendar(2010, Calendar.MAY, 22).getTime(),
-                    new GregorianCalendar(2010, Calendar.JUNE, 22).getTime()
+                    new GregorianCalendar(2010, Calendar.JUNE, 22).getTime(),
+                    "Udomain"
             );
             subtaskRepository.saveAll(
                     List.of(

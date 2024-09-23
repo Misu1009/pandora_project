@@ -24,6 +24,7 @@ public class Subtask {
     String status;
     Date start_date;
     Date end_date;
+    String udomain;
 
 //    @JsonIgnoreProperties("subtasks")
 //    @ManyToOne
@@ -43,5 +44,13 @@ public class Subtask {
         this.end_date = end_date;
 //        this.member = null;
 //        this.feature = null;
+    }
+    public Subtask(String code, String name, String status, Date start_date, Date end_date, String udomain) {
+        this.code = code;
+        this.name = name;
+        this.status = status;
+        this.start_date = start_date;
+        this.end_date = end_date;
+        this.udomain = udomain;
     }
 }
