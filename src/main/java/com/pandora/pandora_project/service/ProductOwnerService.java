@@ -1,9 +1,10 @@
 package com.pandora.pandora_project.service;
 
+import com.pandora.pandora_project.jira.FeatureDb;
 import com.pandora.pandora_project.jira.ProductDb;
-import com.pandora.pandora_project.model.Member;
-import com.pandora.pandora_project.model.PQuarter;
-import com.pandora.pandora_project.model.Product;
+import com.pandora.pandora_project.jira.SubtaskDb;
+import com.pandora.pandora_project.model.*;
+import com.pandora.pandora_project.repository.MemberRepository;
 import com.pandora.pandora_project.repository.ProductOwnerRepository;
 import com.pandora.pandora_project.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +16,13 @@ import java.util.List;
 public class ProductOwnerService{
     private final ProductOwnerRepository productownerRepository;
     private final ProductRepository productRepository;
+    private final MemberRepository memberRepository;
 
     @Autowired
-    public ProductOwnerService(ProductOwnerRepository productownerRepository, ProductRepository productRepository){
+    public ProductOwnerService(ProductOwnerRepository productownerRepository, ProductRepository productRepository, MemberRepository memberRepository){
         this.productownerRepository = productownerRepository;
         this.productRepository = productRepository;
+        this.memberRepository = memberRepository;
     }
 
     public void setKpiProductScore(String udomain, double score){
@@ -43,6 +46,8 @@ public class ProductOwnerService{
         long productId = productownerRepository.findbyudomain(udomain).getProduct().getId();
 
         Product product = productRepository.getReferenceById(productId);
+
+        // Pquarter
         List<PQuarter> pquarters = product.getPquarters();
         if(pquarters == null){
             pquarters.add(
@@ -70,11 +75,55 @@ public class ProductOwnerService{
             pquarters.get(1).setDone(productDb.getDone4());
             pquarters.get(1).setTarget(productDb.getTarget4());
         }
+        product.setPquarters(pquarters);
 
-
+        // Feature + Subtask
+        List<Feature> features = product.getFeatures();
+        List<Subtask> subtasks = null;
+//        if(features == null){
+        for(FeatureDb featureDb: productDb.getFeatures()){
+            for(SubtaskDb subtaskDb: featureDb.getSubtasks()){
+                subtasks.add(
+                        new Subtask(
+                                subtaskDb.getCode(),
+                                subtaskDb.getName(),
+                                subtaskDb.getStatus(),
+                                subtaskDb.getStart_date(),
+                                subtaskDb.getEnd_date(),
+                                subtaskDb.getUdomain()
+                        )
+                );
+            }
+            Feature featureTemp = new Feature(
+                        featureDb.getCode(),
+                        featureDb.getName(),
+                        featureDb.getStatus(),
+                        featureDb.getStrategic_topic(),
+                        featureDb.getStart_date(),
+                        featureDb.getEnd_date()
+            );
+            featureTemp.setSubtasks(subtasks);
+            features.add(featureTemp);
+        }
+//        }
+        product.setFeatures(features);
+        productRepository.save(product);
     }
 //    public void updateMemberDB(String udomain, Member member){
+//        ProductOwner productOwner = productownerRepository.findbyudomain(udomain);
 //
+////        List<Member> members = productOwner.getMembers();
+//        Product product = productOwner.getProduct();
+//        List<Feature> features = product.getFeatures();
+//        List<Subtask> subtasks = null;
+//
+//        for(Feature feature: features){
+//            for(Subtask subtask: feature.getSubtasks()){
+//                String udomainS = subtask.getUdomain();
+//                Member member1 = memberRepository.findbyudomain(udomainS);
+//
+//            }
+//        }
 //    }
 //
 //    public boolean synchronize(String udomain){

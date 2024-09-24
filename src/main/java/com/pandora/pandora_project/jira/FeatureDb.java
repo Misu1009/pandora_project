@@ -10,9 +10,12 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class Feature {
+public class FeatureDb {
     String code;
+    String name;
+    String status;
+    String strategic_topic;
     Date start_date;
     Date end_date;
-    List<Subtask> subtasks;
+    List<SubtaskDb> subtasks;
 }

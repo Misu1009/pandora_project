@@ -14,5 +14,5 @@ public class ProductDb {
     String period1, period2, period3, period4;
     int target1, target2, target3, target4;
     int done1, done2, done3, done4;
-    List<Feature> features;
+    List<FeatureDb> features;
 }

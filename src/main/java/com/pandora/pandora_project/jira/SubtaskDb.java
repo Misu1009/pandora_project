@@ -9,8 +9,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class Subtask {
+public class SubtaskDb {
     String code;
+    String name;
     String status;
     String udomain;
     Date start_date;
