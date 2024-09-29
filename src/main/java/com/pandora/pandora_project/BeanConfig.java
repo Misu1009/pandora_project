@@ -1,11 +1,15 @@
 package com.pandora.pandora_project;
 
+import com.pandora.pandora_project.jira.FeatureDb;
+import com.pandora.pandora_project.jira.ProductDb;
+import com.pandora.pandora_project.jira.SubtaskDb;
 import com.pandora.pandora_project.model.*;
 import com.pandora.pandora_project.repository.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -26,7 +30,6 @@ public class BeanConfig {
             SubtaskRepository subtaskRepository
     ){
         return args-> {
-
             PMO pmo = new PMO(
                     "Dora",
                     "u54321",
@@ -36,7 +39,6 @@ public class BeanConfig {
                     "s2",
                     "blabla"
             );
-            pmoRepository.save(pmo);
 
             ProductOwner productowner1 = new ProductOwner(
                     "Vincent",
@@ -56,7 +58,6 @@ public class BeanConfig {
                     "s1",
                     "blabla"
             );
-            productOwnerRepository.saveAll(List.of(productowner1, productowner2));
 
             Member member1a = new Member(
                     "Kevin",
@@ -94,7 +95,6 @@ public class BeanConfig {
                     "s7",
                     "blabla"
             );
-            memberRepository.saveAll(List.of(member1a, member1b, member2a, member2b));
 
             Product product1 = new Product(
                     "MXYZ",
@@ -108,7 +108,6 @@ public class BeanConfig {
                     "XYZ Eksternal",
                     4.0
             );
-            productRepository.saveAll(List.of(product1, product2));
 
             PQuarter pquarter1a = new PQuarter(
                     "Q1",
@@ -130,7 +129,6 @@ public class BeanConfig {
                     10,
                     5
             );
-            pquarterRepository.saveAll(List.of(pquarter1a, pquarter1b, pquarter2a, pquarter2b));
 
             Feature feature1a = new Feature(
                     "BPRO002",
@@ -164,7 +162,6 @@ public class BeanConfig {
                     new GregorianCalendar(2009, Calendar.JANUARY, 3).getTime(),
                     new GregorianCalendar(2009, Calendar.FEBRUARY, 2).getTime()
             );
-            featureRepository.saveAll(List.of(feature1a, feature1b, feature2a, feature2b));
 
             Subtask subtask1aa = new Subtask(
                     "S0008",
@@ -230,11 +227,6 @@ public class BeanConfig {
                     new GregorianCalendar(2010, Calendar.JUNE, 22).getTime(),
                     "Udomain"
             );
-            subtaskRepository.saveAll(
-                    List.of(
-                            subtask1aa, subtask1ab, subtask1ba, subtask1bb,
-                            subtask2aa, subtask2ab, subtask2ba, subtask2bb
-                    ));
 
             KQuarter kquarter1aa = new KQuarter(
                     "Q1",
@@ -324,11 +316,6 @@ public class BeanConfig {
                     10,
                     0
             );
-            kquarterRepository.saveAll(
-                    List.of(
-                            kquarter1aa, kquarter1ab, kquarter1ba, kquarter1bb,
-                            kquarter2aa, kquarter2ab, kquarter2ba,kquarter2bb
-                    ));
 
             KPI kpi1a = new KPI(
                     3.84
@@ -342,7 +329,6 @@ public class BeanConfig {
             KPI kpi2b = new KPI(
                     3.84
             );
-            kpiRepository.saveAll(List.of(kpi1a, kpi1b, kpi2a, kpi2b));
 
             kpi1a.setKquarters(List.of(kquarter1aa, kquarter1ab));
             kpi1b.setKquarters(List.of(kquarter1ba, kquarter1bb));
@@ -423,7 +409,19 @@ public class BeanConfig {
             memberRepository.saveAll(List.of(member1a, member1b, member2a, member2b));
             productOwnerRepository.saveAll(List.of(productowner1, productowner2));
             pmoRepository.save(pmo);
-
         };
+    }
+
+    @Bean
+    List<ProductDb> productDBJira(){
+        return new ArrayList<>();
+    }
+    @Bean
+    FeatureDb featureDBJira(){
+        return new FeatureDb();
+    }
+    @Bean
+    SubtaskDb subtaskDBJira(){
+        return new SubtaskDb();
     }
 }

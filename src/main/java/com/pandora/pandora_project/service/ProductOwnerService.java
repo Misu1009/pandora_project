@@ -10,6 +10,7 @@ import com.pandora.pandora_project.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -17,12 +18,25 @@ public class ProductOwnerService{
     private final ProductOwnerRepository productownerRepository;
     private final ProductRepository productRepository;
     private final MemberRepository memberRepository;
+    private final List<ProductDb> productDb;
+    private final FeatureDb featureDb;
+    private final SubtaskDb subtaskDb;
 
     @Autowired
-    public ProductOwnerService(ProductOwnerRepository productownerRepository, ProductRepository productRepository, MemberRepository memberRepository){
+    public ProductOwnerService(
+            ProductOwnerRepository productownerRepository,
+            ProductRepository productRepository,
+            MemberRepository memberRepository,
+            List<ProductDb> productDb,
+            FeatureDb featureDb,
+            SubtaskDb subtaskDb
+    ){
         this.productownerRepository = productownerRepository;
         this.productRepository = productRepository;
         this.memberRepository = memberRepository;
+        this.productDb = productDb;
+        this.featureDb = featureDb;
+        this.subtaskDb = subtaskDb;
     }
 
     public void setKpiProductScore(String udomain, double score){
@@ -32,20 +46,9 @@ public class ProductOwnerService{
         product.setKpi_product_score(score);
         productRepository.save(product);
     }
-//    public void downloadProduct(String udomain){
-//
-//    }
-//    public void downloadMember(String udomain){
-//
-//    }
-//    public void downloadKpiExcel(String udomain){
-//
-//    }
-//
-    public void updateProductDB(String udomain, ProductDb productDb){
-        long productId = productownerRepository.findbyudomain(udomain).getProduct().getId();
 
-        Product product = productRepository.getReferenceById(productId);
+    public void updateProductDB(ProductDb productDb){
+        Product product = productRepository.findbyId_blueprint(productDb.getId_blurprint());
 
         // Pquarter
         List<PQuarter> pquarters = product.getPquarters();
@@ -78,9 +81,8 @@ public class ProductOwnerService{
         product.setPquarters(pquarters);
 
         // Feature + Subtask
-        List<Feature> features = product.getFeatures();
-        List<Subtask> subtasks = null;
-//        if(features == null){
+        List<Feature> features = new ArrayList<>();
+        List<Subtask> subtasks = new ArrayList<>();
         for(FeatureDb featureDb: productDb.getFeatures()){
             for(SubtaskDb subtaskDb: featureDb.getSubtasks()){
                 subtasks.add(
@@ -105,28 +107,53 @@ public class ProductOwnerService{
             featureTemp.setSubtasks(subtasks);
             features.add(featureTemp);
         }
-//        }
         product.setFeatures(features);
         productRepository.save(product);
     }
-//    public void updateMemberDB(String udomain, Member member){
-//        ProductOwner productOwner = productownerRepository.findbyudomain(udomain);
+    public void updateMemberDB(String udomain){
+        ProductOwner productOwner = productownerRepository.findbyudomain(udomain);
+
+        List<Member> members = productOwner.getMembers();
+        Product product = productOwner.getProduct();
+        List<Feature> features = product.getFeatures();
+        List<Subtask> subtasks = new ArrayList<>();
+
+        for(Member member: members){ // set null arraylist to every member
+            member.setSubtasks(new ArrayList<>());
+        }
+        for(Feature feature: features){ // loop feature to get each subtask
+            for(Subtask subtask: feature.getSubtasks()){ // bind every subtask to it's member
+                String udomainS = subtask.getUdomain();
+                Member findMember = memberRepository.findbyudomain(udomainS);
+                findMember.getSubtasks().add(subtask);
+            }
+        }
+    }
+
+    public void synchronize(String udomain){
+        ProductOwner productOwner = productownerRepository.findbyudomain(udomain);
+
+        ProductDb productDb1 = findProductDBByid_blueprint(productOwner.getProduct().getId_blueprint());
+        updateProductDB(productDb1);
+        updateMemberDB(udomain);
+    }
+
+    public ProductDb findProductDBByid_blueprint(String id_blueprint){
+        for(ProductDb productDb: this.productDb){
+            if(productDb.getId_blurprint().equals(id_blueprint)){
+                return productDb;
+            }
+        }
+        return null;
+    }
+    //    public void downloadProduct(String udomain){
 //
-////        List<Member> members = productOwner.getMembers();
-//        Product product = productOwner.getProduct();
-//        List<Feature> features = product.getFeatures();
-//        List<Subtask> subtasks = null;
+//    }
+//    public void downloadMember(String udomain){
 //
-//        for(Feature feature: features){
-//            for(Subtask subtask: feature.getSubtasks()){
-//                String udomainS = subtask.getUdomain();
-//                Member member1 = memberRepository.findbyudomain(udomainS);
+//    }
+//    public void downloadKpiExcel(String udomain){
 //
-//            }
-//        }
 //    }
 //
-//    public boolean synchronize(String udomain){
-//
-//    }
 }

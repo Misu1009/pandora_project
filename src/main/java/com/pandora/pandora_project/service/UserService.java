@@ -51,7 +51,6 @@ public class UserService{
             throw new IllegalStateException("Product Owner is not found");
         }
         ProductOwner productOwner2 = productOwner.get();
-        // bikin member pake semua data + dari po + buatin kpi baru
         KPI kpi = new KPI();
         Member member = new Member(
                 name,

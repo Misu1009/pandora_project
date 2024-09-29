@@ -13,7 +13,4 @@ public class KpiService{
         this.kpiRepository = kpiRepository;
     }
 
-//    public void convertToExcel(List<Member> members){
-//
-//    }
 }
