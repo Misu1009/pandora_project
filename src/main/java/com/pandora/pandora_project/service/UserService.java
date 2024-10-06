@@ -64,8 +64,4 @@ public class UserService{
         member.setKpi(kpi);
         memberRepository.save(member);
     }
-//
-//    public boolean updateUser(String name, String eselon_tier){
-//
-//    }
 }

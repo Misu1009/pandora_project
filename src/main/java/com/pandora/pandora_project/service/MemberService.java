@@ -22,8 +22,8 @@ public class MemberService{
         this.kquarterRepository = kquarterRepository;
     }
 
-    public void rate(String udomain, String period, double cust_focus, double integrity, double teamwork, double cpoe){
-        Member member = memberRepository.findbyudomain(udomain);
+    public void rate(long id, String period, double cust_focus, double integrity, double teamwork, double cpoe){
+        Member member = memberRepository.getReferenceById(id);
         KPI kpi = member.getKpi();
         List<KQuarter> kQuarters = kpi.getKquarters();
 

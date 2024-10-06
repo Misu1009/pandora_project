@@ -39,8 +39,8 @@ public class ProductOwnerService{
         this.subtaskDb = subtaskDb;
     }
 
-    public void setKpiProductScore(String udomain, double score){
-        long productId = productownerRepository.findbyudomain(udomain).getProduct().getId();
+    public void setKpiProductScore(long id,  double score){
+        long productId = productownerRepository.getReferenceById(id).getProduct().getId();
 
         Product product = productRepository.getReferenceById(productId);
         product.setKpi_product_score(score);
@@ -110,8 +110,8 @@ public class ProductOwnerService{
         product.setFeatures(features);
         productRepository.save(product);
     }
-    public void updateMemberDB(String udomain){
-        ProductOwner productOwner = productownerRepository.findbyudomain(udomain);
+    public void updateMemberDB(long id){
+        ProductOwner productOwner = productownerRepository.getReferenceById(id);
 
         List<Member> members = productOwner.getMembers();
         Product product = productOwner.getProduct();
@@ -130,12 +130,12 @@ public class ProductOwnerService{
         }
     }
 
-    public void synchronize(String udomain){
-        ProductOwner productOwner = productownerRepository.findbyudomain(udomain);
+    public void synchronize(long id){
+        ProductOwner productOwner = productownerRepository.getReferenceById(id);
 
         ProductDb productDb1 = findProductDBByid_blueprint(productOwner.getProduct().getId_blueprint());
         updateProductDB(productDb1);
-        updateMemberDB(udomain);
+        updateMemberDB(id);
     }
 
     public ProductDb findProductDBByid_blueprint(String id_blueprint){
