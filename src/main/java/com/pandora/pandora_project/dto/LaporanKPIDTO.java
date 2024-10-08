@@ -8,5 +8,5 @@ public class LaporanKPIDTO{
     String productName;
     String role;
     double kpiProductSore;
-    List<KQuarter> kquarters;
+    List<KQuarterD> kquarters;
 }

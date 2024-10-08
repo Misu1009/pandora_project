@@ -2,7 +2,7 @@ package com.pandora.pandora_project.dto;
 
 import java.util.Date;
 
-public class Subtask{
+public class SubtaskD {
     String code;
     String name;
     String status;

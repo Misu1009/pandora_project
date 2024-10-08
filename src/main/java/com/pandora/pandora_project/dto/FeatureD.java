@@ -1,8 +1,13 @@
 package com.pandora.pandora_project.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import java.util.Date;
 
-public class Feature{
+@AllArgsConstructor
+@NoArgsConstructor
+public class FeatureD {
     String featureId;
     String name;
     String status;

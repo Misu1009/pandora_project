@@ -1,6 +1,6 @@
 package com.pandora.pandora_project.dto;
 
-public class KQuarter{
+public class KQuarterD {
     int target;
     int done;
     double custFocus;

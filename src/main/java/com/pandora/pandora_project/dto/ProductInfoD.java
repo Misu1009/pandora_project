@@ -1,6 +1,6 @@
 package com.pandora.pandora_project.dto;
 
-public class ProductInfo{
+public class ProductInfoD {
     long id;
     String idBlueprint;
     String name;

@@ -4,7 +4,7 @@ package com.pandora.pandora_project.dto;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public class UserProduct{
+public class UserProductD {
     String name;
     String udomain;
     String idBluePrint;

@@ -1,16 +1,15 @@
 package com.pandora.pandora_project.service;
 
-import com.pandora.pandora_project.dto.LoginDTO;
-import com.pandora.pandora_project.model.KPI;
-import com.pandora.pandora_project.model.Member;
-import com.pandora.pandora_project.model.PMO;
-import com.pandora.pandora_project.model.ProductOwner;
+import com.pandora.pandora_project.dto.*;
+import com.pandora.pandora_project.model.*;
 import com.pandora.pandora_project.repository.MemberRepository;
 import com.pandora.pandora_project.repository.PMORepository;
 import com.pandora.pandora_project.repository.ProductOwnerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -63,5 +62,57 @@ public class UserService{
         );
         member.setKpi(kpi);
         memberRepository.save(member);
+    }
+
+    // 3
+    public List<ProductOwnerD> getAllProductOwner(){
+        List<ProductOwner> productOwnerList = productownerRepository.findAll();
+        List<ProductOwnerD> result = new ArrayList<>();
+
+        for(ProductOwner productOwner: productOwnerList){
+            result.add(new ProductOwnerD(productOwner.getId(), productOwner.getName()));
+        }
+        return result;
+    }
+
+    // 5
+    public LaporanProductDTO getProductByProductOwner(long productOwnerId){
+        int subtaskSize = 0;
+
+        ProductOwner productOwner = productownerRepository.getReferenceById(productOwnerId);
+        Product product = productOwner.getProduct();
+
+        ProductD productD = new ProductD(product.getName(), product.getMico(), product.getId_blueprint());
+        List<PQuarterD> pQuarterDs = new ArrayList<>();
+        List<FeatureD> featureDs = new ArrayList<>();
+
+        for(PQuarter pQuarter: product.getPquarters()){
+            pQuarterDs.add(new PQuarterD(pQuarter.getPeriod(), pQuarter.getTarget(), pQuarter.getDone()));
+        }
+        for(Feature feature: product.getFeatures()){
+            featureDs.add(
+                    new FeatureD(
+                            feature.getId().toString(),
+                            feature.getName(),
+                            feature.getStatus(),
+                            feature.getStrategic_topic(),
+                            feature.getStart_date(),
+                            feature.getEnd_date()
+                    )
+            );
+            subtaskSize+=feature.getSubtasks().size();
+        }
+
+        LaporanProductDTO laporanProductDTO = new LaporanProductDTO();
+        laporanProductDTO.setProduct(productD);
+        laporanProductDTO.setPquarters(pQuarterDs);
+        laporanProductDTO.setFeatures(featureDs);
+
+        laporanProductDTO.setProductOwnerName(productOwner.getName());
+        laporanProductDTO.setTotalFeature(featureDs.size());
+        laporanProductDTO.setTotalSubtask(subtaskSize);
+        laporanProductDTO.setKpiScore(product.getKpi_product_score());
+
+        return laporanProductDTO;
     }
 }

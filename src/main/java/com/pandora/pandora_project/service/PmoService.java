@@ -1,7 +1,6 @@
 package com.pandora.pandora_project.service;
 
-import com.pandora.pandora_project.dto.LoginDTO;
-import com.pandora.pandora_project.dto.UserProduct;
+import com.pandora.pandora_project.dto.UserProductD;
 import com.pandora.pandora_project.model.Member;
 import com.pandora.pandora_project.model.PMO;
 import com.pandora.pandora_project.model.Product;
@@ -14,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PmoService{
@@ -50,21 +48,21 @@ public class PmoService{
         memberRepository.save(member);
     }
 
-    public List<UserProduct> getUserProduct(long id){
+    public List<UserProductD> getUserProduct(long id){
         PMO pmo = pmoRepository.getReferenceById(id);
         List<ProductOwner> productowner = pmo.getProductowners();
 
         List<Member> members;
         Product product;
-        UserProduct userproduct;
-        List<UserProduct> listUserProduct = new ArrayList<>();
+        UserProductD userproduct;
+        List<UserProductD> listUserProduct = new ArrayList<>();
 
         for(ProductOwner po: productowner){
             members = po.getMembers();
             product = po.getProduct();
 
             for(Member user: members){
-                userproduct = new UserProduct(user.getName(), user.getUdomain(), product.getId_blueprint(), product.getName());
+                userproduct = new UserProductD(user.getName(), user.getUdomain(), product.getId_blueprint(), product.getName());
                 listUserProduct.add(userproduct);
             }
         }

@@ -1,6 +1,6 @@
 package com.pandora.pandora_project.dto;
 
-public class User{
+public class UserD {
     long id;
     String name;
     String udomain;
