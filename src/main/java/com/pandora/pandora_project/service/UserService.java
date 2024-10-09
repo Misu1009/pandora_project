@@ -115,4 +115,22 @@ public class UserService{
 
         return laporanProductDTO;
     }
+
+    // 8
+//    public LaporanMemberDTO getAllMemberByProductOwner(long productOwnerId){
+//        ProductOwner productOwner = productownerRepository.getReferenceById(productOwnerId);
+//
+//        List<MemberD> memberDList = new ArrayList<>();
+//        for(Member member: productOwner.getMembers()){
+//            MemberD memberD = new MemberD();
+//            memberD.setName(member.getName());
+//            memberD.setDivision(member.getDivision());
+//            memberD.setEmail(member.getEmail());
+//            memberD.setTotalFeature(100); // fix later
+//            memberD.setTotalSubtask(member.getSubtasks().size());
+//
+//        }
+//
+//    }
+
 }
