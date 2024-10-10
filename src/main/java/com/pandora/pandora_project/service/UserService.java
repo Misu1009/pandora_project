@@ -117,20 +117,132 @@ public class UserService{
     }
 
     // 8
-//    public LaporanMemberDTO getAllMemberByProductOwner(long productOwnerId){
-//        ProductOwner productOwner = productownerRepository.getReferenceById(productOwnerId);
-//
-//        List<MemberD> memberDList = new ArrayList<>();
-//        for(Member member: productOwner.getMembers()){
-//            MemberD memberD = new MemberD();
-//            memberD.setName(member.getName());
-//            memberD.setDivision(member.getDivision());
-//            memberD.setEmail(member.getEmail());
-//            memberD.setTotalFeature(100); // fix later
-//            memberD.setTotalSubtask(member.getSubtasks().size());
-//
-//        }
-//
-//    }
+    public LaporanMemberDTO getAllMemberByProductOwner(long productOwnerId){
+        ProductOwner productOwner = productownerRepository.getReferenceById(productOwnerId);
+
+        List<MemberD> memberDList = new ArrayList<>();
+        for(Member member: productOwner.getMembers()){
+            List<SubtaskD> subtaskDList = new ArrayList<>();
+            for(Subtask subtask: member.getSubtasks()){
+                subtaskDList.add(
+                        new SubtaskD(
+                                subtask.getCode(),
+                                subtask.getName(),
+                                subtask.getStatus(),
+                                subtask.getStart_date(),
+                                subtask.getEnd_date()
+                        )
+                );
+            }
+
+            MemberD memberD = new MemberD();
+            memberD.setName(member.getName());
+            memberD.setDivision(member.getDivision());
+            memberD.setEmail(member.getEmail());
+            memberD.setTotalFeature(100); // fix later
+            memberD.setTotalSubtask(member.getSubtasks().size());
+            memberD.setSubtasks(subtaskDList);
+
+            memberDList.add(memberD);
+        }
+
+        return new LaporanMemberDTO(memberDList);
+    }
+
+    // 10
+    public LaporanMemberKPIDTO getAllMemberKPIByProductOwner(long productOwnerId){
+        ProductOwner productOwner = productownerRepository.getReferenceById(productOwnerId);
+
+        List<MemberKPID> memberKPIDList = new ArrayList<>();
+        for(Member member: productOwner.getMembers()){
+            List<KQuarterD> kquarterDList = new ArrayList<>();
+            for(KQuarter kquarter: member.getKpi().getKquarters()){
+                kquarterDList.add(
+                        new KQuarterD(
+                                kquarter.getTarget(),
+                                kquarter.getDone(),
+                                kquarter.getCust_focus(),
+                                kquarter.getIntegrity(),
+                                kquarter.getTeamwork(),
+                                kquarter.getCpoe(),
+                                kquarter.getOn_schedule(),
+                                kquarter.getLate()
+                        )
+                );
+            }
+
+            MemberKPID memberKPID = new MemberKPID();
+            memberKPID.setUdomain(member.getUdomain());
+            memberKPID.setName(member.getName());
+            memberKPID.setProductName(member.getProductowner().getProduct().getName());
+            memberKPID.setRole("User"); // fix later
+            memberKPID.setKpiProductSore(member.getProductowner().getProduct().getKpi_product_score());
+            memberKPID.setKquarters(kquarterDList);
+
+            memberKPIDList.add(memberKPID);
+        }
+        return new LaporanMemberKPIDTO(memberKPIDList);
+    }
+    // 12
+    public List<ProductOwnerD> getAllProductOwnerByPMO(long pmoId){
+        PMO pmo = pmoRepository.getReferenceById(pmoId);
+
+        List<ProductOwner> productOwnerList = pmo.getProductowners();
+        List<ProductOwnerD> result = new ArrayList<>();
+
+        for(ProductOwner productOwner: productOwnerList){
+            result.add(new ProductOwnerD(productOwner.getId(), productOwner.getName()));
+        }
+        return result;
+    }
+
+    // 13
+    public MasterUserDTO getAllUserByPMO(long pmoId){
+        PMO pmo = pmoRepository.getReferenceById(pmoId);
+
+        List<ProductOwner> productOwnerList = pmo.getProductowners();
+
+        List<UserD> userDList = new ArrayList<>();
+        for(ProductOwner productOwner: productOwnerList){
+            for(Member member: productOwner.getMembers()){
+                userDList.add(
+                        new UserD(
+                                member.getId(),
+                                member.getName(),
+                                member.getUdomain(),
+                                member.getEmail(),
+                                member.getDivision(),
+                                member.getBiro(),
+                                member.getEselon_tier(),
+                                "User"
+                        )
+                );
+            }
+        }
+        return new MasterUserDTO(userDList);
+    }
+
+    // 15
+    public MasterProductDTO getAllProductByPMO(long pmoId){
+        PMO pmo = pmoRepository.getReferenceById(pmoId);
+
+        List<ProductOwner> productOwnerList = pmo.getProductowners();
+
+        List<ProductInfoD> productInfoDList = new ArrayList<>();
+        for(ProductOwner productOwner: productOwnerList){
+            Product product = productOwner.getProduct();
+
+            productInfoDList.add(
+                    new ProductInfoD(
+                            product.getId(),
+                            product.getId_blueprint(),
+                            product.getName(),
+                            product.getMico(),
+                            product.getProductowner().getName()
+                    )
+            );
+        }
+        return new MasterProductDTO(productInfoDList);
+    }
 
 }

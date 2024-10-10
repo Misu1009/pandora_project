@@ -1,8 +1,17 @@
 package com.pandora.pandora_project.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.util.List;
 
-public class LaporanKPIDTO{
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class MemberKPID {
     String udomain;
     String name;
     String productName;
