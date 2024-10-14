@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PMORepository extends JpaRepository<PMO, Long> {
-    PMO findbyemail(String email);
+    PMO findByEmail(String email);
 }

@@ -62,7 +62,7 @@ public class PmoService{
             product = po.getProduct();
 
             for(Member user: members){
-                userproduct = new UserProductD(user.getName(), user.getUdomain(), product.getId_blueprint(), product.getName());
+                userproduct = new UserProductD(user.getName(), user.getUdomain(), product.getIdblueprint(), product.getName());
                 listUserProduct.add(userproduct);
             }
         }

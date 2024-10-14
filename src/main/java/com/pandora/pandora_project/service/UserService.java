@@ -26,17 +26,17 @@ public class UserService{
     }
 
     public LoginDTO login(String email, String password){
-        PMO pmo = pmoRepository.findbyemail(email);
+        PMO pmo = pmoRepository.findByEmail(email);
         if(pmo != null && pmo.getPassword().equals(password)){
             return new LoginDTO(pmo.getId(), pmo.getName(), "PMO");
         }
 
-        ProductOwner productowner = productownerRepository.findbyemail(email);
+        ProductOwner productowner = productownerRepository.findByEmail(email);
         if(productowner != null && productowner.getPassword().equals(password)){
             return new LoginDTO(productowner.getId(), productowner.getName(), "Product Owner");
         }
 
-        Member member = memberRepository.findbyemail(email);
+        Member member = memberRepository.findByEmail(email);
         if(member != null && member.getPassword().equals(password)){
             return new LoginDTO(member.getId(), member.getName(), "Member");
         }
@@ -44,7 +44,7 @@ public class UserService{
         return new LoginDTO(0, "Error not found", "Error");
     }
 
-    public void register(String name, String udomain, String division, String email, String password, Long poId) {
+    public void register(String name, String email, String password, Long poId) {
         Optional<ProductOwner> productOwner = productownerRepository.findById(poId);
         if (productOwner.isEmpty()) {
             throw new IllegalStateException("Product Owner is not found");
@@ -53,8 +53,8 @@ public class UserService{
         KPI kpi = new KPI();
         Member member = new Member(
                 name,
-                udomain,
-                division,
+                createUdomain(),
+                productOwner2.getUdomain(),
                 email,
                 productOwner2.getBiro(),
                 "S7",
@@ -63,16 +63,20 @@ public class UserService{
         member.setKpi(kpi);
         memberRepository.save(member);
     }
+    private String createUdomain(){
+        int memberTotal = memberRepository.findAll().size();
+        return "U"+memberTotal;
+    }
 
     // 3
-    public List<ProductOwnerD> getAllProductOwner(){
+    public ListProductOwnerDTO getAllProductOwner(){
         List<ProductOwner> productOwnerList = productownerRepository.findAll();
         List<ProductOwnerD> result = new ArrayList<>();
 
         for(ProductOwner productOwner: productOwnerList){
             result.add(new ProductOwnerD(productOwner.getId(), productOwner.getName()));
         }
-        return result;
+        return new ListProductOwnerDTO(result);
     }
 
     // 5
@@ -82,7 +86,7 @@ public class UserService{
         ProductOwner productOwner = productownerRepository.getReferenceById(productOwnerId);
         Product product = productOwner.getProduct();
 
-        ProductD productD = new ProductD(product.getName(), product.getMico(), product.getId_blueprint());
+        ProductD productD = new ProductD(product.getName(), product.getMico(), product.getIdblueprint());
         List<PQuarterD> pQuarterDs = new ArrayList<>();
         List<FeatureD> featureDs = new ArrayList<>();
 
@@ -184,7 +188,7 @@ public class UserService{
         return new LaporanMemberKPIDTO(memberKPIDList);
     }
     // 12
-    public List<ProductOwnerD> getAllProductOwnerByPMO(long pmoId){
+    public ListProductOwnerDTO getAllProductOwnerByPMO(long pmoId){
         PMO pmo = pmoRepository.getReferenceById(pmoId);
 
         List<ProductOwner> productOwnerList = pmo.getProductowners();
@@ -193,7 +197,7 @@ public class UserService{
         for(ProductOwner productOwner: productOwnerList){
             result.add(new ProductOwnerD(productOwner.getId(), productOwner.getName()));
         }
-        return result;
+        return new ListProductOwnerDTO(result);
     }
 
     // 13
@@ -235,7 +239,7 @@ public class UserService{
             productInfoDList.add(
                     new ProductInfoD(
                             product.getId(),
-                            product.getId_blueprint(),
+                            product.getIdblueprint(),
                             product.getName(),
                             product.getMico(),
                             product.getProductowner().getName()
@@ -243,6 +247,43 @@ public class UserService{
             );
         }
         return new MasterProductDTO(productInfoDList);
+    }
+
+    // 17
+    public MasterUserProductDTO getAllUserJoinProduct(long pmoId){
+        PMO pmo = pmoRepository.getReferenceById(pmoId);
+        List<UserProductD> userProductDList = new ArrayList<>();
+
+        for(ProductOwner productOwner: pmo.getProductowners()){
+            for(Member member: productOwner.getMembers()){
+                UserProductD userProduct = new UserProductD();
+                userProduct.setName(member.getName());
+                userProduct.setUdomain(member.getUdomain());
+                userProduct.setIdBluePrint(productOwner.getProduct().getIdblueprint());
+                userProduct.setProductName(productOwner.getProduct().getName());
+
+                userProductDList.add(userProduct);
+            }
+        }
+        return new MasterUserProductDTO(userProductDList);
+    }
+
+    // 19
+    public MemberMainPageDTO getOtherMember(long memberId){
+        ProductOwner productOwner = memberRepository.getReferenceById(memberId).getProductowner();
+
+        List<OtherMemberD> otherMemberDList = new ArrayList<>();
+        for(Member member: productOwner.getMembers()){
+            if(member.getId() == memberId){
+                continue;
+            }
+            OtherMemberD otherMember = new OtherMemberD(
+                    member.getId(),
+                    member.getName()
+            );
+            otherMemberDList.add(otherMember);
+        }
+        return new MemberMainPageDTO(otherMemberDList);
     }
 
 }

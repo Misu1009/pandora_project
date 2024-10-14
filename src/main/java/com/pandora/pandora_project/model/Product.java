@@ -19,7 +19,7 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
-    String id_blueprint;
+    String idblueprint;
     String name;
     String mico;
     Double kpi_product_score;
@@ -36,7 +36,7 @@ public class Product {
     ProductOwner productowner;
 
     public Product(String id_blueprint, String name, String mico, Double kpi_product_score) {
-        this.id_blueprint = id_blueprint;
+        this.idblueprint = id_blueprint;
         this.name = name;
         this.mico = mico;
         this.kpi_product_score = kpi_product_score;

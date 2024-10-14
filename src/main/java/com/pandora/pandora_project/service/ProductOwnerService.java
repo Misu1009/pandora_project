@@ -48,7 +48,7 @@ public class ProductOwnerService{
     }
 
     public void updateProductDB(ProductDb productDb){
-        Product product = productRepository.findbyId_blueprint(productDb.getId_blurprint());
+        Product product = productRepository.findByIdblueprint(productDb.getId_blurprint());
 
         // Pquarter
         List<PQuarter> pquarters = product.getPquarters();
@@ -124,7 +124,7 @@ public class ProductOwnerService{
         for(Feature feature: features){ // loop feature to get each subtask
             for(Subtask subtask: feature.getSubtasks()){ // bind every subtask to it's member
                 String udomainS = subtask.getUdomain();
-                Member findMember = memberRepository.findbyudomain(udomainS);
+                Member findMember = memberRepository.findByUdomain(udomainS);
                 findMember.getSubtasks().add(subtask);
             }
         }
@@ -133,7 +133,7 @@ public class ProductOwnerService{
     public void synchronize(long id){
         ProductOwner productOwner = productownerRepository.getReferenceById(id);
 
-        ProductDb productDb1 = findProductDBByid_blueprint(productOwner.getProduct().getId_blueprint());
+        ProductDb productDb1 = findProductDBByid_blueprint(productOwner.getProduct().getIdblueprint());
         updateProductDB(productDb1);
         updateMemberDB(id);
     }
@@ -146,14 +146,15 @@ public class ProductOwnerService{
         }
         return null;
     }
-    //    public void downloadProduct(String udomain){
-//
-//    }
-//    public void downloadMember(String udomain){
-//
-//    }
-//    public void downloadKpiExcel(String udomain){
-//
-//    }
-//
+
+    public void downloadProduct(long poId){
+
+    }
+    public void downloadMember(long poId){
+
+    }
+    public void downloadKpiExcel(long poId){
+
+    }
+
 }

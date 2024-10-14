@@ -15,7 +15,7 @@ public class ProductService{
         this.productRepository = productRepository;
     }
 
-    public void updateProduct(long id, String name, String mico, double score){
+    public void editProduct(long id, String name, String mico, double score){
         Product product = productRepository.getReferenceById(id);
 
         product.setName(name);
