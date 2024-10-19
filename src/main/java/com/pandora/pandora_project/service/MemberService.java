@@ -6,6 +6,7 @@ import com.pandora.pandora_project.model.Member;
 import com.pandora.pandora_project.repository.KpiRepository;
 import com.pandora.pandora_project.repository.KquarterRepository;
 import com.pandora.pandora_project.repository.MemberRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,7 @@ public class MemberService{
         this.kquarterRepository = kquarterRepository;
     }
 
+    @Transactional
     public void rate(long id, String period, double cust_focus, double integrity, double teamwork, double cpoe){
         Member member = memberRepository.getReferenceById(id);
         KPI kpi = member.getKpi();
@@ -33,10 +35,10 @@ public class MemberService{
                 kQuarter.setIntegrity(integrity);
                 kQuarter.setTeamwork(teamwork);
                 kQuarter.setCpoe(cpoe);
+                kquarterRepository.save(kQuarter);
                 break;
             }
         }
-        kquarterRepository.saveAll(kQuarters);
     }
 
 }

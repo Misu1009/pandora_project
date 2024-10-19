@@ -27,12 +27,10 @@ public class Member{
     String eselon_tier;
     String password;
 
-    @OneToOne(cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "kpi_id")
     KPI kpi;
 
-//    mappedBy = "member",
-//    @JsonIgnoreProperties("member")
     @OneToMany(cascade=CascadeType.ALL, orphanRemoval = true)
     List<Subtask> subtasks;
 

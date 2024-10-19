@@ -26,4 +26,8 @@ public class PQuarter {
         this.target = target;
         this.done = done;
     }
+
+    public PQuarter(String period){
+        this.period = period;
+    }
 }

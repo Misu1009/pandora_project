@@ -8,6 +8,7 @@ import com.pandora.pandora_project.model.ProductOwner;
 import com.pandora.pandora_project.repository.MemberRepository;
 import com.pandora.pandora_project.repository.PMORepository;
 import com.pandora.pandora_project.repository.ProductRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +28,7 @@ public class PmoService{
         this.productRepository = productRepository;
     }
 
+    @Transactional
     public void updateProduct(long id, String name, String mico, double score){
         Product product = productRepository.getReferenceById(id);
 
@@ -37,6 +39,7 @@ public class PmoService{
         productRepository.save(product);
     }
 
+    @Transactional
     public void updateUser(long id, String name, String division, String biro, String eselon_tier){
         Member member = memberRepository.getReferenceById(id);
 

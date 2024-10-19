@@ -3,10 +3,12 @@ package com.pandora.pandora_project.controller;
 import com.pandora.pandora_project.dto.*;
 import com.pandora.pandora_project.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/pandora/")
+@RequestMapping("api/pandora")
 public class UserController {
 
     private final UserService userService;
@@ -30,12 +32,7 @@ public class UserController {
     @PostMapping("/member/register")
     public void createMember(@RequestParam String name, @RequestParam String email,
                                              @RequestParam String password, @RequestParam long productOwnerId) {
-        try{
-            userService.register(name, email, password, productOwnerId);
-        } catch (Exception e) {
-//            throw new RuntimeException(e);
-        }
-
+        userService.register(name, email, password, productOwnerId);
     }
 
     @GetMapping("/productowner/getAll")

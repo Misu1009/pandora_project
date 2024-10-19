@@ -19,321 +19,61 @@ public class BeanConfig {
 
     @Bean
     CommandLineRunner commandLineRunner(
-            MemberRepository memberRepository,
-            FeatureRepository featureRepository,
-            KpiRepository kpiRepository,
-            KquarterRepository kquarterRepository,
-            PMORepository pmoRepository,
-            PQuarterRepository pquarterRepository,
-            ProductRepository productRepository,
-            ProductOwnerRepository productOwnerRepository,
-            SubtaskRepository subtaskRepository
+            PMORepository pmoRepository
     ){
         return args-> {
-            PMO pmo = new PMO(
-                    "Dora",
-                    "u54321",
-                    "GPOLS",
-                    "dora@gmail.com",
-                    "pmo",
-                    "s2",
-                    "blabla"
-            );
+            PMO pmo = new PMO("Dora", "u54321", "GPOLS", "dora@gmail.com", "pmo", "s2", "blabla");
+            ProductOwner productowner1 = new ProductOwner("Vincent Chen", "u12345", "GPOLS", "vincent.chen@example.com", "uatc", "s1", "Senior Product Owner");
+            ProductOwner productowner2 = new ProductOwner("Sophia Rodriguez", "u67890", "MKTG", "sophia.r@example.com", "datc", "s2", "Lead Product Strategist");
 
-            ProductOwner productowner1 = new ProductOwner(
-                    "Vincent",
-                    "u12345",
-                    "GPOLS",
-                    "vincent@gmail.com",
-                    "uatc",
-                    "s1",
-                    "blabla"
-            );
-            ProductOwner productowner2 = new ProductOwner(
-                    "Vincent",
-                    "u12345",
-                    "GPOLS",
-                    "vincent@gmail.com",
-                    "uatc",
-                    "s1",
-                    "blabla"
-            );
+            Member member1a = new Member("Kevin Wilson", "u287554", "GPOLS", "kevin.w@example.com", "uatc", "s7", "Senior Developer");
+            Member member1b = new Member("Emily Zhang", "u398765", "MKTG", "emily.z@example.com", "datc", "s5", "UX Designer");
+            Member member2a = new Member("Michael Johnson", "u456789", "FINC", "michael.j@example.com", "fatc", "s6", "Data Analyst");
+            Member member2b = new Member("Olivia Patel", "u567890", "HRMS", "olivia.p@example.com", "hatc", "s4", "HR Specialist");
 
-            Member member1a = new Member(
-                    "Kevin",
-                    "u287554",
-                    "GPOLS",
-                    "kevin.w@gmail.com",
-                    "uatc",
-                    "s7",
-                    "blabla"
-            );
-            Member member1b = new Member(
-                    "Kevin",
-                    "u287554",
-                    "GPOLS",
-                    "kevin.w@gmail.com",
-                    "uatc",
-                    "s7",
-                    "blabla"
-            );
-            Member member2a = new Member(
-                    "Kevin",
-                    "u287554",
-                    "GPOLS",
-                    "kevin.w@gmail.com",
-                    "uatc",
-                    "s7",
-                    "blabla"
-            );
-            Member member2b = new Member(
-                    "Kevin",
-                    "u287554",
-                    "GPOLS",
-                    "kevin.w@gmail.com",
-                    "uatc",
-                    "s7",
-                    "blabla"
-            );
+            Product product1 = new Product("MXYZ", "Mobile XYZ", "XYZ External", 4.0);
+            Product product2 = new Product("FABC", "FinTech ABC", "ABC Internal", 3.5);
 
-            Product product1 = new Product(
-                    "MXYZ",
-                    "Mobile XYZ",
-                    "XYZ Eksternal",
-                    4.0
-            );
-            Product product2 = new Product(
-                    "MXYZ",
-                    "Mobile XYZ",
-                    "XYZ Eksternal",
-                    4.0
-            );
+            Feature feature1a = new Feature("BPRO002", "Bitcoin Purchase Integration", "On Progress", "Cryptocurrency", new GregorianCalendar(2023, Calendar.JANUARY, 15).getTime(), new GregorianCalendar(2023, Calendar.MARCH, 30).getTime());
+            Feature feature1b = new Feature("APAY001", "Apple Pay Integration", "Completed", "Payment Systems", new GregorianCalendar(2023, Calendar.FEBRUARY, 1).getTime(), new GregorianCalendar(2023, Calendar.APRIL, 15).getTime());
+            Feature feature2a = new Feature("DEXP003", "Data Export Module", "Planning", "Data Management", new GregorianCalendar(2023, Calendar.MARCH, 10).getTime(), new GregorianCalendar(2023, Calendar.MAY, 20).getTime());
+            Feature feature2b = new Feature("CHAT004", "AI Chatbot Implementation", "On Hold", "Customer Support", new GregorianCalendar(2023, Calendar.APRIL, 5).getTime(), new GregorianCalendar(2023, Calendar.JUNE, 30).getTime());
 
-            PQuarter pquarter1a = new PQuarter(
-                    "Q1",
-                    10,
-                    5
-            );
-            PQuarter pquarter1b = new PQuarter(
-                    "Q1",
-                    10,
-                    5
-            );
-            PQuarter pquarter2a = new PQuarter(
-                    "Q1",
-                    10,
-                    5
-            );
-            PQuarter pquarter2b = new PQuarter(
-                    "Q1",
-                    10,
-                    5
-            );
+            Subtask subtask1aa = new Subtask("S0008", "Connect to Bitcoin Network", "On Progress", new GregorianCalendar(2023, Calendar.JANUARY, 20).getTime(), new GregorianCalendar(2023, Calendar.FEBRUARY, 10).getTime(), "u287554");
+            Subtask subtask1ab = new Subtask("S0009", "Implement Wallet Security", "Not Started", new GregorianCalendar(2023, Calendar.FEBRUARY, 15).getTime(), new GregorianCalendar(2023, Calendar.MARCH, 15).getTime(), "u287554");
+            Subtask subtask1ba = new Subtask("S0010", "Design Apple Pay UI", "Completed", new GregorianCalendar(2023, Calendar.FEBRUARY, 5).getTime(), new GregorianCalendar(2023, Calendar.FEBRUARY, 25).getTime(), "u398765");
+            Subtask subtask1bb = new Subtask("S0011", "Test Apple Pay Transactions", "On Progress", new GregorianCalendar(2023, Calendar.MARCH, 1).getTime(), new GregorianCalendar(2023, Calendar.MARCH, 20).getTime(), "u398765");
+            Subtask subtask2aa = new Subtask("S0012", "Implement Two-Factor Authentication", "In Review", new GregorianCalendar(2023, Calendar.APRIL, 5).getTime(), new GregorianCalendar(2023, Calendar.APRIL, 20).getTime(), "u456789");
+            Subtask subtask2ab = new Subtask("S0013", "Optimize Database Queries", "On Progress", new GregorianCalendar(2023, Calendar.MAY, 1).getTime(), new GregorianCalendar(2023, Calendar.MAY, 15).getTime(), "u456789");
+            Subtask subtask2ba = new Subtask("S0014", "Design New User Onboarding Flow", "Not Started", new GregorianCalendar(2023, Calendar.JUNE, 10).getTime(), new GregorianCalendar(2023, Calendar.JULY, 1).getTime(), "u567890");
+            Subtask subtask2bb = new Subtask("S0015", "Implement Push Notifications", "Completed", new GregorianCalendar(2023, Calendar.MARCH, 15).getTime(), new GregorianCalendar(2023, Calendar.APRIL, 5).getTime(), "u567890");
 
-            Feature feature1a = new Feature(
-                    "BPRO002",
-                    "Pembelian Bitcoin",
-                    "On Progress",
-                    "Crypto Currency",
-                    new GregorianCalendar(2009, Calendar.JANUARY, 3).getTime(),
-                    new GregorianCalendar(2009, Calendar.FEBRUARY, 2).getTime()
-            );
-            Feature feature1b = new Feature(
-                    "BPRO002",
-                    "Pembelian Bitcoin",
-                    "On Progress",
-                    "Crypto Currency",
-                    new GregorianCalendar(2009, Calendar.JANUARY, 3).getTime(),
-                    new GregorianCalendar(2009, Calendar.FEBRUARY, 2).getTime()
-            );
-            Feature feature2a = new Feature(
-                    "BPRO002",
-                    "Pembelian Bitcoin",
-                    "On Progress",
-                    "Crypto Currency",
-                    new GregorianCalendar(2009, Calendar.JANUARY, 3).getTime(),
-                    new GregorianCalendar(2009, Calendar.FEBRUARY, 2).getTime()
-            );
-            Feature feature2b = new Feature(
-                    "BPRO002",
-                    "Pembelian Bitcoin",
-                    "On Progress",
-                    "Crypto Currency",
-                    new GregorianCalendar(2009, Calendar.JANUARY, 3).getTime(),
-                    new GregorianCalendar(2009, Calendar.FEBRUARY, 2).getTime()
-            );
+            KQuarter kquarter1aa = new KQuarter("Q1", 20, 18, 3.8, 3.9, 3.2, 3.95, 10, 2);
+            KQuarter kquarter1ab = new KQuarter("Q2", 25, 23, 3.9, 4.0, 3.3, 4.0, 12, 1);
+            KQuarter kquarter1ac = new KQuarter("Q3", 22, 22, 3.7, 3.8, 3.1, 3.9, 11, 0);
+            KQuarter kquarter1ad = new KQuarter("Q4", 28, 26, 4.0, 4.1, 3.4, 4.1, 13, 1);
+            KQuarter kquarter1ba = new KQuarter("Q1", 20, 18, 3.8, 3.9, 3.2, 3.95, 10, 2);
+            KQuarter kquarter1bb = new KQuarter("Q2", 25, 23, 3.9, 4.0, 3.3, 4.0, 12, 1);
+            KQuarter kquarter1bc = new KQuarter("Q3", 22, 22, 3.7, 3.8, 3.1, 3.9, 11, 0);
+            KQuarter kquarter1bd = new KQuarter("Q4", 28, 26, 4.0, 4.1, 3.4, 4.1, 13, 1);
+            KQuarter kquarter2aa = new KQuarter("Q1", 18, 17, 3.6, 3.7, 3.0, 3.8, 9, 1);
+            KQuarter kquarter2ab = new KQuarter("Q2", 23, 21, 3.7, 3.8, 3.1, 3.9, 11, 2);
+            KQuarter kquarter2ac = new KQuarter("Q3", 20, 20, 3.5, 3.6, 2.9, 3.7, 10, 0);
+            KQuarter kquarter2ad = new KQuarter("Q4", 26, 24, 3.8, 3.9, 3.2, 4.0, 12, 2);
+            KQuarter kquarter2ba = new KQuarter("Q1", 18, 17, 3.6, 3.7, 3.0, 3.8, 9, 1);
+            KQuarter kquarter2bb = new KQuarter("Q2", 23, 21, 3.7, 3.8, 3.1, 3.9, 11, 2);
+            KQuarter kquarter2bc = new KQuarter("Q3", 20, 20, 3.5, 3.6, 2.9, 3.7, 10, 0);
+            KQuarter kquarter2bd = new KQuarter("Q4", 26, 24, 3.8, 3.9, 3.2, 4.0, 12, 2);
 
-            Subtask subtask1aa = new Subtask(
-                    "S0008",
-                    "Connecting To Bitcoin Network",
-                    "On Progress",
-                    new GregorianCalendar(2010, Calendar.MAY, 22).getTime(),
-                    new GregorianCalendar(2010, Calendar.JUNE, 22).getTime(),
-                    "Udomain"
-            );
-            Subtask subtask1ab = new Subtask(
-                    "S0008",
-                    "Connecting To Bitcoin Network",
-                    "On Progress",
-                    new GregorianCalendar(2010, Calendar.MAY, 22).getTime(),
-                    new GregorianCalendar(2010, Calendar.JUNE, 22).getTime(),
-                    "Udomain"
-            );
-            Subtask subtask1ba = new Subtask(
-                    "S0008",
-                    "Connecting To Bitcoin Network",
-                    "On Progress",
-                    new GregorianCalendar(2010, Calendar.MAY, 22).getTime(),
-                    new GregorianCalendar(2010, Calendar.JUNE, 22).getTime(),
-                    "Udomain"
-            );
-            Subtask subtask1bb = new Subtask(
-                    "S0008",
-                    "Connecting To Bitcoin Network",
-                    "On Progress",
-                    new GregorianCalendar(2010, Calendar.MAY, 22).getTime(),
-                    new GregorianCalendar(2010, Calendar.JUNE, 22).getTime(),
-                    "Udomain"
-            );
-            Subtask subtask2aa = new Subtask(
-                    "S0008",
-                    "Connecting To Bitcoin Network",
-                    "On Progress",
-                    new GregorianCalendar(2010, Calendar.MAY, 22).getTime(),
-                    new GregorianCalendar(2010, Calendar.JUNE, 22).getTime(),
-                    "Udomain"
-            );
-            Subtask subtask2ab = new Subtask(
-                    "S0008",
-                    "Connecting To Bitcoin Network",
-                    "On Progress",
-                    new GregorianCalendar(2010, Calendar.MAY, 22).getTime(),
-                    new GregorianCalendar(2010, Calendar.JUNE, 22).getTime(),
-                    "Udomain"
-            );
-            Subtask subtask2ba = new Subtask(
-                    "S0008",
-                    "Connecting To Bitcoin Network",
-                    "On Progress",
-                    new GregorianCalendar(2010, Calendar.MAY, 22).getTime(),
-                    new GregorianCalendar(2010, Calendar.JUNE, 22).getTime(),
-                    "Udomain"
-            );
-            Subtask subtask2bb = new Subtask(
-                    "S0008",
-                    "Connecting To Bitcoin Network",
-                    "On Progress",
-                    new GregorianCalendar(2010, Calendar.MAY, 22).getTime(),
-                    new GregorianCalendar(2010, Calendar.JUNE, 22).getTime(),
-                    "Udomain"
-            );
+            KPI kpi1a = new KPI(3.84);
+            KPI kpi1b = new KPI(3.92);
+            KPI kpi2a = new KPI(3.75);
+            KPI kpi2b = new KPI(3.88);
 
-            KQuarter kquarter1aa = new KQuarter(
-                    "Q1",
-                    20,
-                    20,
-                    3.8,
-                    3.9,
-                    3.2,
-                    3.95,
-                    10,
-                    0
-            );
-            KQuarter kquarter1ab = new KQuarter(
-                    "Q1",
-                    20,
-                    20,
-                    3.8,
-                    3.9,
-                    3.2,
-                    3.95,
-                    10,
-                    0
-            );
-            KQuarter kquarter1ba = new KQuarter(
-                    "Q1",
-                    20,
-                    20,
-                    3.8,
-                    3.9,
-                    3.2,
-                    3.95,
-                    10,
-                    0
-            );
-            KQuarter kquarter1bb = new KQuarter(
-                    "Q1",
-                    20,
-                    20,
-                    3.8,
-                    3.9,
-                    3.2,
-                    3.95,
-                    10,
-                    0
-            );
-            KQuarter kquarter2aa = new KQuarter(
-                    "Q1",
-                    20,
-                    20,
-                    3.8,
-                    3.9,
-                    3.2,
-                    3.95,
-                    10,
-                    0
-            );
-            KQuarter kquarter2ab = new KQuarter(
-                    "Q1",
-                    20,
-                    20,
-                    3.8,
-                    3.9,
-                    3.2,
-                    3.95,
-                    10,
-                    0
-            );
-            KQuarter kquarter2ba = new KQuarter(
-                    "Q1",
-                    20,
-                    20,
-                    3.8,
-                    3.9,
-                    3.2,
-                    3.95,
-                    10,
-                    0
-            );
-            KQuarter kquarter2bb = new KQuarter(
-                    "Q1",
-                    20,
-                    20,
-                    3.8,
-                    3.9,
-                    3.2,
-                    3.95,
-                    10,
-                    0
-            );
-
-            KPI kpi1a = new KPI(
-                    3.84
-            );
-            KPI kpi1b = new KPI(
-                    3.84
-            );
-            KPI kpi2a = new KPI(
-                    3.84
-            );
-            KPI kpi2b = new KPI(
-                    3.84
-            );
-
-            kpi1a.setKquarters(List.of(kquarter1aa, kquarter1ab));
-            kpi1b.setKquarters(List.of(kquarter1ba, kquarter1bb));
-            kpi2a.setKquarters(List.of(kquarter2aa, kquarter2ab));
-            kpi2b.setKquarters(List.of(kquarter2ba, kquarter2bb));
+            kpi1a.setKquarters(List.of(kquarter1aa, kquarter1ab, kquarter1ac, kquarter1ad));
+            kpi1b.setKquarters(List.of(kquarter1ba, kquarter1bb, kquarter1bc, kquarter1bd));
+            kpi2a.setKquarters(List.of(kquarter2aa, kquarter2ab, kquarter2ac, kquarter2ad));
+            kpi2b.setKquarters(List.of(kquarter2ba, kquarter2bb, kquarter2bc, kquarter2bd));
 
             member1a.setKpi(kpi1a);
             member1b.setKpi(kpi1b);
@@ -344,9 +84,6 @@ public class BeanConfig {
             member1b.setSubtasks(List.of(subtask1ba, subtask1bb));
             member2a.setSubtasks(List.of(subtask2aa, subtask2ab));
             member2b.setSubtasks(List.of(subtask2ba, subtask2bb));
-
-            product1.setPquarters(List.of(pquarter1a, pquarter1b));
-            product2.setPquarters(List.of(pquarter2a, pquarter2b));
 
             feature1a.setSubtasks(List.of(subtask1aa, subtask1ab));
             feature1b.setSubtasks(List.of(subtask1ba, subtask1bb));
@@ -372,56 +109,32 @@ public class BeanConfig {
 
             pmo.setProductowners(List.of(productowner1, productowner2));
 
-            // Bidirectional
-//            subtask1aa.setMember(member1a);
-//            subtask1ab.setMember(member1a);
-//            subtask1ba.setMember(member1b);
-//            subtask1bb.setMember(member1b);
-//            subtask2aa.setMember(member2a);
-//            subtask2ab.setMember(member2a);
-//            subtask2ba.setMember(member2b);
-//            subtask2bb.setMember(member2b);
-
-//            subtask1aa.setFeature(feature1a);
-//            subtask1ab.setFeature(feature1a);
-//            subtask1ba.setFeature(feature1b);
-//            subtask1bb.setFeature(feature1b);
-//            subtask2aa.setFeature(feature2a);
-//            subtask2ab.setFeature(feature2a);
-//            subtask2ba.setFeature(feature2b);
-//            subtask2bb.setFeature(feature2b);
-
-            // upload via repository
-            kquarterRepository.saveAll(
-                    List.of(
-                            kquarter1aa, kquarter1ab, kquarter1ba, kquarter1bb,
-                            kquarter2aa, kquarter2ab, kquarter2ba,kquarter2bb
-                    ));
-            pquarterRepository.saveAll(List.of(pquarter1a, pquarter1b, pquarter2a, pquarter2b));
-            subtaskRepository.saveAll(
-                    List.of(
-                            subtask1aa, subtask1ab, subtask1ba, subtask1bb,
-                            subtask2aa, subtask2ab, subtask2ba, subtask2bb
-                    ));
-            featureRepository.saveAll(List.of(feature1a, feature1b, feature2a, feature2b));
-            productRepository.saveAll(List.of(product1, product2));
-            kpiRepository.saveAll(List.of(kpi1a, kpi1b, kpi2a, kpi2b));
-            memberRepository.saveAll(List.of(member1a, member1b, member2a, member2b));
-            productOwnerRepository.saveAll(List.of(productowner1, productowner2));
             pmoRepository.save(pmo);
         };
     }
 
     @Bean
     List<ProductDb> productDBJira(){
-        return new ArrayList<>();
-    }
-    @Bean
-    FeatureDb featureDBJira(){
-        return new FeatureDb();
-    }
-    @Bean
-    SubtaskDb subtaskDBJira(){
-        return new SubtaskDb();
+        SubtaskDb subtaskDb1aa = new SubtaskDb("S0008", "Connect to Bitcoin Network", "On Progress", new GregorianCalendar(2023, Calendar.JANUARY, 20).getTime(), new GregorianCalendar(2023, Calendar.FEBRUARY, 10).getTime(), "u287554");
+        SubtaskDb subtaskDb1ab = new SubtaskDb("S0009", "Implement Wallet Security", "Not Started", new GregorianCalendar(2023, Calendar.FEBRUARY, 15).getTime(), new GregorianCalendar(2023, Calendar.MARCH, 15).getTime(), "u287554");
+        SubtaskDb subtaskDb1ba = new SubtaskDb("S0010", "Design Apple Pay UI", "Completed", new GregorianCalendar(2023, Calendar.FEBRUARY, 5).getTime(), new GregorianCalendar(2023, Calendar.FEBRUARY, 25).getTime(), "u398765");
+        SubtaskDb subtaskDb1bb = new SubtaskDb("S0011", "Test Apple Pay Transactions", "On Progress", new GregorianCalendar(2023, Calendar.MARCH, 1).getTime(), new GregorianCalendar(2023, Calendar.MARCH, 20).getTime(), "u398765");
+        SubtaskDb subtaskDb2aa = new SubtaskDb("S0012", "Implement Two-Factor Authentication", "In Review", new GregorianCalendar(2023, Calendar.APRIL, 5).getTime(), new GregorianCalendar(2023, Calendar.APRIL, 20).getTime(), "u456789");
+        SubtaskDb subtaskDb2ab = new SubtaskDb("S0013", "Optimize Database Queries", "On Progress", new GregorianCalendar(2023, Calendar.MAY, 1).getTime(), new GregorianCalendar(2023, Calendar.MAY, 15).getTime(), "u456789");
+        SubtaskDb subtaskDb2ba = new SubtaskDb("S0014", "Design New User Onboarding Flow", "Not Started", new GregorianCalendar(2023, Calendar.JUNE, 10).getTime(), new GregorianCalendar(2023, Calendar.JULY, 1).getTime(), "u567890");
+        SubtaskDb subtaskDb2bb = new SubtaskDb("S0015", "Implement Push Notifications", "Completed", new GregorianCalendar(2023, Calendar.MARCH, 15).getTime(), new GregorianCalendar(2023, Calendar.APRIL, 5).getTime(), "u567890");
+
+        FeatureDb featureDb1a = new FeatureDb("BPRO002", "Bitcoin Purchase Integration", "On Progress", "Cryptocurrency", new GregorianCalendar(2023, Calendar.JANUARY, 15).getTime(), new GregorianCalendar(2023, Calendar.MARCH, 30).getTime(), List.of(subtaskDb1aa, subtaskDb1ab));
+        FeatureDb featureDb1b = new FeatureDb("APAY001", "Apple Pay Integration", "Completed", "Payment Systems", new GregorianCalendar(2023, Calendar.FEBRUARY, 1).getTime(), new GregorianCalendar(2023, Calendar.APRIL, 15).getTime(), List.of(subtaskDb1ba, subtaskDb1bb));
+        FeatureDb featureDb2a = new FeatureDb("DEXP003", "Data Export Module", "Planning", "Data Management", new GregorianCalendar(2023, Calendar.MARCH, 10).getTime(), new GregorianCalendar(2023, Calendar.MAY, 20).getTime(), List.of(subtaskDb2aa, subtaskDb2ab));
+        FeatureDb featureDb2b = new FeatureDb("CHAT004", "AI Chatbot Implementation", "On Hold", "Customer Support", new GregorianCalendar(2023, Calendar.APRIL, 5).getTime(), new GregorianCalendar(2023, Calendar.JUNE, 30).getTime(), List.of(subtaskDb2ba, subtaskDb2bb));
+
+        ProductDb productDb1 = new ProductDb("MXYZ", "Q1", "Q2", "Q3", "Q4", 2, 3, 4, 5, 2, 2, 4, 4, List.of(featureDb1a, featureDb1b));
+        ProductDb productDb2 = new ProductDb("FABC", "Q1", "Q2", "Q3", "Q4", 5, 7, 3, 2, 1, 4, 2, 4, List.of(featureDb2a, featureDb2b));
+
+        ArrayList<ProductDb> productDbArrayList = new ArrayList<>();
+        productDbArrayList.add(productDb1);
+        productDbArrayList.add(productDb2);
+        return productDbArrayList;
     }
 }

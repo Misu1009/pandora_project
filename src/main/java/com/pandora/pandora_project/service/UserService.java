@@ -5,6 +5,7 @@ import com.pandora.pandora_project.model.*;
 import com.pandora.pandora_project.repository.MemberRepository;
 import com.pandora.pandora_project.repository.PMORepository;
 import com.pandora.pandora_project.repository.ProductOwnerRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,23 +45,21 @@ public class UserService{
         return new LoginDTO(0, "Error not found", "Error");
     }
 
+    @Transactional
     public void register(String name, String email, String password, Long poId) {
-        Optional<ProductOwner> productOwner = productownerRepository.findById(poId);
-        if (productOwner.isEmpty()) {
-            throw new IllegalStateException("Product Owner is not found");
-        }
-        ProductOwner productOwner2 = productOwner.get();
+        ProductOwner productOwner = productownerRepository.getReferenceById(poId);
         KPI kpi = new KPI();
         Member member = new Member(
                 name,
                 createUdomain(),
-                productOwner2.getUdomain(),
+                productOwner.getUdomain(),
                 email,
-                productOwner2.getBiro(),
+                productOwner.getBiro(),
                 "S7",
                 password
         );
         member.setKpi(kpi);
+        member.setProductowner(productOwner);
         memberRepository.save(member);
     }
     private String createUdomain(){

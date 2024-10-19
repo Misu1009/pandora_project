@@ -4,9 +4,8 @@ import com.pandora.pandora_project.jira.FeatureDb;
 import com.pandora.pandora_project.jira.ProductDb;
 import com.pandora.pandora_project.jira.SubtaskDb;
 import com.pandora.pandora_project.model.*;
-import com.pandora.pandora_project.repository.MemberRepository;
-import com.pandora.pandora_project.repository.ProductOwnerRepository;
-import com.pandora.pandora_project.repository.ProductRepository;
+import com.pandora.pandora_project.repository.*;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,26 +18,36 @@ public class ProductOwnerService{
     private final ProductRepository productRepository;
     private final MemberRepository memberRepository;
     private final List<ProductDb> productDb;
-    private final FeatureDb featureDb;
-    private final SubtaskDb subtaskDb;
+    private final FeatureRepository featureRepository;
+    private final PQuarterRepository pQuarterRepository;
+    private final SubtaskRepository subtaskRepository;
+//    private final FeatureDb featureDb;
+//    private final SubtaskDb subtaskDb;
 
     @Autowired
     public ProductOwnerService(
             ProductOwnerRepository productownerRepository,
             ProductRepository productRepository,
             MemberRepository memberRepository,
-            List<ProductDb> productDb,
-            FeatureDb featureDb,
-            SubtaskDb subtaskDb
+            FeatureRepository featureRepository,
+            PQuarterRepository pQuarterRepository,
+            SubtaskRepository subtaskRepository,
+            List<ProductDb> productDb
+//            FeatureDb featureDb,
+//            SubtaskDb subtaskDb
     ){
         this.productownerRepository = productownerRepository;
         this.productRepository = productRepository;
         this.memberRepository = memberRepository;
+        this.featureRepository = featureRepository;
+        this.pQuarterRepository = pQuarterRepository;
+        this.subtaskRepository = subtaskRepository;
         this.productDb = productDb;
-        this.featureDb = featureDb;
-        this.subtaskDb = subtaskDb;
+//        this.featureDb = featureDb;
+//        this.subtaskDb = subtaskDb;
     }
 
+    @Transactional
     public void setKpiProductScore(long id,  double score){
         long productId = productownerRepository.getReferenceById(id).getProduct().getId();
 
@@ -47,6 +56,25 @@ public class ProductOwnerService{
         productRepository.save(product);
     }
 
+    public Feature findFeatureByCode(Product product, String code){
+        for(Feature feature: product.getFeatures()){
+            if(feature.getCode().equals(code)){
+                return feature;
+            }
+        }
+        return null;
+    }
+
+    public Subtask findSubtaskByCode(Feature feature, String code){
+        for(Subtask subtask: feature.getSubtasks()){
+            if(subtask.getCode().equals(code)){
+                return subtask;
+            }
+        }
+        return null;
+    }
+
+    @Transactional
     public void updateProductDB(ProductDb productDb){
         Product product = productRepository.findByIdblueprint(productDb.getId_blurprint());
 
@@ -65,6 +93,8 @@ public class ProductOwnerService{
             pquarters.add(
                     new PQuarter(productDb.getPeriod4(), productDb.getTarget4(), productDb.getDone4())
             );
+            product.setPquarters(pquarters);
+            productRepository.save(product);
         }else{
             pquarters.get(0).setDone(productDb.getDone1());
             pquarters.get(0).setTarget(productDb.getTarget1());
@@ -77,59 +107,94 @@ public class ProductOwnerService{
 
             pquarters.get(1).setDone(productDb.getDone4());
             pquarters.get(1).setTarget(productDb.getTarget4());
+            pQuarterRepository.saveAll(pquarters);
         }
-        product.setPquarters(pquarters);
 
         // Feature + Subtask
-        List<Feature> features = new ArrayList<>();
-        List<Subtask> subtasks = new ArrayList<>();
-        for(FeatureDb featureDb: productDb.getFeatures()){
-            for(SubtaskDb subtaskDb: featureDb.getSubtasks()){
-                subtasks.add(
-                        new Subtask(
-                                subtaskDb.getCode(),
-                                subtaskDb.getName(),
-                                subtaskDb.getStatus(),
-                                subtaskDb.getStart_date(),
-                                subtaskDb.getEnd_date(),
-                                subtaskDb.getUdomain()
-                        )
-                );
+
+        for(FeatureDb featureDB: productDb.getFeatures()){
+            if(findFeatureByCode(product, featureDB.getCode()) != null){
+                Feature feature = findFeatureByCode(product, featureDB.getCode());
+                feature.setStrategic_topic(featureDB.getStrategic_topic());
+                feature.setStart_date(featureDB.getStart_date());
+                feature.setEnd_date(featureDB.getEnd_date());
+                featureRepository.save(feature);
+
+                for(SubtaskDb subtaskDB: featureDB.getSubtasks()){
+                    if(findSubtaskByCode(feature, subtaskDB.getCode()) != null){
+                        Subtask subtask = findSubtaskByCode(feature, subtaskDB.getCode());
+                        subtask.setStart_date(subtaskDB.getStart_date());
+                        subtask.setEnd_date(subtaskDB.getEnd_date());
+                        subtask.setStatus(subtaskDB.getStatus());
+                        subtaskRepository.save(subtask);
+                    } else{
+                        Subtask subtask = new Subtask(
+                                subtaskDB.getCode(),
+                                subtaskDB.getName(),
+                                subtaskDB.getStatus(),
+                                subtaskDB.getStart_date(),
+                                subtaskDB.getEnd_date(),
+                                subtaskDB.getUdomain()
+                        );
+                        feature.getSubtasks().add(subtask);
+                        featureRepository.save(feature);
+                    }
+                }
+            }else{
+                List<Subtask> subtasks = new ArrayList<>();
+                for(SubtaskDb subtaskDB: featureDB.getSubtasks()){
+                    Subtask subtask = new Subtask(
+                            subtaskDB.getCode(),
+                            subtaskDB.getName(),
+                            subtaskDB.getStatus(),
+                            subtaskDB.getStart_date(),
+                            subtaskDB.getEnd_date(),
+                            subtaskDB.getUdomain()
+                    );
+                    subtasks.add(subtask);
+                }
+                Feature feature = new Feature();
+                feature.setCode(featureDB.getCode());
+                feature.setName(featureDB.getName());
+                feature.setStatus(featureDB.getStatus());
+                feature.setStrategic_topic(featureDB.getStrategic_topic());
+                feature.setStart_date(featureDB.getStart_date());
+                feature.setEnd_date(featureDB.getEnd_date());
+                feature.setSubtasks(subtasks);
+
+                product.getFeatures().add(feature);
+                productRepository.save(product);
             }
-            Feature featureTemp = new Feature(
-                        featureDb.getCode(),
-                        featureDb.getName(),
-                        featureDb.getStatus(),
-                        featureDb.getStrategic_topic(),
-                        featureDb.getStart_date(),
-                        featureDb.getEnd_date()
-            );
-            featureTemp.setSubtasks(subtasks);
-            features.add(featureTemp);
         }
-        product.setFeatures(features);
-        productRepository.save(product);
     }
+
+    @Transactional
     public void updateMemberDB(long id){
         ProductOwner productOwner = productownerRepository.getReferenceById(id);
 
-        List<Member> members = productOwner.getMembers();
         Product product = productOwner.getProduct();
         List<Feature> features = product.getFeatures();
-        List<Subtask> subtasks = new ArrayList<>();
 
-        for(Member member: members){ // set null arraylist to every member
-            member.setSubtasks(new ArrayList<>());
-        }
         for(Feature feature: features){ // loop feature to get each subtask
             for(Subtask subtask: feature.getSubtasks()){ // bind every subtask to it's member
-                String udomainS = subtask.getUdomain();
-                Member findMember = memberRepository.findByUdomain(udomainS);
-                findMember.getSubtasks().add(subtask);
+                Member findMember = memberRepository.findByUdomain(subtask.getUdomain());
+                if(!checkSubtaskMember(findMember, subtask.getCode())){
+                    findMember.getSubtasks().add(subtask);
+                }
             }
         }
     }
 
+    public boolean checkSubtaskMember(Member findMember, String code){
+        for(Subtask subtaskMember: findMember.getSubtasks()){
+            if(subtaskMember.getCode().equals(code)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Transactional
     public void synchronize(long id){
         ProductOwner productOwner = productownerRepository.getReferenceById(id);
 
@@ -138,6 +203,7 @@ public class ProductOwnerService{
         updateMemberDB(id);
     }
 
+    @Transactional
     public ProductDb findProductDBByid_blueprint(String id_blueprint){
         for(ProductDb productDb: this.productDb){
             if(productDb.getId_blurprint().equals(id_blueprint)){

@@ -3,6 +3,7 @@ package com.pandora.pandora_project.service;
 
 import com.pandora.pandora_project.model.Product;
 import com.pandora.pandora_project.repository.ProductRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,7 @@ public class ProductService{
         this.productRepository = productRepository;
     }
 
+    @Transactional
     public void editProduct(long id, String name, String mico, double score){
         Product product = productRepository.getReferenceById(id);
 

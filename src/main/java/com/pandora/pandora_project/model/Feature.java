@@ -3,7 +3,6 @@ package com.pandora.pandora_project.model;
 import java.util.Date;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,8 +26,6 @@ public class Feature {
     Date start_date;
     Date end_date;
 
-//    mappedBy = "feature",
-//    @JsonIgnoreProperties("feature")
     @OneToMany(cascade=CascadeType.ALL, orphanRemoval = true)
     List<Subtask> subtasks;
 
@@ -42,4 +39,3 @@ public class Feature {
         this.subtasks = null;
     }
 }
-//Menambahkan json ignore 7:55 6/8/2024

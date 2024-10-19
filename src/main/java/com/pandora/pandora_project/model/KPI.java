@@ -33,5 +33,8 @@ public class KPI {
     public KPI() {
         this.kquarters = new ArrayList<>();
         this.kquarters.add(new KQuarter("Q1"));
+        this.kquarters.add(new KQuarter("Q2"));
+        this.kquarters.add(new KQuarter("Q3"));
+        this.kquarters.add(new KQuarter("Q4"));
     }
 }

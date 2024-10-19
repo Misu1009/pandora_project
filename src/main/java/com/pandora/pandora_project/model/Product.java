@@ -1,5 +1,6 @@
 package com.pandora.pandora_project.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -40,8 +41,13 @@ public class Product {
         this.name = name;
         this.mico = mico;
         this.kpi_product_score = kpi_product_score;
-        this.pquarters = null;
         this.features = null;
         this.productowner = null;
+
+        this.pquarters = new ArrayList<>();
+        pquarters.add(new PQuarter("Q1"));
+        pquarters.add(new PQuarter("Q2"));
+        pquarters.add(new PQuarter("Q3"));
+        pquarters.add(new PQuarter("Q4"));
     }
 }
