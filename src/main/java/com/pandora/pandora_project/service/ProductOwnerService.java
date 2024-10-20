@@ -6,9 +6,18 @@ import com.pandora.pandora_project.jira.SubtaskDb;
 import com.pandora.pandora_project.model.*;
 import com.pandora.pandora_project.repository.*;
 import jakarta.transaction.Transactional;
+import jdk.jfr.Category;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,8 +42,6 @@ public class ProductOwnerService{
             PQuarterRepository pQuarterRepository,
             SubtaskRepository subtaskRepository,
             List<ProductDb> productDb
-//            FeatureDb featureDb,
-//            SubtaskDb subtaskDb
     ){
         this.productownerRepository = productownerRepository;
         this.productRepository = productRepository;
@@ -43,9 +50,71 @@ public class ProductOwnerService{
         this.pQuarterRepository = pQuarterRepository;
         this.subtaskRepository = subtaskRepository;
         this.productDb = productDb;
-//        this.featureDb = featureDb;
-//        this.subtaskDb = subtaskDb;
     }
+
+    public static String[] PRODUCTHEADERS= {
+            "idblueprint",
+            "name",
+            "mico",
+            "kpi_product_score"
+    };
+
+    public static String[] MEMBERHEADERS = {
+            "name",
+            "udomain",
+            "division",
+            "email",
+            "biro",
+            "eselon_tier",
+    };
+
+    public static String[] KPIMEMBERHEADERS = {
+            "name",
+            "udomain",
+            "final_score",
+            "period 1",
+            "target",
+            "done",
+            "cust_focus",
+            "integrity",
+            "teamwork",
+            "cpoe",
+            "on_schedule",
+            "late",
+            "period 2",
+            "target",
+            "done",
+            "cust_focus",
+            "integrity",
+            "teamwork",
+            "cpoe",
+            "on_schedule",
+            "late",
+            "period 3",
+            "target",
+            "done",
+            "cust_focus",
+            "integrity",
+            "teamwork",
+            "cpoe",
+            "on_schedule",
+            "late",
+            "period 4",
+            "target",
+            "done",
+            "cust_focus",
+            "integrity",
+            "teamwork",
+            "cpoe",
+            "on_schedule",
+            "late"
+    };
+
+    public static String PRODUCT_SHEET_NAME = "Product_Data";
+
+    public static String MEMBER_SHEET_NAME = "Member_Data";
+
+    public static String MEMBERKPI_SHEET_NAME = "Member_KPI_Data";
 
     @Transactional
     public void setKpiProductScore(long id,  double score){
@@ -213,14 +282,145 @@ public class ProductOwnerService{
         return null;
     }
 
-    public void downloadProduct(long poId){
+    public List<Member> getAllMemberByProductOwnerId(long poId){
+        ProductOwner productOwner = productownerRepository.getReferenceById(poId);
+        List<Member> memberList = memberRepository.findByProductowner(productOwner);
 
+        return memberList;
     }
-    public void downloadMember(long poId){
+    public ByteArrayInputStream downloadProduct(long poId) throws IOException {
+        ProductOwner productOwner = productownerRepository.getReferenceById(poId);
+        Product product = productOwner.getProduct();
 
+        Workbook workbook = new XSSFWorkbook();
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+        try{
+
+            Sheet sheet = workbook.createSheet();
+
+            Row row = sheet.createRow(0);
+
+            for(int i=0; i< PRODUCTHEADERS.length; i++){
+                Cell cell = row.createCell(i);
+                cell.setCellValue(PRODUCTHEADERS[i]);
+            }
+
+            int rowIndex = 1;
+            Row dataRow = sheet.createRow(rowIndex);
+
+            dataRow.createCell(0).setCellValue(product.getIdblueprint());
+            dataRow.createCell(1).setCellValue(product.getName());
+            dataRow.createCell(2).setCellValue(product.getMico());
+            dataRow.createCell(3).setCellValue(product.getKpi_product_score());
+
+            workbook.write(out);
+
+            return new ByteArrayInputStream(out.toByteArray());
+
+        } catch (IOException e){
+            e.printStackTrace();
+            System.out.println("fail to import data product excel");
+            return null;
+        } finally {
+            workbook.close();
+            out.close();
+        }
     }
-    public void downloadKpiExcel(long poId){
+    public ByteArrayInputStream downloadMember(long poId) throws IOException {
+        List<Member> memberList = getAllMemberByProductOwnerId(poId);
 
+        Workbook workbook = new XSSFWorkbook();
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+        try {
+
+            Sheet sheet = workbook.createSheet();
+
+            Row row = sheet.createRow(0);
+
+            for (int i = 0; i < MEMBERHEADERS.length; i++) {
+                Cell cell = row.createCell(i);
+                cell.setCellValue(MEMBERHEADERS[i]);
+            }
+
+            int rowIndex = 1;
+
+            for(Member member: memberList){
+                Row dataRow = sheet.createRow(rowIndex);
+
+                rowIndex++;
+                dataRow.createCell(0).setCellValue(member.getName());
+                dataRow.createCell(1).setCellValue(member.getUdomain());
+                dataRow.createCell(2).setCellValue(member.getDivision());
+                dataRow.createCell(3).setCellValue(member.getEmail());
+                dataRow.createCell(4).setCellValue(member.getBiro());
+                dataRow.createCell(5).setCellValue(member.getEselon_tier());
+            }
+
+            workbook.write(out);
+
+            return new ByteArrayInputStream(out.toByteArray());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("fail to import data product excel");
+            return null;
+        } finally {
+            workbook.close();
+            out.close();
+        }
     }
+    public ByteArrayInputStream downloadKpiExcel(long poId) throws IOException{
+        List<Member> memberList = getAllMemberByProductOwnerId(poId);
 
+        Workbook workbook = new XSSFWorkbook();
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+        try {
+
+            Sheet sheet = workbook.createSheet();
+
+            Row row = sheet.createRow(0);
+
+            for (int i = 0; i < KPIMEMBERHEADERS.length; i++) {
+                Cell cell = row.createCell(i);
+                cell.setCellValue(KPIMEMBERHEADERS[i]);
+            }
+
+            int rowIndex = 1;
+
+            for(Member member: memberList){
+                Row dataRow = sheet.createRow(rowIndex);
+                rowIndex++;
+                dataRow.createCell(0).setCellValue(member.getName());
+                dataRow.createCell(1).setCellValue(member.getUdomain());
+                dataRow.createCell(2).setCellValue(member.getKpi().getFinal_score());
+                int index = 2;
+                for(KQuarter kQuarter: member.getKpi().getKquarters()){
+                    dataRow.createCell(++index).setCellValue(kQuarter.getPeriod());
+                    dataRow.createCell(++index).setCellValue(kQuarter.getTarget());
+                    dataRow.createCell(++index).setCellValue(kQuarter.getDone());
+                    dataRow.createCell(++index).setCellValue(kQuarter.getCust_focus());
+                    dataRow.createCell(++index).setCellValue(kQuarter.getIntegrity());
+                    dataRow.createCell(++index).setCellValue(kQuarter.getTeamwork());
+                    dataRow.createCell(++index).setCellValue(kQuarter.getCpoe());
+                    dataRow.createCell(++index).setCellValue(kQuarter.getOn_schedule());
+                    dataRow.createCell(++index).setCellValue(kQuarter.getLate());
+                }
+            }
+
+            workbook.write(out);
+
+            return new ByteArrayInputStream(out.toByteArray());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("fail to import data product excel");
+            return null;
+        } finally {
+            workbook.close();
+            out.close();
+        }
+    }
 }

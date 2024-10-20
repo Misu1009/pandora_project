@@ -3,9 +3,16 @@ package com.pandora.pandora_project.controller;
 import com.pandora.pandora_project.dto.*;
 import com.pandora.pandora_project.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 
 @RestController
 @RequestMapping("api/pandora")
@@ -55,9 +62,20 @@ public class UserController {
         productOwnerService.setKpiProductScore(productOwnerId, score);
     }
 
-    @GetMapping("/productowner/downloadproduct")
-    public void downloadProductExcel(@RequestParam long productOwnerId) {
-        productOwnerService.downloadProduct(productOwnerId);
+    @RequestMapping("/productowner/downloadproduct")
+    public ResponseEntity<Resource> downloadProductExcel(@RequestParam long productOwnerId) throws IOException {
+
+        String filename = "product.xlsx";
+
+        ByteArrayInputStream actualData = productOwnerService.downloadProduct(productOwnerId);
+        InputStreamResource file = new InputStreamResource(actualData);
+
+        ResponseEntity<Resource> body = ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename="+filename)
+                .contentType(MediaType.parseMediaType("application/vnd.ms-excel"))
+                .body(file);
+
+        return body;
     }
 
     @GetMapping("/productowner/getmembers")
@@ -65,9 +83,20 @@ public class UserController {
         return userService.getAllMemberByProductOwner(productOwnerId);
     }
 
-    @GetMapping("/productowner/downloadmember")
-    public void downloadMemberExcel(@RequestParam long productOwnerId) {
-        productOwnerService.downloadMember(productOwnerId);
+    @RequestMapping("/productowner/downloadmember")
+    public ResponseEntity<Resource> downloadMemberExcel(@RequestParam long productOwnerId) throws IOException {
+
+        String filename = "member.xlsx";
+
+        ByteArrayInputStream actualData = productOwnerService.downloadMember(productOwnerId);
+        InputStreamResource file = new InputStreamResource(actualData);
+
+        ResponseEntity<Resource> body = ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename="+filename)
+                .contentType(MediaType.parseMediaType("application/vnd.ms-excel"))
+                .body(file);
+
+        return body;
     }
 
     @GetMapping("/productowner/getmemberkpis")
@@ -75,9 +104,20 @@ public class UserController {
         return userService.getAllMemberKPIByProductOwner(productOwnerId);
     }
 
-    @GetMapping("/productowner/downloadmemberkpi")
-    public void downloadMemberKPIExcel(@RequestParam long productOwnerId) {
-        productOwnerService.downloadKpiExcel(productOwnerId);
+    @RequestMapping("/productowner/downloadmemberkpi")
+    public ResponseEntity<Resource> downloadMemberKPIExcel(@RequestParam long productOwnerId) throws IOException {
+
+        String filename = "member_kpi.xlsx";
+
+        ByteArrayInputStream actualData = productOwnerService.downloadKpiExcel(productOwnerId);
+        InputStreamResource file = new InputStreamResource(actualData);
+
+        ResponseEntity<Resource> body = ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename="+filename)
+                .contentType(MediaType.parseMediaType("application/vnd.ms-excel"))
+                .body(file);
+
+        return body;
     }
 
     @GetMapping("/pmo/getallproductowner")
