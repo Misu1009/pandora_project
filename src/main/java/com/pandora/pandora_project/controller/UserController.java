@@ -148,10 +148,11 @@ public class UserController {
     }
 
     @PutMapping("/ratemember")
-    public void rateMember(@RequestParam long memberId, @RequestParam String period, @RequestParam double custFocus,
+    public void rateMember(@RequestParam long senderId, @RequestParam long memberId, @RequestParam String period, @RequestParam double custFocus,
                                            @RequestParam double integrity, @RequestParam double teamwork,
                                            @RequestParam double cpoe) {
-        memberService.rate(memberId, period, custFocus, integrity, teamwork, cpoe);
+        ;
+        System.out.println(memberService.rate(senderId, memberId, period, custFocus, integrity, teamwork, cpoe));
     }
 
     @GetMapping("/getothermember")

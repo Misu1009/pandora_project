@@ -1,23 +1,20 @@
 package com.pandora.pandora_project.dto;
 
+
+import com.pandora.pandora_project.model.Member;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class KQuarterD {
-    int target;
-    int done;
-    String ach;
-    double custFocus;
-    double integrity;
-    double teamwork;
-    double cpoe;
-    double average;
-    int onSchedule;
-    int late;
+public class RatedMember {
+    long memberId;
+    String period;
+    List<Member> ratingMemberList;
 }

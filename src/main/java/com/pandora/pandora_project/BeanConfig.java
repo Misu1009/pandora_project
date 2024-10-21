@@ -1,5 +1,7 @@
 package com.pandora.pandora_project;
 
+import com.pandora.pandora_project.dto.RatedMember;
+import com.pandora.pandora_project.dto.RatedMemberList;
 import com.pandora.pandora_project.jira.FeatureDb;
 import com.pandora.pandora_project.jira.ProductDb;
 import com.pandora.pandora_project.jira.SubtaskDb;
@@ -136,5 +138,11 @@ public class BeanConfig {
         productDbArrayList.add(productDb1);
         productDbArrayList.add(productDb2);
         return productDbArrayList;
+    }
+
+    @Bean
+    RatedMemberList ratedMemberList(){
+        List<RatedMember> ratedMemberList = new ArrayList<>();
+        return new RatedMemberList(ratedMemberList);
     }
 }

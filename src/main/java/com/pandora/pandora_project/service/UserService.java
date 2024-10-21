@@ -164,10 +164,12 @@ public class UserService{
                         new KQuarterD(
                                 kquarter.getTarget(),
                                 kquarter.getDone(),
+                                Double.toString((double) kquarter.getDone() / (double)kquarter.getTarget()*100) +"%" ,
                                 kquarter.getCust_focus(),
                                 kquarter.getIntegrity(),
                                 kquarter.getTeamwork(),
                                 kquarter.getCpoe(),
+                                (kquarter.getCust_focus()+kquarter.getIntegrity()+kquarter.getTeamwork()+kquarter.getCpoe())/4,
                                 kquarter.getOn_schedule(),
                                 kquarter.getLate()
                         )

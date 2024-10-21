@@ -5,19 +5,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class KQuarterD {
-    int target;
-    int done;
-    String ach;
-    double custFocus;
-    double integrity;
-    double teamwork;
-    double cpoe;
-    double average;
-    int onSchedule;
-    int late;
+public class RatedMemberList {
+    List<RatedMember> list;
 }
