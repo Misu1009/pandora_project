@@ -15,6 +15,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
 @RestController
+@CrossOrigin("http://localhost:3000")
 @RequestMapping("api/pandora")
 public class UserController {
 

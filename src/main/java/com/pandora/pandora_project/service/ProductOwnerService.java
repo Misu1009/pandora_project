@@ -177,17 +177,22 @@ public class ProductOwnerService{
         for(FeatureDb featureDB: productDb.getFeatures()){
             if(findFeatureByCode(product, featureDB.getCode()) != null){
                 Feature feature = findFeatureByCode(product, featureDB.getCode());
+                feature.setName(featureDB.getName());
+                feature.setStatus(featureDB.getStatus());
                 feature.setStrategic_topic(featureDB.getStrategic_topic());
                 feature.setStart_date(featureDB.getStart_date());
                 feature.setEnd_date(featureDB.getEnd_date());
+
                 featureRepository.save(feature);
 
                 for(SubtaskDb subtaskDB: featureDB.getSubtasks()){
                     if(findSubtaskByCode(feature, subtaskDB.getCode()) != null){
                         Subtask subtask = findSubtaskByCode(feature, subtaskDB.getCode());
+                        subtask.setName(subtaskDB.getName());
+                        subtask.setStatus(subtaskDB.getStatus());
                         subtask.setStart_date(subtaskDB.getStart_date());
                         subtask.setEnd_date(subtaskDB.getEnd_date());
-                        subtask.setStatus(subtaskDB.getStatus());
+                        subtask.setUdomain(subtaskDB.getUdomain());
                         subtaskRepository.save(subtask);
                     } else{
                         Subtask subtask = new Subtask(
