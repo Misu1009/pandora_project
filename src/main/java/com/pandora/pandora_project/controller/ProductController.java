@@ -16,7 +16,7 @@ public class ProductController {
 
     @PutMapping("/product/edit")
     public void editProduct(@RequestParam long productId, @RequestParam String name,
-                                            @RequestParam String mico,  @RequestParam double score) {
-        productService.editProduct(productId, name, mico, score);
+                            @RequestParam String mico) {
+        productService.editProduct(productId, name, mico);
     }
 }

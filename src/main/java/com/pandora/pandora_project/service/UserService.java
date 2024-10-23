@@ -48,7 +48,16 @@ public class UserService{
     @Transactional
     public void register(String name, String email, String password, Long poId) {
         ProductOwner productOwner = productownerRepository.getReferenceById(poId);
+
+        List<KQuarter> kquarters = new ArrayList<>();
+        kquarters.add(new KQuarter("Q1"));
+        kquarters.add(new KQuarter("Q2"));
+        kquarters.add(new KQuarter("Q3"));
+        kquarters.add(new KQuarter("Q4"));
+
         KPI kpi = new KPI();
+        kpi.setKquarters(kquarters);
+
         Member member = new Member(
                 name,
                 createUdomain(),

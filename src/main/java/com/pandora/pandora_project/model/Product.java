@@ -41,13 +41,9 @@ public class Product {
         this.name = name;
         this.mico = mico;
         this.kpi_product_score = kpi_product_score;
+
         this.features = null;
         this.productowner = null;
-
-        this.pquarters = new ArrayList<>();
-        pquarters.add(new PQuarter("Q1"));
-        pquarters.add(new PQuarter("Q2"));
-        pquarters.add(new PQuarter("Q3"));
-        pquarters.add(new PQuarter("Q4"));
+        this.pquarters = null;
     }
 }

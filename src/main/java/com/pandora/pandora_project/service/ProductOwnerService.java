@@ -145,39 +145,32 @@ public class ProductOwnerService{
 
     @Transactional
     public void updateProductDB(ProductDb productDb){
-        Product product = productRepository.findByIdblueprint(productDb.getId_blurprint());
+        Product product = productRepository.findByIdblueprint(productDb.getId_blueprint());
 
         // Pquarter
         List<PQuarter> pquarters = product.getPquarters();
-        if(pquarters == null){
-            pquarters.add(
-                    new PQuarter(productDb.getPeriod1(), productDb.getTarget1(), productDb.getDone1())
-            );
-            pquarters.add(
-                    new PQuarter(productDb.getPeriod2(), productDb.getTarget2(), productDb.getDone2())
-            );
-            pquarters.add(
-                    new PQuarter(productDb.getPeriod3(), productDb.getTarget3(), productDb.getDone3())
-            );
-            pquarters.add(
-                    new PQuarter(productDb.getPeriod4(), productDb.getTarget4(), productDb.getDone4())
-            );
-            product.setPquarters(pquarters);
-            productRepository.save(product);
-        }else{
-            pquarters.get(0).setDone(productDb.getDone1());
-            pquarters.get(0).setTarget(productDb.getTarget1());
+        PQuarter pQuarter;
 
-            pquarters.get(1).setDone(productDb.getDone2());
-            pquarters.get(1).setTarget(productDb.getTarget2());
+        pQuarter = pquarters.get(0);
+        pQuarter.setDone(productDb.getDone1());
+        pQuarter.setTarget(productDb.getTarget1());
+        pQuarterRepository.save(pQuarter);
 
-            pquarters.get(1).setDone(productDb.getDone3());
-            pquarters.get(1).setTarget(productDb.getTarget3());
+        pQuarter = pquarters.get(1);
+        pQuarter.setDone(productDb.getDone2());
+        pQuarter.setTarget(productDb.getTarget2());
+        pQuarterRepository.save(pQuarter);
 
-            pquarters.get(1).setDone(productDb.getDone4());
-            pquarters.get(1).setTarget(productDb.getTarget4());
-            pQuarterRepository.saveAll(pquarters);
-        }
+        pQuarter = pquarters.get(2);
+        pQuarter.setDone(productDb.getDone3());
+        pQuarter.setTarget(productDb.getTarget3());
+        pQuarterRepository.save(pQuarter);
+
+        pQuarter = pquarters.get(3);
+        pQuarter.setDone(productDb.getDone4());
+        pQuarter.setTarget(productDb.getTarget4());
+        pQuarterRepository.save(pQuarter);
+
 
         // Feature + Subtask
 
@@ -268,6 +261,17 @@ public class ProductOwnerService{
         ProductOwner productOwner = productownerRepository.getReferenceById(id);
 
         ProductDb productDb1 = findProductDBByid_blueprint(productOwner.getProduct().getIdblueprint());
+        System.out.println(productDb1.getId_blueprint());
+        System.out.println(productDb1.getTarget1());
+        System.out.println(productDb1.getTarget2());
+        System.out.println(productDb1.getTarget3());
+        System.out.println(productDb1.getTarget4());
+
+        System.out.println(productDb1.getDone1());
+        System.out.println(productDb1.getDone2());
+        System.out.println(productDb1.getDone3());
+        System.out.println(productDb1.getDone4());
+
         updateProductDB(productDb1);
         updateMemberDB(id);
     }
@@ -275,7 +279,7 @@ public class ProductOwnerService{
     @Transactional
     public ProductDb findProductDBByid_blueprint(String id_blueprint){
         for(ProductDb productDb: this.productDb){
-            if(productDb.getId_blurprint().equals(id_blueprint)){
+            if(productDb.getId_blueprint().equals(id_blueprint)){
                 return productDb;
             }
         }

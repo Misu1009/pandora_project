@@ -17,12 +17,11 @@ public class ProductService{
     }
 
     @Transactional
-    public void editProduct(long id, String name, String mico, double score){
+    public void editProduct(long id, String name, String mico){
         Product product = productRepository.getReferenceById(id);
 
         product.setName(name);
         product.setMico(mico);
-        product.setKpi_product_score(score);
 
         productRepository.save(product);
     }

@@ -67,10 +67,19 @@ public class BeanConfig {
             KQuarter kquarter2bc = new KQuarter("Q3", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter2bd = new KQuarter("Q4", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
 
-            KPI kpi1a = new KPI(3.84);
-            KPI kpi1b = new KPI(3.92);
-            KPI kpi2a = new KPI(3.75);
-            KPI kpi2b = new KPI(3.88);
+            KPI kpi1a = new KPI();
+            KPI kpi1b = new KPI();
+            KPI kpi2a = new KPI();
+            KPI kpi2b = new KPI();
+
+            PQuarter pQuarter1a = new PQuarter("Q1");
+            PQuarter pQuarter1b = new PQuarter("Q2");
+            PQuarter pQuarter1c = new PQuarter("Q3");
+            PQuarter pQuarter1d = new PQuarter("Q4");
+            PQuarter pQuarter2a = new PQuarter("Q1");
+            PQuarter pQuarter2b = new PQuarter("Q2");
+            PQuarter pQuarter2c = new PQuarter("Q3");
+            PQuarter pQuarter2d = new PQuarter("Q4");
 
             kpi1a.setKquarters(List.of(kquarter1aa, kquarter1ab, kquarter1ac, kquarter1ad));
             kpi1b.setKquarters(List.of(kquarter1ba, kquarter1bb, kquarter1bc, kquarter1bd));
@@ -106,6 +115,9 @@ public class BeanConfig {
             product1.setProductowner(productowner1);
             product2.setProductowner(productowner2);
 
+            product1.setPquarters(List.of(pQuarter1a, pQuarter1b, pQuarter1c, pQuarter1d));
+            product2.setPquarters(List.of(pQuarter2a, pQuarter2b, pQuarter2c, pQuarter2d));
+
             productowner1.setMembers(List.of(member1a, member1b));
             productowner2.setMembers(List.of(member2a, member2b));
 
@@ -117,22 +129,24 @@ public class BeanConfig {
 
     @Bean
     List<ProductDb> productDBJira(){
-        SubtaskDb subtaskDb1aa = new SubtaskDb("S0008", "Connect to Bitcoin Network", "On Progress", new GregorianCalendar(2023, Calendar.JANUARY, 20).getTime(), new GregorianCalendar(2023, Calendar.FEBRUARY, 10).getTime(), "u287554");
-        SubtaskDb subtaskDb1ab = new SubtaskDb("S0009", "Implement Wallet Security", "Not Started", new GregorianCalendar(2023, Calendar.FEBRUARY, 15).getTime(), new GregorianCalendar(2023, Calendar.MARCH, 15).getTime(), "u287554");
-        SubtaskDb subtaskDb1ba = new SubtaskDb("S0010", "Design Apple Pay UI", "Completed", new GregorianCalendar(2023, Calendar.FEBRUARY, 5).getTime(), new GregorianCalendar(2023, Calendar.FEBRUARY, 25).getTime(), "u398765");
+        SubtaskDb subtaskDb1aa = new SubtaskDb("S0008", "Connect to Bitcoin Network v2", "On Progress", new GregorianCalendar(2023, Calendar.JANUARY, 20).getTime(), new GregorianCalendar(2023, Calendar.FEBRUARY, 10).getTime(), "u287554");
+        SubtaskDb subtaskDb1ab = new SubtaskDb("S0009", "Implement Wallet Security v2", "Not Started", new GregorianCalendar(2023, Calendar.FEBRUARY, 15).getTime(), new GregorianCalendar(2023, Calendar.MARCH, 15).getTime(), "u287554");
+        SubtaskDb subtaskDb1ba = new SubtaskDb("S0010", "Design Apple Pay UI v2", "Completed", new GregorianCalendar(2023, Calendar.FEBRUARY, 5).getTime(), new GregorianCalendar(2023, Calendar.FEBRUARY, 25).getTime(), "u398765");
         SubtaskDb subtaskDb1bb = new SubtaskDb("S0011", "Test Apple Pay Transactions", "On Progress", new GregorianCalendar(2023, Calendar.MARCH, 1).getTime(), new GregorianCalendar(2023, Calendar.MARCH, 20).getTime(), "u398765");
         SubtaskDb subtaskDb2aa = new SubtaskDb("S0012", "Implement Two-Factor Authentication", "In Review", new GregorianCalendar(2023, Calendar.APRIL, 5).getTime(), new GregorianCalendar(2023, Calendar.APRIL, 20).getTime(), "u456789");
-        SubtaskDb subtaskDb2ab = new SubtaskDb("S0013", "Optimize Database Queries", "On Progress", new GregorianCalendar(2023, Calendar.MAY, 1).getTime(), new GregorianCalendar(2023, Calendar.MAY, 15).getTime(), "u456789");
-        SubtaskDb subtaskDb2ba = new SubtaskDb("S0014", "Design New User Onboarding Flow", "Not Started", new GregorianCalendar(2023, Calendar.JUNE, 10).getTime(), new GregorianCalendar(2023, Calendar.JULY, 1).getTime(), "u567890");
+        SubtaskDb subtaskDb2ab = new SubtaskDb("S0013", "Optimize Database Queries v3", "On Progress", new GregorianCalendar(2023, Calendar.MAY, 1).getTime(), new GregorianCalendar(2023, Calendar.MAY, 15).getTime(), "u456789");
+        SubtaskDb subtaskDb2ba = new SubtaskDb("S0014", "Design New User Onboarding Flow v4", "Not Started", new GregorianCalendar(2023, Calendar.JUNE, 10).getTime(), new GregorianCalendar(2023, Calendar.JULY, 1).getTime(), "u567890");
         SubtaskDb subtaskDb2bb = new SubtaskDb("S0015", "Implement Push Notifications", "Completed", new GregorianCalendar(2023, Calendar.MARCH, 15).getTime(), new GregorianCalendar(2023, Calendar.APRIL, 5).getTime(), "u567890");
+        SubtaskDb subtaskDb1ac = new SubtaskDb("S0016", "Implement SOLANA Security v2", "Not Started", new GregorianCalendar(2023, Calendar.FEBRUARY, 15).getTime(), new GregorianCalendar(2023, Calendar.MARCH, 15).getTime(), "u287554");
 
-        FeatureDb featureDb1a = new FeatureDb("BPRO002", "Bitcoin Purchase Integration", "On Progress", "Cryptocurrency", new GregorianCalendar(2023, Calendar.JANUARY, 15).getTime(), new GregorianCalendar(2023, Calendar.MARCH, 30).getTime(), List.of(subtaskDb1aa, subtaskDb1ab));
-        FeatureDb featureDb1b = new FeatureDb("APAY001", "Apple Pay Integration", "Completed", "Payment Systems", new GregorianCalendar(2023, Calendar.FEBRUARY, 1).getTime(), new GregorianCalendar(2023, Calendar.APRIL, 15).getTime(), List.of(subtaskDb1ba, subtaskDb1bb));
-        FeatureDb featureDb2a = new FeatureDb("DEXP003", "Data Export Module", "Planning", "Data Management", new GregorianCalendar(2023, Calendar.MARCH, 10).getTime(), new GregorianCalendar(2023, Calendar.MAY, 20).getTime(), List.of(subtaskDb2aa, subtaskDb2ab));
-        FeatureDb featureDb2b = new FeatureDb("CHAT004", "AI Chatbot Implementation", "On Hold", "Customer Support", new GregorianCalendar(2023, Calendar.APRIL, 5).getTime(), new GregorianCalendar(2023, Calendar.JUNE, 30).getTime(), List.of(subtaskDb2ba, subtaskDb2bb));
+        FeatureDb featureDb1a = new FeatureDb("BPRO002", "Bitcoin Purchase Integration v2", "On Progress", "Cryptocurrency", new GregorianCalendar(2023, Calendar.JANUARY, 15).getTime(), new GregorianCalendar(2023, Calendar.MARCH, 30).getTime(), List.of(subtaskDb1aa, subtaskDb1ab, subtaskDb1ac));
+        FeatureDb featureDb1c = new FeatureDb("BPRO003", "SOLANA Purchase Integration v2", "On Progress", "Cryptocurrency", new GregorianCalendar(2023, Calendar.JANUARY, 15).getTime(), new GregorianCalendar(2023, Calendar.MARCH, 30).getTime(), List.of(subtaskDb1aa, subtaskDb1ab));
+        FeatureDb featureDb1b = new FeatureDb("APAY001", "Apple Pay Integration APp v2", "Completed", "Payment Systems", new GregorianCalendar(2023, Calendar.FEBRUARY, 1).getTime(), new GregorianCalendar(2023, Calendar.APRIL, 15).getTime(), List.of(subtaskDb1ba, subtaskDb1bb));
+        FeatureDb featureDb2a = new FeatureDb("DEXP003", "Data Export Module v2", "Planning", "Data Management", new GregorianCalendar(2023, Calendar.MARCH, 10).getTime(), new GregorianCalendar(2023, Calendar.MAY, 20).getTime(), List.of(subtaskDb2aa, subtaskDb2ab));
+        FeatureDb featureDb2b = new FeatureDb("CHAT004", "AI Chatbot Implementation v2", "On Hold", "Customer Support", new GregorianCalendar(2023, Calendar.APRIL, 5).getTime(), new GregorianCalendar(2023, Calendar.JUNE, 30).getTime(), List.of(subtaskDb2ba, subtaskDb2bb));
 
-        ProductDb productDb1 = new ProductDb("MXYZ", "Q1", "Q2", "Q3", "Q4", 2, 3, 4, 5, 2, 2, 4, 4, List.of(featureDb1a, featureDb1b));
-        ProductDb productDb2 = new ProductDb("FABC", "Q1", "Q2", "Q3", "Q4", 5, 7, 3, 2, 1, 4, 2, 4, List.of(featureDb2a, featureDb2b));
+        ProductDb productDb1 = new ProductDb("MXYZ", "Q1", "Q2", "Q3", "Q4", 2, 3, 0, 0, 2, 2, 0, 0, List.of(featureDb1a, featureDb1b, featureDb1c));
+        ProductDb productDb2 = new ProductDb("FABC", "Q1", "Q2", "Q3", "Q4", 5, 7, 0, 0, 4, 3, 0, 0, List.of(featureDb2a, featureDb2b));
 
         ArrayList<ProductDb> productDbArrayList = new ArrayList<>();
         productDbArrayList.add(productDb1);
