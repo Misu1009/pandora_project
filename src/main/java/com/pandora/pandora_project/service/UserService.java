@@ -218,6 +218,18 @@ public class UserService{
 
         List<UserD> userDList = new ArrayList<>();
         for(ProductOwner productOwner: productOwnerList){
+            userDList.add(
+                new UserD(
+                        productOwner.getId(),
+                        productOwner.getName(),
+                        productOwner.getUdomain(),
+                        productOwner.getEmail(),
+                        productOwner.getDivision(),
+                        productOwner.getBiro(),
+                        productOwner.getEselon_tier(),
+                        "Product Owner"
+                )
+            );
             for(Member member: productOwner.getMembers()){
                 userDList.add(
                         new UserD(
@@ -228,7 +240,7 @@ public class UserService{
                                 member.getDivision(),
                                 member.getBiro(),
                                 member.getEselon_tier(),
-                                "User"
+                                "Member"
                         )
                 );
             }

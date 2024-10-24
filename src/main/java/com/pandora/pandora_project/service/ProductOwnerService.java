@@ -18,11 +18,11 @@ import org.springframework.stereotype.Service;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class ProductOwnerService{
+    private final PMORepository pmoRepository;
     private final ProductOwnerRepository productownerRepository;
     private final ProductRepository productRepository;
     private final MemberRepository memberRepository;
@@ -30,25 +30,30 @@ public class ProductOwnerService{
     private final FeatureRepository featureRepository;
     private final PQuarterRepository pQuarterRepository;
     private final SubtaskRepository subtaskRepository;
+    private final KquarterRepository kquarterRepository;
 //    private final FeatureDb featureDb;
 //    private final SubtaskDb subtaskDb;
 
     @Autowired
     public ProductOwnerService(
+            PMORepository pmoRepository,
             ProductOwnerRepository productownerRepository,
             ProductRepository productRepository,
             MemberRepository memberRepository,
             FeatureRepository featureRepository,
             PQuarterRepository pQuarterRepository,
             SubtaskRepository subtaskRepository,
+            KquarterRepository kquarterRepository,
             List<ProductDb> productDb
     ){
+        this.pmoRepository = pmoRepository;
         this.productownerRepository = productownerRepository;
         this.productRepository = productRepository;
         this.memberRepository = memberRepository;
         this.featureRepository = featureRepository;
         this.pQuarterRepository = pQuarterRepository;
         this.subtaskRepository = subtaskRepository;
+        this.kquarterRepository = kquarterRepository;
         this.productDb = productDb;
     }
 
@@ -235,6 +240,13 @@ public class ProductOwnerService{
         }
     }
 
+    private String getQuarter(Date date) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        int month = cal.get(Calendar.MONTH)-1;
+        return "Q"+(month / 3) + 1;
+    }
+
     @Transactional
     public void updateMemberDB(long id){
         ProductOwner productOwner = productownerRepository.getReferenceById(id);
@@ -247,8 +259,52 @@ public class ProductOwnerService{
                 Member findMember = memberRepository.findByUdomain(subtask.getUdomain());
                 if(!checkSubtaskMember(findMember, subtask.getCode())){
                     findMember.getSubtasks().add(subtask);
+                    memberRepository.save(findMember);
                 }
             }
+        }
+        // target + done
+        List<Member> memberList = productOwner.getMembers();
+        List<PQuarter> pQuarterList = product.getPquarters();
+        for(Member member: memberList){
+            List<KQuarter> kquarters = member.getKpi().getKquarters();
+            for(int i=0; i<4; i++){
+                kquarters.get(i).setTarget(pQuarterList.get(i).getTarget());
+                kquarters.get(i).setDone(pQuarterList.get(i).getDone());
+            }
+            // on schedule + late
+            Map<String, Integer> onScheduleResult = new HashMap<>();
+            Map<String, Integer> lateResult = new HashMap<>();
+            onScheduleResult.put("Q1", 0);
+            onScheduleResult.put("Q2", 0);
+            onScheduleResult.put("Q3", 0);
+            onScheduleResult.put("Q4", 0);
+
+            lateResult.put("Q1", 0);
+            lateResult.put("Q2", 0);
+            lateResult.put("Q3", 0);
+            lateResult.put("Q4", 0);
+
+            for(Subtask subtask: member.getSubtasks()){
+                String period = getQuarter(subtask.getEnd_date());
+                if(subtask.getStatus().equals("Late")){
+                    lateResult.put(period, lateResult.get(period)+1);
+                }else{
+                    onScheduleResult.put(period, onScheduleResult.get(period)+1);
+                }
+            }
+
+            kquarters.get(0).setOn_schedule(onScheduleResult.get("Q1"));
+            kquarters.get(1).setOn_schedule(onScheduleResult.get("Q2"));
+            kquarters.get(2).setOn_schedule(onScheduleResult.get("Q3"));
+            kquarters.get(3).setOn_schedule(onScheduleResult.get("Q4"));
+
+            kquarters.get(0).setLate(lateResult.get("Q1"));
+            kquarters.get(1).setLate(lateResult.get("Q2"));
+            kquarters.get(2).setLate(lateResult.get("Q3"));
+            kquarters.get(3).setLate(lateResult.get("Q4"));
+
+            kquarterRepository.saveAll(kquarters);
         }
     }
 
@@ -266,19 +322,17 @@ public class ProductOwnerService{
         ProductOwner productOwner = productownerRepository.getReferenceById(id);
 
         ProductDb productDb1 = findProductDBByid_blueprint(productOwner.getProduct().getIdblueprint());
-        System.out.println(productDb1.getId_blueprint());
-        System.out.println(productDb1.getTarget1());
-        System.out.println(productDb1.getTarget2());
-        System.out.println(productDb1.getTarget3());
-        System.out.println(productDb1.getTarget4());
-
-        System.out.println(productDb1.getDone1());
-        System.out.println(productDb1.getDone2());
-        System.out.println(productDb1.getDone3());
-        System.out.println(productDb1.getDone4());
 
         updateProductDB(productDb1);
         updateMemberDB(id);
+    }
+
+    @Transactional
+    public void synchronizedByPmo(long pmoId){
+        PMO pmo = pmoRepository.getReferenceById(pmoId);
+        for(ProductOwner productOwner: pmo.getProductowners()){
+            synchronize(productOwner.getId());
+        }
     }
 
     @Transactional

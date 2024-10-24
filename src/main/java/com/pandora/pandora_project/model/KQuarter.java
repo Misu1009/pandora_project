@@ -42,6 +42,14 @@ public class KQuarter {
 
     public KQuarter(String period) {
         this.period = period;
+        this.target = 0;
+        this.done = 0;
+        this.cust_focus = 0.0;
+        this.integrity = 0.0;
+        this.teamwork = 0.0;
+        this.cpoe = 0.0;
+        this.on_schedule = 0;
+        this.late = 0;
     }
 
 }
