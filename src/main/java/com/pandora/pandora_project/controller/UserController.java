@@ -53,6 +53,11 @@ public class UserController {
         productOwnerService.synchronize(productOwnerId);
     }
 
+    @PutMapping("/pmo/synchronize")
+    public void synchronizedByPmo(@RequestParam long pmoId) {
+        productOwnerService.synchronizedByPmo(pmoId);
+    }
+
     @GetMapping("/productowner/getproducts")
     public LaporanProductDTO getProduct(@RequestParam long productOwnerId) {
         return userService.getProductByProductOwner(productOwnerId);
