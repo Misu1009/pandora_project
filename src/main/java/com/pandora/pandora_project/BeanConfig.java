@@ -129,15 +129,15 @@ public class BeanConfig {
 
     @Bean
     List<ProductDb> productDBJira(){
-        SubtaskDb subtaskDb1aa = new SubtaskDb("S0008", "Connect to Bitcoin Network v2", "On Progress", new GregorianCalendar(2023, Calendar.JANUARY, 20).getTime(), new GregorianCalendar(2023, Calendar.FEBRUARY, 10).getTime(), "u287554");
-        SubtaskDb subtaskDb1ab = new SubtaskDb("S0009", "Implement Wallet Security v2", "Not Started", new GregorianCalendar(2023, Calendar.FEBRUARY, 15).getTime(), new GregorianCalendar(2023, Calendar.MARCH, 15).getTime(), "u287554");
-        SubtaskDb subtaskDb1ba = new SubtaskDb("S0010", "Design Apple Pay UI v2", "Completed", new GregorianCalendar(2023, Calendar.FEBRUARY, 5).getTime(), new GregorianCalendar(2023, Calendar.FEBRUARY, 25).getTime(), "u398765");
-        SubtaskDb subtaskDb1bb = new SubtaskDb("S0011", "Test Apple Pay Transactions", "On Progress", new GregorianCalendar(2023, Calendar.MARCH, 1).getTime(), new GregorianCalendar(2023, Calendar.MARCH, 20).getTime(), "u398765");
-        SubtaskDb subtaskDb2aa = new SubtaskDb("S0012", "Implement Two-Factor Authentication", "In Review", new GregorianCalendar(2023, Calendar.APRIL, 5).getTime(), new GregorianCalendar(2023, Calendar.APRIL, 20).getTime(), "u456789");
-        SubtaskDb subtaskDb2ab = new SubtaskDb("S0013", "Optimize Database Queries v3", "On Progress", new GregorianCalendar(2023, Calendar.MAY, 1).getTime(), new GregorianCalendar(2023, Calendar.MAY, 15).getTime(), "u456789");
-        SubtaskDb subtaskDb2ba = new SubtaskDb("S0014", "Design New User Onboarding Flow v4", "Not Started", new GregorianCalendar(2023, Calendar.JUNE, 10).getTime(), new GregorianCalendar(2023, Calendar.JULY, 1).getTime(), "u567890");
-        SubtaskDb subtaskDb2bb = new SubtaskDb("S0015", "Implement Push Notifications", "Completed", new GregorianCalendar(2023, Calendar.MARCH, 15).getTime(), new GregorianCalendar(2023, Calendar.APRIL, 5).getTime(), "u567890");
-        SubtaskDb subtaskDb1ac = new SubtaskDb("S0016", "Implement SOLANA Security v2", "Not Started", new GregorianCalendar(2023, Calendar.FEBRUARY, 15).getTime(), new GregorianCalendar(2023, Calendar.MARCH, 15).getTime(), "u287554");
+        SubtaskDb subtaskDb1aa = new SubtaskDb("S0008", "Connect to Bitcoin Network v2", "In Progress", new GregorianCalendar(2023, Calendar.JANUARY, 20).getTime(), new GregorianCalendar(2023, Calendar.FEBRUARY, 10).getTime(), "u287554");
+        SubtaskDb subtaskDb1ab = new SubtaskDb("S0009", "Implement Wallet Security v2", "Done", new GregorianCalendar(2023, Calendar.FEBRUARY, 15).getTime(), new GregorianCalendar(2023, Calendar.MARCH, 15).getTime(), "u287554");
+        SubtaskDb subtaskDb1ba = new SubtaskDb("S0010", "Design Apple Pay UI v2", "Done", new GregorianCalendar(2023, Calendar.FEBRUARY, 5).getTime(), new GregorianCalendar(2023, Calendar.FEBRUARY, 25).getTime(), "u398765");
+        SubtaskDb subtaskDb1bb = new SubtaskDb("S0011", "Test Apple Pay Transactions", "Done", new GregorianCalendar(2023, Calendar.MARCH, 1).getTime(), new GregorianCalendar(2023, Calendar.MARCH, 20).getTime(), "u398765");
+        SubtaskDb subtaskDb2aa = new SubtaskDb("S0012", "Implement Two-Factor Authentication", "Done", new GregorianCalendar(2023, Calendar.APRIL, 5).getTime(), new GregorianCalendar(2023, Calendar.APRIL, 20).getTime(), "u456789");
+        SubtaskDb subtaskDb2ab = new SubtaskDb("S0013", "Optimize Database Queries v3", "In Progress", new GregorianCalendar(2023, Calendar.MAY, 1).getTime(), new GregorianCalendar(2023, Calendar.MAY, 15).getTime(), "u456789");
+        SubtaskDb subtaskDb2ba = new SubtaskDb("S0014", "Design New User Onboarding Flow v4", "To Do", new GregorianCalendar(2023, Calendar.JUNE, 10).getTime(), new GregorianCalendar(2023, Calendar.JULY, 1).getTime(), "u567890");
+        SubtaskDb subtaskDb2bb = new SubtaskDb("S0015", "Implement Push Notifications", "To Do", new GregorianCalendar(2023, Calendar.MARCH, 15).getTime(), new GregorianCalendar(2023, Calendar.APRIL, 5).getTime(), "u567890");
+        SubtaskDb subtaskDb1ac = new SubtaskDb("S0016", "Implement SOLANA Security v2", "In Progress", new GregorianCalendar(2023, Calendar.FEBRUARY, 15).getTime(), new GregorianCalendar(2023, Calendar.MARCH, 15).getTime(), "u287554");
 
         FeatureDb featureDb1a = new FeatureDb("BPRO002", "Bitcoin Purchase Integration v2", "On Progress", "Cryptocurrency", new GregorianCalendar(2023, Calendar.JANUARY, 15).getTime(), new GregorianCalendar(2023, Calendar.MARCH, 30).getTime(), List.of(subtaskDb1aa, subtaskDb1ab));
         FeatureDb featureDb1c = new FeatureDb("BPRO003", "SOLANA Purchase Integration v2", "On Progress", "Cryptocurrency", new GregorianCalendar(2023, Calendar.JANUARY, 15).getTime(), new GregorianCalendar(2023, Calendar.MARCH, 30).getTime(), List.of(subtaskDb1ac));

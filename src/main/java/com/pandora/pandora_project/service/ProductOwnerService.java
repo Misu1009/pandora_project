@@ -243,8 +243,9 @@ public class ProductOwnerService{
     private String getQuarter(Date date) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
-        int month = cal.get(Calendar.MONTH)-1;
-        return "Q"+(month / 3) + 1;
+        int month = cal.get(Calendar.MONTH);
+        int quarter = Math.min(((month / 3) + 1), 4); // Memastikan nilai maksimal adalah 4
+        return String.format("Q%d", quarter);
     }
 
     @Transactional
@@ -272,7 +273,7 @@ public class ProductOwnerService{
                 kquarters.get(i).setTarget(pQuarterList.get(i).getTarget());
                 kquarters.get(i).setDone(pQuarterList.get(i).getDone());
             }
-            // on schedule + late
+//            // on schedule + late
             Map<String, Integer> onScheduleResult = new HashMap<>();
             Map<String, Integer> lateResult = new HashMap<>();
             onScheduleResult.put("Q1", 0);
@@ -287,7 +288,7 @@ public class ProductOwnerService{
 
             for(Subtask subtask: member.getSubtasks()){
                 String period = getQuarter(subtask.getEnd_date());
-                if(subtask.getStatus().equals("Late")){
+                if(subtask.getStatus().equals("In Progress") || subtask.getStatus().equals("To Do")){
                     lateResult.put(period, lateResult.get(period)+1);
                 }else{
                     onScheduleResult.put(period, onScheduleResult.get(period)+1);
