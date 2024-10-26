@@ -9,9 +9,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class UserService{
@@ -128,6 +126,24 @@ public class UserService{
         return laporanProductDTO;
     }
 
+    private String whatFeatureThiSubtask(Product product, Subtask subtask){
+        for(Feature feature: product.getFeatures()){
+            for(Subtask subtask1: feature.getSubtasks()){
+                if(subtask1.getCode().equals(subtask.getCode())){
+                    return feature.getCode();
+                }
+            }
+        }
+        return null;
+    }
+    private int totalOfFeatureInvolvedMember(Member member){
+        HashSet<String> featureCodeHashSet = new HashSet<>();
+        Product product = member.getProductowner().getProduct();
+        for(Subtask subtask: member.getSubtasks()){
+            featureCodeHashSet.add(whatFeatureThiSubtask(product, subtask));
+        }
+        return featureCodeHashSet.size();
+    }
     // 8
     public LaporanMemberDTO getAllMemberByProductOwner(long productOwnerId){
         ProductOwner productOwner = productownerRepository.getReferenceById(productOwnerId);
@@ -151,13 +167,12 @@ public class UserService{
             memberD.setName(member.getName());
             memberD.setDivision(member.getDivision());
             memberD.setEmail(member.getEmail());
-            memberD.setTotalFeature(100); // fix later
+            memberD.setTotalFeature(totalOfFeatureInvolvedMember(member)); // fix later
             memberD.setTotalSubtask(member.getSubtasks().size());
             memberD.setSubtasks(subtaskDList);
 
             memberDList.add(memberD);
         }
-
         return new LaporanMemberDTO(memberDList);
     }
 
@@ -171,6 +186,7 @@ public class UserService{
             for(KQuarter kquarter: member.getKpi().getKquarters()){
                 kquarterDList.add(
                         new KQuarterD(
+                                kquarter.getPeriod(),
                                 kquarter.getTarget(),
                                 kquarter.getDone(),
                                 Double.toString((double) kquarter.getDone() / (double)kquarter.getTarget()*100) +"%" ,
@@ -184,12 +200,13 @@ public class UserService{
                         )
                 );
             }
+            kquarterDList.sort(Comparator.comparing(KQuarterD::getPeriod));
 
             MemberKPID memberKPID = new MemberKPID();
             memberKPID.setUdomain(member.getUdomain());
             memberKPID.setName(member.getName());
             memberKPID.setProductName(member.getProductowner().getProduct().getName());
-            memberKPID.setRole("User"); // fix later
+            memberKPID.setRole("Member"); // fix later
             memberKPID.setKpiProductSore(member.getProductowner().getProduct().getKpi_product_score());
             memberKPID.setKquarters(kquarterDList);
 

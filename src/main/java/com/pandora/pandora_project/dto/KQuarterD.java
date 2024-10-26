@@ -10,6 +10,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class KQuarterD {
+    String period;
     int target;
     int done;
     String ach;
