@@ -1,5 +1,6 @@
 package com.pandora.pandora_project.service;
 
+import com.pandora.pandora_project.dto.KQuarterD;
 import com.pandora.pandora_project.jira.FeatureDb;
 import com.pandora.pandora_project.jira.ProductDb;
 import com.pandora.pandora_project.jira.SubtaskDb;
@@ -267,8 +268,12 @@ public class ProductOwnerService{
         // target + done
         List<Member> memberList = productOwner.getMembers();
         List<PQuarter> pQuarterList = product.getPquarters();
+        pQuarterList.sort(Comparator.comparing(PQuarter::getPeriod));
+
         for(Member member: memberList){
             List<KQuarter> kquarters = member.getKpi().getKquarters();
+            kquarters.sort(Comparator.comparing(KQuarter::getPeriod));
+
             for(int i=0; i<4; i++){
                 kquarters.get(i).setTarget(pQuarterList.get(i).getTarget());
                 kquarters.get(i).setDone(pQuarterList.get(i).getDone());

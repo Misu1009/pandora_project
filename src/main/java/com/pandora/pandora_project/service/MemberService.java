@@ -13,81 +13,52 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
 public class MemberService{
     private final MemberRepository memberRepository;
-    private final KquarterRepository kquarterRepository;
-    private final RatedMemberList ratedMemberList;
+    private final HashMap<String, ArrayList<String>> ratingStatus;
 
     @Autowired
-    public MemberService(MemberRepository memberRepository, KquarterRepository kquarterRepository, RatedMemberList ratedMemberList){
+    public MemberService(MemberRepository memberRepository, HashMap<String, ArrayList<String>> ratingStatus){
         this.memberRepository = memberRepository;
-        this.kquarterRepository = kquarterRepository;
-        this.ratedMemberList = ratedMemberList;
+        this.ratingStatus = ratingStatus;
     }
 
     @Transactional
-    public boolean rate(long senderId, long id, String period, double cust_focus, double integrity, double teamwork, double cpoe){
-        if(!checkRatingSenderEligible(senderId, id, period)){
-            return false;
-        }
+    public boolean rate(long senderId, long memberId, String period, double cust_focus, double integrity, double teamwork, double cpoe){
+        Member member = memberRepository.getReferenceById(memberId);
+        Member sender = memberRepository.getReferenceById(senderId);
+        int amountOfOtherMember = member.getProductowner().getMembers().size() - 1;
+        String key = member.getUdomain()+period;
 
-        Member member = memberRepository.getReferenceById(id);
+        if(ratingStatus.get(memberId) == null){ // make new key in hashmap
+            ratingStatus.put(key, new ArrayList<>());
+        }else{
+            for(String senderUdomain: ratingStatus.get(key)){
+                if(senderUdomain.equals(sender.getUdomain())){
+                    return false;
+                }
+            }
+        }
+        ArrayList<String> value = ratingStatus.get(key);
+
         KPI kpi = member.getKpi();
         List<KQuarter> kQuarters = kpi.getKquarters();
 
         for(KQuarter kQuarter: kQuarters){
             if(kQuarter.getPeriod().equals(period)){
-                RatedMember ratedMember = findRatedMemberByMemberId(id, period);
-                if(ratedMember == null){
-                    RatedMember temp = new RatedMember(id, period, new ArrayList<>());
-                    this.ratedMemberList.getList().add(temp);
+                kQuarter.setCust_focus(cust_focus/amountOfOtherMember + kQuarter.getCust_focus());
+                kQuarter.setIntegrity(integrity/amountOfOtherMember + kQuarter.getIntegrity());
+                kQuarter.setTeamwork(teamwork/amountOfOtherMember + kQuarter.getTeamwork());
+                kQuarter.setCpoe(cpoe/amountOfOtherMember + kQuarter.getCpoe());
 
-                    kQuarter.setCust_focus(cust_focus);
-                    kQuarter.setIntegrity(integrity);
-                    kQuarter.setTeamwork(teamwork);
-                    kQuarter.setCpoe(cpoe);
-                    kquarterRepository.save(kQuarter);
-
-                    findRatedMemberByMemberId(id, period).getRatingMemberList().add(memberRepository.getReferenceById(senderId));
-                    break;
-                }
-                ratedMember.getRatingMemberList().add(memberRepository.getReferenceById(senderId));
-                double devide = ratedMember.getRatingMemberList().size();
-                kQuarter.setCust_focus(kQuarter.getCust_focus() + cust_focus/devide);
-                kQuarter.setIntegrity(kQuarter.getCust_focus() + integrity/devide);
-                kQuarter.setTeamwork(kQuarter.getCust_focus() + teamwork/devide);
-                kQuarter.setCpoe(kQuarter.getCust_focus() + cpoe/devide);
-                kquarterRepository.save(kQuarter);
-                break;
+                value.add(sender.getUdomain());
+                ratingStatus.put(key, value);
             }
         }
         return true;
     }
-
-    public RatedMember findRatedMemberByMemberId(long memberId, String period){
-        for(RatedMember ratedMember: this.ratedMemberList.getList()){
-            if(ratedMember.getMemberId() == memberId && ratedMember.getPeriod().equals(period)){
-                return ratedMember;
-            }
-        }
-        return null;
-    }
-
-    public boolean checkRatingSenderEligible(long senderId, long memberId, String period){
-        RatedMember ratedMember = findRatedMemberByMemberId(memberId, period);
-
-        if(ratedMember == null){
-            return true;
-        }
-        for(Member member: ratedMember.getRatingMemberList()){
-            if(member.getId() == senderId){ // sender, one of the member that rate other member
-                return false;
-            }
-        }
-        return true;
-    }
-
 }

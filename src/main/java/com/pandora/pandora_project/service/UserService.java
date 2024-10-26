@@ -200,7 +200,7 @@ public class UserService{
                         )
                 );
             }
-            kquarterDList.sort(Comparator.comparing(KQuarterD::getPeriod));
+
 
             MemberKPID memberKPID = new MemberKPID();
             memberKPID.setUdomain(member.getUdomain());

@@ -11,10 +11,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.List;
+import java.util.*;
 
 @Configuration
 public class BeanConfig {
@@ -155,8 +152,13 @@ public class BeanConfig {
     }
 
     @Bean
-    RatedMemberList ratedMemberList(){
-        List<RatedMember> ratedMemberList = new ArrayList<>();
-        return new RatedMemberList(ratedMemberList);
+    HashMap<String, ArrayList<String>> ratingStatus(){
+        return new HashMap<>();
     }
+
+//    @Bean
+//    RatedMemberList ratedMemberList(){
+//        List<RatedMember> ratedMemberList = new ArrayList<>();
+//        return new RatedMemberList(ratedMemberList);
+//    }
 }
