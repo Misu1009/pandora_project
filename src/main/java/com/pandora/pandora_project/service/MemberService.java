@@ -34,10 +34,10 @@ public class MemberService{
         int amountOfOtherMember = member.getProductowner().getMembers().size() - 1;
         String key = member.getUdomain()+period;
 
-        if(ratingStatus.get(memberId) == null){ // make new key in hashmap
+        if(ratingStatus.get(key) == null){ // make new key in hashmap
             ratingStatus.put(key, new ArrayList<>());
         }else{
-            for(String senderUdomain: ratingStatus.get(key)){
+            for(String senderUdomain: ratingStatus.get(key)){ // checking eligible
                 if(senderUdomain.equals(sender.getUdomain())){
                     return false;
                 }
