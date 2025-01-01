@@ -331,4 +331,24 @@ public class UserService{
         return new MemberMainPageDTO(otherMemberDList);
     }
 
+    @Transactional
+    public void updateUser(long id, String name, String division, String biro, String eselon_tier){
+        Member member = memberRepository.getReferenceById(id);
+        if(member != null){
+            member.setName(name);
+            member.setDivision(division);
+            member.setBiro(biro);
+            member.setEselon_tier(eselon_tier);
+
+            memberRepository.save(member);
+        }
+        ProductOwner productOwner = productownerRepository.getReferenceById(id);
+        productOwner.setName(name);
+        productOwner.setDivision(division);
+        productOwner.setBiro(biro);
+        productOwner.setEselon_tier(eselon_tier);
+
+        productownerRepository.save(productOwner);
+
+    }
 }

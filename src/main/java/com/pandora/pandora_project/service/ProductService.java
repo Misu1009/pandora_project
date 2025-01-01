@@ -33,7 +33,7 @@ public class ProductService{
     }
 
     @Transactional
-    public void editProduct(long id, String name, String mico){
+    public void updateProduct(long id, String name, String mico){
         Product product = productRepository.getReferenceById(id);
 
         product.setName(name);

@@ -33,10 +33,8 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @PutMapping("/product/edit")
-    public void editProduct(@RequestParam long productId, @RequestParam String name,
-                            @RequestParam String mico) {
-        productService.editProduct(productId, name, mico);
+    public void updateProduct(long productId, String name, String mico) {
+        productService.updateProduct(productId, name, mico);
     }
 
     public ByteArrayInputStream convertToExcel(Product product) throws IOException {

@@ -1,5 +1,6 @@
 package com.pandora.pandora_project.service;
 
+import com.pandora.pandora_project.controller.UserController;
 import com.pandora.pandora_project.dto.UserProductD;
 import com.pandora.pandora_project.model.Member;
 import com.pandora.pandora_project.model.PMO;
@@ -21,6 +22,7 @@ public class PmoService{
     private final MemberRepository memberRepository;
     private final ProductRepository productRepository;
 
+
     @Autowired
     public PmoService(PMORepository pmoRepository, MemberRepository memberRepository, ProductRepository productRepository){
         this.pmoRepository = pmoRepository;
@@ -37,18 +39,6 @@ public class PmoService{
         product.setKpi_product_score(score);
 
         productRepository.save(product);
-    }
-
-    @Transactional
-    public void updateUser(long id, String name, String division, String biro, String eselon_tier){
-        Member member = memberRepository.getReferenceById(id);
-
-        member.setName(name);
-        member.setDivision(division);
-        member.setBiro(biro);
-        member.setEselon_tier(eselon_tier);
-
-        memberRepository.save(member);
     }
 
     public List<UserProductD> getUserProduct(long id){

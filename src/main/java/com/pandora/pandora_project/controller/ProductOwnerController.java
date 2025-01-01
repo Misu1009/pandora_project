@@ -41,4 +41,38 @@ public class ProductOwnerController {
 
         return body;
     }
+    @RequestMapping("/productowner/downloadmember")
+    public ResponseEntity<Resource> downloadMemberExcel(@RequestParam long productOwnerId) throws IOException {
+
+        String filename = "member.xlsx";
+
+        ByteArrayInputStream actualData = productOwnerService.downloadMember(productOwnerId);
+        InputStreamResource file = new InputStreamResource(actualData);
+
+        ResponseEntity<Resource> body = ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename="+filename)
+                .contentType(MediaType.parseMediaType("application/vnd.ms-excel"))
+                .body(file);
+
+        return body;
+    }
+    @RequestMapping("/productowner/downloadmemberkpi")
+    public ResponseEntity<Resource> downloadMemberKPIExcel(@RequestParam long productOwnerId) throws IOException {
+
+        String filename = "member_kpi.xlsx";
+
+        ByteArrayInputStream actualData = productOwnerService.downloadKpiExcel(productOwnerId);
+        InputStreamResource file = new InputStreamResource(actualData);
+
+        ResponseEntity<Resource> body = ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename="+filename)
+                .contentType(MediaType.parseMediaType("application/vnd.ms-excel"))
+                .body(file);
+
+        return body;
+    }
+    @PutMapping("/productowner/synchronize")
+    public void synchronize(@RequestParam long productOwnerId) {
+        productOwnerService.synchronize(productOwnerId);
+    }
 }

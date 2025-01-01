@@ -1,7 +1,9 @@
 package com.pandora.pandora_project.controller;
 
 import com.pandora.pandora_project.dto.*;
+import com.pandora.pandora_project.model.Member;
 import com.pandora.pandora_project.service.*;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
@@ -48,11 +50,6 @@ public class UserController {
         return userService.getAllProductOwner();
     }
 
-    @PutMapping("/productowner/synchronize")
-    public void synchronize(@RequestParam long productOwnerId) {
-        productOwnerService.synchronize(productOwnerId);
-    }
-
     @PutMapping("/pmo/synchronize")
     public void synchronizedByPmo(@RequestParam long pmoId) {
         productOwnerService.synchronizedByPmo(pmoId);
@@ -68,41 +65,9 @@ public class UserController {
         return userService.getAllMemberByProductOwner(productOwnerId);
     }
 
-    @RequestMapping("/productowner/downloadmember")
-    public ResponseEntity<Resource> downloadMemberExcel(@RequestParam long productOwnerId) throws IOException {
-
-        String filename = "member.xlsx";
-
-        ByteArrayInputStream actualData = productOwnerService.downloadMember(productOwnerId);
-        InputStreamResource file = new InputStreamResource(actualData);
-
-        ResponseEntity<Resource> body = ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename="+filename)
-                .contentType(MediaType.parseMediaType("application/vnd.ms-excel"))
-                .body(file);
-
-        return body;
-    }
-
     @GetMapping("/productowner/getmemberkpis")
     public LaporanMemberKPIDTO getMemberKPIs(@RequestParam long productOwnerId) {
         return userService.getAllMemberKPIByProductOwner(productOwnerId);
-    }
-
-    @RequestMapping("/productowner/downloadmemberkpi")
-    public ResponseEntity<Resource> downloadMemberKPIExcel(@RequestParam long productOwnerId) throws IOException {
-
-        String filename = "member_kpi.xlsx";
-
-        ByteArrayInputStream actualData = productOwnerService.downloadKpiExcel(productOwnerId);
-        InputStreamResource file = new InputStreamResource(actualData);
-
-        ResponseEntity<Resource> body = ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename="+filename)
-                .contentType(MediaType.parseMediaType("application/vnd.ms-excel"))
-                .body(file);
-
-        return body;
     }
 
     @GetMapping("/pmo/getallproductowner")
@@ -115,13 +80,6 @@ public class UserController {
         return userService.getAllUserByPMO(pmoId);
     }
 
-    @PutMapping("/edit")
-    public void editUser(@RequestParam long userId, @RequestParam String name,
-                                         @RequestParam String division, @RequestParam String biro,
-                                         @RequestParam String eselonTier) {
-        pmoService.updateUser(userId, name, division, biro, eselonTier);
-    }
-
     @GetMapping("/pmo/getallproduct")
     public MasterProductDTO getAllProduct(@RequestParam long pmoId) {
         return userService.getAllProductByPMO(pmoId);
@@ -132,10 +90,12 @@ public class UserController {
         return userService.getAllUserJoinProduct(pmoId);
     }
 
-
-
     @GetMapping("/getothermember")
     public MemberMainPageDTO getOtherMember(@RequestParam long memberId) {
         return userService.getOtherMember(memberId);
+    }
+
+    public void updateUser(long userId, String name, String division, String biro, String eselon_tier){
+        userService.updateUser(userId, name, division, biro, eselon_tier);
     }
 }
