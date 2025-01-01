@@ -21,24 +21,24 @@ public class UserController {
 
     private final UserService userService;
     private final ProductOwnerService productOwnerService;
-    private final MemberService memberService;
+
     private final PmoService pmoService;
 
     @Autowired
-    public UserController(UserService userService, ProductOwnerService productOwnerService, MemberService memberService, PmoService pmoService){
+    public UserController(UserService userService, ProductOwnerService productOwnerService, PmoService pmoService){
         this.userService = userService;
         this.productOwnerService = productOwnerService;
-        this.memberService = memberService;
+
         this.pmoService = pmoService;
     }
 
     @GetMapping("/login")
-    public LoginDTO getUserLogin(@RequestParam String email, @RequestParam String password) {
+    public LoginDTO login(@RequestParam String email, @RequestParam String password) {
         return userService.login(email, password);
     }
 
     @PostMapping("/member/register")
-    public void createMember(@RequestParam String name, @RequestParam String email,
+    public void register(@RequestParam String name, @RequestParam String email,
                                              @RequestParam String password, @RequestParam long productOwnerId) {
         userService.register(name, email, password, productOwnerId);
     }
@@ -153,13 +153,7 @@ public class UserController {
         return userService.getAllUserJoinProduct(pmoId);
     }
 
-    @PutMapping("/ratemember")
-    public boolean rateMember(@RequestParam long senderId, @RequestParam long memberId, @RequestParam String period, @RequestParam double custFocus,
-                                           @RequestParam double integrity, @RequestParam double teamwork,
-                                           @RequestParam double cpoe) {
 
-        return memberService.rate(senderId, memberId, period, custFocus, integrity, teamwork, cpoe);
-    }
 
     @GetMapping("/getothermember")
     public MemberMainPageDTO getOtherMember(@RequestParam long memberId) {

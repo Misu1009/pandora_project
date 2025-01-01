@@ -19,4 +19,6 @@ public class LaporanProductDTO{
     Double kpiScore;
     List<PQuarterD> pquarters;
     List<FeatureD> features;
+    int annualTarget;
+    int annualDone;
 }

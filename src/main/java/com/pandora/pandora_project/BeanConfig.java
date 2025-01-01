@@ -199,16 +199,16 @@ public class BeanConfig {
             Subtask subtask9cb = new Subtask("S080", "Subtask 9cb", "To Do", new GregorianCalendar(2024, Calendar.JULY, 20).getTime(), new GregorianCalendar(2024, Calendar.AUGUST, 10).getTime(), "U39");
             Subtask subtask9cc = new Subtask("S081", "Subtask 9cc", "Done", new GregorianCalendar(2024, Calendar.AUGUST, 1).getTime(), new GregorianCalendar(2024, Calendar.AUGUST, 20).getTime(), "U39");
 
-            KQuarter kquarter1aa = new KQuarter("Q1", 20, 18, 3.8, 3.9, 3.2, 3.95, 10, 2);
-            KQuarter kquarter1ab = new KQuarter("Q2", 25, 23, 3.9, 4.0, 3.3, 4.0, 12, 1);
+            KQuarter kquarter1aa = new KQuarter("Q1", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
+            KQuarter kquarter1ab = new KQuarter("Q2", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter1ac = new KQuarter("Q3", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter1ad = new KQuarter("Q4", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
-            KQuarter kquarter1ba = new KQuarter("Q1", 20, 18, 3.8, 3.9, 3.2, 3.95, 10, 2);
-            KQuarter kquarter1bb = new KQuarter("Q2", 25, 23, 3.9, 4.0, 3.3, 4.0, 12, 1);
+            KQuarter kquarter1ba = new KQuarter("Q1", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
+            KQuarter kquarter1bb = new KQuarter("Q2", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter1bc = new KQuarter("Q3", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter1bd = new KQuarter("Q4", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
-            KQuarter kquarter1ca = new KQuarter("Q1", 20, 18, 3.8, 3.9, 3.2, 3.95, 10, 2);
-            KQuarter kquarter1cb = new KQuarter("Q2", 25, 23, 3.9, 4.0, 3.3, 4.0, 12, 1);
+            KQuarter kquarter1ca = new KQuarter("Q1", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
+            KQuarter kquarter1cb = new KQuarter("Q2", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter1cc = new KQuarter("Q3", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter1cd = new KQuarter("Q4", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
 
@@ -588,12 +588,12 @@ public class BeanConfig {
     @Bean
     List<ProductDb> productDBJira(){
         SubtaskDb subtask1aa = new SubtaskDb("S001", "BITCOIN PURCHASING", "Done", new GregorianCalendar(2024, Calendar.JANUARY, 20).getTime(), new GregorianCalendar(2024, Calendar.FEBRUARY, 10).getTime(), "U13");
-        SubtaskDb subtask1ab = new SubtaskDb("S002", "SOLANA PURCHASING", "In Progress", new GregorianCalendar(2024, Calendar.FEBRUARY, 1).getTime(), new GregorianCalendar(2024, Calendar.FEBRUARY, 25).getTime(), "U13");
-        SubtaskDb subtask1ac = new SubtaskDb("S003", "SUI PURCHASING", "In Progress", new GregorianCalendar(2024, Calendar.FEBRUARY, 15).getTime(), new GregorianCalendar(2024, Calendar.MARCH, 5).getTime(), "U13");
+        SubtaskDb subtask1ab = new SubtaskDb("S002", "SOLANA PURCHASING", "Done", new GregorianCalendar(2024, Calendar.FEBRUARY, 1).getTime(), new GregorianCalendar(2024, Calendar.FEBRUARY, 25).getTime(), "U13");
+        SubtaskDb subtask1ac = new SubtaskDb("S003", "SUI PURCHASING", "Done", new GregorianCalendar(2024, Calendar.FEBRUARY, 15).getTime(), new GregorianCalendar(2024, Calendar.MARCH, 5).getTime(), "U13");
         SubtaskDb subtask1ba = new SubtaskDb("S004", "HYPERLIQUID PURCHASING", "In Progress", new GregorianCalendar(2024, Calendar.FEBRUARY, 5).getTime(), new GregorianCalendar(2024, Calendar.FEBRUARY, 25).getTime(), "U14");
         SubtaskDb subtask1bb = new SubtaskDb("S005", "ORCA PURCHASING", "Done", new GregorianCalendar(2024, Calendar.FEBRUARY, 20).getTime(), new GregorianCalendar(2024, Calendar.MARCH, 10).getTime(), "U14");
         SubtaskDb subtask1bc = new SubtaskDb("S006", "RAYDIUM PURCHASING", "In Progress", new GregorianCalendar(2024, Calendar.MARCH, 1).getTime(), new GregorianCalendar(2024, Calendar.MARCH, 20).getTime(), "U14");
-        SubtaskDb subtask1ca = new SubtaskDb("S007", "ARBITRUM PURCHASING", "In Progress", new GregorianCalendar(2024, Calendar.MARCH, 5).getTime(), new GregorianCalendar(2024, Calendar.MARCH, 25).getTime(), "U15");
+        SubtaskDb subtask1ca = new SubtaskDb("S007", "ARBITRUM PURCHASING", "Done", new GregorianCalendar(2024, Calendar.MARCH, 5).getTime(), new GregorianCalendar(2024, Calendar.MARCH, 25).getTime(), "U15");
         SubtaskDb subtask1cb = new SubtaskDb("S008", "MANTA PURCHASING", "In Progress", new GregorianCalendar(2024, Calendar.MARCH, 20).getTime(), new GregorianCalendar(2024, Calendar.APRIL, 10).getTime(), "U15");
         SubtaskDb subtask1cc = new SubtaskDb("S009", "OPTIMISTIC PURCHASING", "Done", new GregorianCalendar(2024, Calendar.APRIL, 1).getTime(), new GregorianCalendar(2024, Calendar.APRIL, 20).getTime(), "U15");
 

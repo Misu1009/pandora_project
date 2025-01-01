@@ -87,7 +87,9 @@ public class UserService{
 
     // 5
     public LaporanProductDTO getProductByProductOwner(long productOwnerId){
-        int subtaskSize = 0;
+        int subtaskSize =0;
+        int annualTarget =0;
+        int annualDone =0;
 
         ProductOwner productOwner = productownerRepository.getReferenceById(productOwnerId);
         Product product = productOwner.getProduct();
@@ -98,6 +100,8 @@ public class UserService{
 
         for(PQuarter pQuarter: product.getPquarters()){
             pQuarterDs.add(new PQuarterD(pQuarter.getPeriod(), pQuarter.getTarget(), pQuarter.getDone()));
+            annualTarget += pQuarter.getTarget();
+            annualDone += pQuarter.getDone();
         }
         for(Feature feature: product.getFeatures()){
             featureDs.add(
@@ -122,6 +126,8 @@ public class UserService{
         laporanProductDTO.setTotalFeature(featureDs.size());
         laporanProductDTO.setTotalSubtask(subtaskSize);
         laporanProductDTO.setKpiScore(product.getKpi_product_score());
+        laporanProductDTO.setAnnualTarget(annualTarget);
+        laporanProductDTO.setAnnualDone(annualDone);
 
         return laporanProductDTO;
     }
