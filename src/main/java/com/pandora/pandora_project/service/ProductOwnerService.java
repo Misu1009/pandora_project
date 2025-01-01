@@ -1,5 +1,6 @@
 package com.pandora.pandora_project.service;
 
+import com.pandora.pandora_project.controller.ProductController;
 import com.pandora.pandora_project.dto.KQuarterD;
 import com.pandora.pandora_project.jira.FeatureDb;
 import com.pandora.pandora_project.jira.ProductDb;
@@ -32,6 +33,8 @@ public class ProductOwnerService{
     private final PQuarterRepository pQuarterRepository;
     private final SubtaskRepository subtaskRepository;
     private final KquarterRepository kquarterRepository;
+
+    private final ProductController productController;
 //    private final FeatureDb featureDb;
 //    private final SubtaskDb subtaskDb;
 
@@ -45,7 +48,8 @@ public class ProductOwnerService{
             PQuarterRepository pQuarterRepository,
             SubtaskRepository subtaskRepository,
             KquarterRepository kquarterRepository,
-            List<ProductDb> productDb
+            List<ProductDb> productDb,
+            ProductController productController
     ){
         this.pmoRepository = pmoRepository;
         this.productownerRepository = productownerRepository;
@@ -56,6 +60,7 @@ public class ProductOwnerService{
         this.subtaskRepository = subtaskRepository;
         this.kquarterRepository = kquarterRepository;
         this.productDb = productDb;
+        this.productController = productController;
     }
 
     public static String[] PRODUCTHEADERS= {
@@ -359,42 +364,7 @@ public class ProductOwnerService{
     }
     public ByteArrayInputStream downloadProduct(long poId) throws IOException {
         ProductOwner productOwner = productownerRepository.getReferenceById(poId);
-        Product product = productOwner.getProduct();
-
-        Workbook workbook = new XSSFWorkbook();
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-
-        try{
-
-            Sheet sheet = workbook.createSheet();
-
-            Row row = sheet.createRow(0);
-
-            for(int i=0; i< PRODUCTHEADERS.length; i++){
-                Cell cell = row.createCell(i);
-                cell.setCellValue(PRODUCTHEADERS[i]);
-            }
-
-            int rowIndex = 1;
-            Row dataRow = sheet.createRow(rowIndex);
-
-            dataRow.createCell(0).setCellValue(product.getIdblueprint());
-            dataRow.createCell(1).setCellValue(product.getName());
-            dataRow.createCell(2).setCellValue(product.getMico());
-            dataRow.createCell(3).setCellValue(product.getKpi_product_score());
-
-            workbook.write(out);
-
-            return new ByteArrayInputStream(out.toByteArray());
-
-        } catch (IOException e){
-            e.printStackTrace();
-            System.out.println("fail to import data product excel");
-            return null;
-        } finally {
-            workbook.close();
-            out.close();
-        }
+        return productController.convertToExcel(productOwner.getProduct());
     }
     public ByteArrayInputStream downloadMember(long poId) throws IOException {
         List<Member> memberList = getAllMemberByProductOwnerId(poId);

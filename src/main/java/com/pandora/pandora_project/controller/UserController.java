@@ -63,27 +63,6 @@ public class UserController {
         return userService.getProductByProductOwner(productOwnerId);
     }
 
-    @PostMapping("/productowner/setkpiproductscore")
-    public void setKPIProductScore(@RequestParam long productOwnerId, @RequestParam double score) {
-        productOwnerService.setKpiProductScore(productOwnerId, score);
-    }
-
-    @RequestMapping("/productowner/downloadproduct")
-    public ResponseEntity<Resource> downloadProductExcel(@RequestParam long productOwnerId) throws IOException {
-
-        String filename = "product.xlsx";
-
-        ByteArrayInputStream actualData = productOwnerService.downloadProduct(productOwnerId);
-        InputStreamResource file = new InputStreamResource(actualData);
-
-        ResponseEntity<Resource> body = ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename="+filename)
-                .contentType(MediaType.parseMediaType("application/vnd.ms-excel"))
-                .body(file);
-
-        return body;
-    }
-
     @GetMapping("/productowner/getmembers")
     public LaporanMemberDTO getAllMember(@RequestParam long productOwnerId) {
         return userService.getAllMemberByProductOwner(productOwnerId);
