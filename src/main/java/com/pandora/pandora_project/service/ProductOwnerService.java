@@ -3,24 +3,16 @@ package com.pandora.pandora_project.service;
 import com.pandora.pandora_project.controller.KPIController;
 import com.pandora.pandora_project.controller.MemberController;
 import com.pandora.pandora_project.controller.ProductController;
-import com.pandora.pandora_project.dto.KQuarterD;
-import com.pandora.pandora_project.jira.FeatureDb;
-import com.pandora.pandora_project.jira.ProductDb;
-import com.pandora.pandora_project.jira.SubtaskDb;
+import com.pandora.pandora_project.thirdParty.FeatureDb;
+import com.pandora.pandora_project.thirdParty.ProductDb;
+import com.pandora.pandora_project.thirdParty.SubtaskDb;
 import com.pandora.pandora_project.model.*;
 import com.pandora.pandora_project.repository.*;
 import jakarta.transaction.Transactional;
-import jdk.jfr.Category;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.*;
 
@@ -133,7 +125,7 @@ public class ProductOwnerService{
         // Feature + Subtask
 
         for(FeatureDb featureDB: productDb.getFeatures()){
-            if(findFeatureByCode(product, featureDB.getCode()) != null){
+            if(findFeatureByCode(product, featureDB.getCode()) != null){ // update feature
                 Feature feature = findFeatureByCode(product, featureDB.getCode());
                 feature.setName(featureDB.getName());
                 feature.setStatus(featureDB.getStatus());
@@ -144,7 +136,7 @@ public class ProductOwnerService{
                 featureRepository.save(feature);
 
                 for(SubtaskDb subtaskDB: featureDB.getSubtasks()){
-                    if(findSubtaskByCode(feature, subtaskDB.getCode()) != null){
+                    if(findSubtaskByCode(feature, subtaskDB.getCode()) != null){ // update subtask
                         Subtask subtask = findSubtaskByCode(feature, subtaskDB.getCode());
                         subtask.setName(subtaskDB.getName());
                         subtask.setStatus(subtaskDB.getStatus());
@@ -152,7 +144,7 @@ public class ProductOwnerService{
                         subtask.setEnd_date(subtaskDB.getEnd_date());
                         subtask.setUdomain(subtaskDB.getUdomain());
                         subtaskRepository.save(subtask);
-                    } else{
+                    } else{ // add new subtask
                         Subtask subtask = new Subtask(
                                 subtaskDB.getCode(),
                                 subtaskDB.getName(),
@@ -165,7 +157,7 @@ public class ProductOwnerService{
                         featureRepository.save(feature);
                     }
                 }
-            }else{
+            }else{ // add new feature
                 List<Subtask> subtasks = new ArrayList<>();
                 for(SubtaskDb subtaskDB: featureDB.getSubtasks()){
                     Subtask subtask = new Subtask(
@@ -211,7 +203,7 @@ public class ProductOwnerService{
         for(Feature feature: features){ // loop feature to get each subtask
             for(Subtask subtask: feature.getSubtasks()){ // bind every subtask to it's member
                 Member findMember = memberRepository.findByUdomain(subtask.getUdomain());
-                if(!checkSubtaskMember(findMember, subtask.getCode())){
+                if(!checkSubtaskMember(findMember, subtask.getCode())){ // not found, subtask will be bind to member
                     findMember.getSubtasks().add(subtask);
                     memberRepository.save(findMember);
                 }

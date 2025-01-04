@@ -2,6 +2,7 @@ package com.pandora.pandora_project.dto;
 
 
 import com.pandora.pandora_project.model.Member;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,8 +14,20 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
+@Table(name = "ratedMember")
 public class RatedMember {
-    long memberId;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    Long id;
+    long ratingMemberId;
+    long ratedMemberId;
     String period;
-    List<Member> ratingMemberList;
+
+    public RatedMember(long ratingMemberId, long ratedMemberId, String period){
+        this.ratingMemberId = ratingMemberId;
+        this.ratedMemberId = ratedMemberId;
+        this.period = period;
+    }
 }

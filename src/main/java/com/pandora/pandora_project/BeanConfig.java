@@ -1,10 +1,8 @@
 package com.pandora.pandora_project;
 
-import com.pandora.pandora_project.dto.RatedMember;
-import com.pandora.pandora_project.dto.RatedMemberList;
-import com.pandora.pandora_project.jira.FeatureDb;
-import com.pandora.pandora_project.jira.ProductDb;
-import com.pandora.pandora_project.jira.SubtaskDb;
+import com.pandora.pandora_project.thirdParty.FeatureDb;
+import com.pandora.pandora_project.thirdParty.ProductDb;
+import com.pandora.pandora_project.thirdParty.SubtaskDb;
 import com.pandora.pandora_project.model.*;
 import com.pandora.pandora_project.repository.*;
 import org.springframework.boot.CommandLineRunner;
@@ -586,7 +584,7 @@ public class BeanConfig {
     }
 
     @Bean
-    List<ProductDb> productDBJira(){
+    List<ProductDb> productDBThirdParty(){
         SubtaskDb subtask1aa = new SubtaskDb("S001", "BITCOIN PURCHASING", "Done", new GregorianCalendar(2024, Calendar.JANUARY, 20).getTime(), new GregorianCalendar(2024, Calendar.FEBRUARY, 10).getTime(), "U13");
         SubtaskDb subtask1ab = new SubtaskDb("S002", "SOLANA PURCHASING", "Done", new GregorianCalendar(2024, Calendar.FEBRUARY, 1).getTime(), new GregorianCalendar(2024, Calendar.FEBRUARY, 25).getTime(), "U13");
         SubtaskDb subtask1ac = new SubtaskDb("S003", "SUI PURCHASING", "Done", new GregorianCalendar(2024, Calendar.FEBRUARY, 15).getTime(), new GregorianCalendar(2024, Calendar.MARCH, 5).getTime(), "U13");
@@ -607,15 +605,4 @@ public class BeanConfig {
         productDbArrayList.add(productDb1);
         return productDbArrayList;
     }
-
-    @Bean
-    HashMap<String, ArrayList<String>> ratingStatus(){
-        return new HashMap<>();
-    }
-
-//    @Bean
-//    RatedMemberList ratedMemberList(){
-//        List<RatedMember> ratedMemberList = new ArrayList<>();
-//        return new RatedMemberList(ratedMemberList);
-//    }
 }

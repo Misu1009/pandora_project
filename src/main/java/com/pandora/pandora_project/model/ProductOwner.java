@@ -1,8 +1,10 @@
 package com.pandora.pandora_project.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.pandora.pandora_project.dto.RatedMember;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -35,6 +37,9 @@ public class ProductOwner{
     @OneToMany(mappedBy = "productowner", cascade=CascadeType.ALL, orphanRemoval = true)
     List<Member> members;
 
+    @OneToMany(cascade=CascadeType.ALL, orphanRemoval = true)
+    List<RatedMember> rateFlag;
+
     public ProductOwner(String name, String udomain, String division, String email, String biro, String eselon_tier, String password) {
         this.name = name;
         this.udomain = udomain;
@@ -46,6 +51,7 @@ public class ProductOwner{
 
         this.product = null;
         this.members = null;
+        this.rateFlag = new ArrayList<>();
     }
 
 }

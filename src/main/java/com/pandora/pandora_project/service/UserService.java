@@ -59,7 +59,7 @@ public class UserService{
         Member member = new Member(
                 name,
                 createUdomain(),
-                productOwner.getUdomain(),
+                productOwner.getDivision(),
                 email,
                 productOwner.getBiro(),
                 "S7",

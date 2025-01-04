@@ -1,4 +1,4 @@
-package com.pandora.pandora_project.jira;
+package com.pandora.pandora_project.thirdParty;
 
 import java.util.List;
 

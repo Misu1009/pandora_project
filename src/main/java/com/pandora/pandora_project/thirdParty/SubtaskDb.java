@@ -1,7 +1,6 @@
-package com.pandora.pandora_project.jira;
+package com.pandora.pandora_project.thirdParty;
 
 import java.util.Date;
-import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,12 +11,11 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class FeatureDb {
+public class SubtaskDb {
     String code;
     String name;
     String status;
-    String strategic_topic;
     Date start_date;
     Date end_date;
-    List<SubtaskDb> subtasks;
+    String udomain;
 }
