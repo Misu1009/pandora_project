@@ -21,7 +21,7 @@ public class BeanConfig {
         return args-> {
             PMO pmo1 = new PMO("PMO 1", "U1", "GPOL", "pmo1@xyz.com", "PMO", "S5", "pass123");
             PMO pmo2 = new PMO("PMO 2", "U2", "GPOL", "pmo2@xyz.com", "PMO", "S5", "pass123");
-            PMO pmo3 = new PMO("PMO 3", "U3", "GPOL", "pmo3@xyz.com", "PMO", "S5", "pass123");
+//            PMO pmo3 = new PMO("PMO 3", "U3", "GPOL", "pmo3@xyz.com", "PMO", "S5", "pass123");
 
             ProductOwner productowner1 = new ProductOwner("Product Owner 1", "U4", "ABCD", "productowner1@xyz.com", "ABC", "s2", "pass123");
             ProductOwner productowner2 = new ProductOwner("Product Owner 2", "U5", "EFGH", "productowner2@xyz.com", "DEF", "s2", "pass123");
@@ -69,7 +69,7 @@ public class BeanConfig {
             Member member9b = new Member("Member 9b", "U38", "GHIJ", "member9b@xyz.com", "YZA", "s7", "pass123");
             Member member9c = new Member("Member 9c", "U39", "GHIJ", "member9c@xyz.com", "YZA", "s7", "pass123");
 
-            Product product1 = new Product("MXYZ", "Product 1", "MXYZ External", 0.0);
+            Product product1 = new Product("BTCUSD", "Product 1", "Bockchain External", 0.0);
             Product product2 = new Product("MABC", "Product 2", "MABC Internal", 0.0);
             Product product3 = new Product("MDEF", "Product 3", "MDEF External", 0.0);
             Product product4 = new Product("MGHI", "Product 4", "MGHI Internal", 0.0);
@@ -79,9 +79,9 @@ public class BeanConfig {
             Product product8 = new Product("MSTU", "Product 8", "MSTU Internal", 0.0);
             Product product9 = new Product("MVWX", "Product 9", "MVWX External", 0.0);
 
-            Feature feature1a = new Feature("FPRO1", "Feature 1a", "In Progress", "Strategic Topic 1", new GregorianCalendar(2024, Calendar.JANUARY, 15).getTime(), new GregorianCalendar(2024, Calendar.MARCH, 30).getTime());
-            Feature feature1b = new Feature("FPRO2", "Feature 1b", "To Do", "Strategic Topic 1", new GregorianCalendar(2024, Calendar.FEBRUARY, 1).getTime(), new GregorianCalendar(2024, Calendar.APRIL, 15).getTime());
-            Feature feature1c = new Feature("FPRO3", "Feature 1c", "Done", "Strategic Topic 1", new GregorianCalendar(2024, Calendar.MARCH, 1).getTime(), new GregorianCalendar(2024, Calendar.MAY, 30).getTime());
+            Feature feature1a = new Feature("FPRO1", "Feature 1a", "To Do", "Strategic Topic 1", new GregorianCalendar(2024, Calendar.JANUARY, 1).getTime(), new GregorianCalendar(2024, Calendar.JANUARY, 20).getTime());
+            Feature feature1b = new Feature("FPRO2", "Feature 1b", "To Do", "Strategic Topic 1", new GregorianCalendar(2024, Calendar.JANUARY, 22).getTime(), new GregorianCalendar(2024, Calendar.FEBRUARY, 10).getTime());
+            Feature feature1c = new Feature("FPRO3", "Feature 1c", "To Do", "Strategic Topic 1", new GregorianCalendar(2024, Calendar.FEBRUARY, 15).getTime(), new GregorianCalendar(2024, Calendar.MARCH, 25).getTime());
 
             Feature feature2a = new Feature("FPRO4", "Feature 2a", "To Do", "Strategic Topic 2", new GregorianCalendar(2024, Calendar.FEBRUARY, 15).getTime(), new GregorianCalendar(2024, Calendar.APRIL, 30).getTime());
             Feature feature2b = new Feature("FPRO5", "Feature 2b", "In Progress", "Strategic Topic 2", new GregorianCalendar(2024, Calendar.MARCH, 1).getTime(), new GregorianCalendar(2024, Calendar.MAY, 15).getTime());
@@ -210,107 +210,107 @@ public class BeanConfig {
             KQuarter kquarter1cc = new KQuarter("Q3", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter1cd = new KQuarter("Q4", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
 
-            KQuarter kquarter2aa = new KQuarter("Q1", 18, 17, 3.6, 3.7, 3.0, 3.8, 9, 1);
-            KQuarter kquarter2ab = new KQuarter("Q2", 23, 21, 3.7, 3.8, 3.1, 3.9, 11, 2);
+            KQuarter kquarter2aa = new KQuarter("Q1", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
+            KQuarter kquarter2ab = new KQuarter("Q2", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter2ac = new KQuarter("Q3", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter2ad = new KQuarter("Q4", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
-            KQuarter kquarter2ba = new KQuarter("Q1", 18, 17, 3.6, 3.7, 3.0, 3.8, 9, 1);
-            KQuarter kquarter2bb = new KQuarter("Q2", 23, 21, 3.7, 3.8, 3.1, 3.9, 11, 2);
+            KQuarter kquarter2ba = new KQuarter("Q1", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
+            KQuarter kquarter2bb = new KQuarter("Q2", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter2bc = new KQuarter("Q3", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter2bd = new KQuarter("Q4", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
-            KQuarter kquarter2ca = new KQuarter("Q1", 18, 17, 3.6, 3.7, 3.0, 3.8, 9, 1);
-            KQuarter kquarter2cb = new KQuarter("Q2", 23, 21, 3.7, 3.8, 3.1, 3.9, 11, 2);
+            KQuarter kquarter2ca = new KQuarter("Q1", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
+            KQuarter kquarter2cb = new KQuarter("Q2", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter2cc = new KQuarter("Q3", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter2cd = new KQuarter("Q4", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
 
-            KQuarter kquarter3aa = new KQuarter("Q1", 18, 17, 3.6, 3.7, 3.0, 3.8, 9, 1);
-            KQuarter kquarter3ab = new KQuarter("Q2", 23, 21, 3.7, 3.8, 3.1, 3.9, 11, 2);
+            KQuarter kquarter3aa = new KQuarter("Q1", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
+            KQuarter kquarter3ab = new KQuarter("Q2", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter3ac = new KQuarter("Q3", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter3ad = new KQuarter("Q4", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
-            KQuarter kquarter3ba = new KQuarter("Q1", 18, 17, 3.6, 3.7, 3.0, 3.8, 9, 1);
-            KQuarter kquarter3bb = new KQuarter("Q2", 23, 21, 3.7, 3.8, 3.1, 3.9, 11, 2);
+            KQuarter kquarter3ba = new KQuarter("Q1", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
+            KQuarter kquarter3bb = new KQuarter("Q2", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter3bc = new KQuarter("Q3", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter3bd = new KQuarter("Q4", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
-            KQuarter kquarter3ca = new KQuarter("Q1", 18, 17, 3.6, 3.7, 3.0, 3.8, 9, 1);
-            KQuarter kquarter3cb = new KQuarter("Q2", 23, 21, 3.7, 3.8, 3.1, 3.9, 11, 2);
+            KQuarter kquarter3ca = new KQuarter("Q1", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
+            KQuarter kquarter3cb = new KQuarter("Q2", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter3cc = new KQuarter("Q3", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter3cd = new KQuarter("Q4", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
 
-            KQuarter kquarter4aa = new KQuarter("Q1", 18, 17, 3.6, 3.7, 3.0, 3.8, 9, 1);
-            KQuarter kquarter4ab = new KQuarter("Q2", 23, 21, 3.7, 3.8, 3.1, 3.9, 11, 2);
+            KQuarter kquarter4aa = new KQuarter("Q1", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
+            KQuarter kquarter4ab = new KQuarter("Q2", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter4ac = new KQuarter("Q3", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter4ad = new KQuarter("Q4", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
-            KQuarter kquarter4ba = new KQuarter("Q1", 18, 17, 3.6, 3.7, 3.0, 3.8, 9, 1);
-            KQuarter kquarter4bb = new KQuarter("Q2", 23, 21, 3.7, 3.8, 3.1, 3.9, 11, 2);
+            KQuarter kquarter4ba = new KQuarter("Q1", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
+            KQuarter kquarter4bb = new KQuarter("Q2", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter4bc = new KQuarter("Q3", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter4bd = new KQuarter("Q4", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
-            KQuarter kquarter4ca = new KQuarter("Q1", 18, 17, 3.6, 3.7, 3.0, 3.8, 9, 1);
-            KQuarter kquarter4cb = new KQuarter("Q2", 23, 21, 3.7, 3.8, 3.1, 3.9, 11, 2);
+            KQuarter kquarter4ca = new KQuarter("Q1", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
+            KQuarter kquarter4cb = new KQuarter("Q2", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter4cc = new KQuarter("Q3", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter4cd = new KQuarter("Q4", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
 
-            KQuarter kquarter5aa = new KQuarter("Q1", 18, 17, 3.6, 3.7, 3.0, 3.8, 9, 1);
-            KQuarter kquarter5ab = new KQuarter("Q2", 23, 21, 3.7, 3.8, 3.1, 3.9, 11, 2);
+            KQuarter kquarter5aa = new KQuarter("Q1", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
+            KQuarter kquarter5ab = new KQuarter("Q2", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter5ac = new KQuarter("Q3", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter5ad = new KQuarter("Q4", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
-            KQuarter kquarter5ba = new KQuarter("Q1", 18, 17, 3.6, 3.7, 3.0, 3.8, 9, 1);
-            KQuarter kquarter5bb = new KQuarter("Q2", 23, 21, 3.7, 3.8, 3.1, 3.9, 11, 2);
+            KQuarter kquarter5ba = new KQuarter("Q1", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
+            KQuarter kquarter5bb = new KQuarter("Q2", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter5bc = new KQuarter("Q3", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter5bd = new KQuarter("Q4", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
-            KQuarter kquarter5ca = new KQuarter("Q1", 18, 17, 3.6, 3.7, 3.0, 3.8, 9, 1);
-            KQuarter kquarter5cb = new KQuarter("Q2", 23, 21, 3.7, 3.8, 3.1, 3.9, 11, 2);
+            KQuarter kquarter5ca = new KQuarter("Q1", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
+            KQuarter kquarter5cb = new KQuarter("Q2", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter5cc = new KQuarter("Q3", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter5cd = new KQuarter("Q4", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
 
-            KQuarter kquarter6aa = new KQuarter("Q1", 18, 17, 3.6, 3.7, 3.0, 3.8, 9, 1);
-            KQuarter kquarter6ab = new KQuarter("Q2", 23, 21, 3.7, 3.8, 3.1, 3.9, 11, 2);
+            KQuarter kquarter6aa = new KQuarter("Q1", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
+            KQuarter kquarter6ab = new KQuarter("Q2", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter6ac = new KQuarter("Q3", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter6ad = new KQuarter("Q4", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
-            KQuarter kquarter6ba = new KQuarter("Q1", 18, 17, 3.6, 3.7, 3.0, 3.8, 9, 1);
-            KQuarter kquarter6bb = new KQuarter("Q2", 23, 21, 3.7, 3.8, 3.1, 3.9, 11, 2);
+            KQuarter kquarter6ba = new KQuarter("Q1", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
+            KQuarter kquarter6bb = new KQuarter("Q2", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter6bc = new KQuarter("Q3", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter6bd = new KQuarter("Q4", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
-            KQuarter kquarter6ca = new KQuarter("Q1", 18, 17, 3.6, 3.7, 3.0, 3.8, 9, 1);
-            KQuarter kquarter6cb = new KQuarter("Q2", 23, 21, 3.7, 3.8, 3.1, 3.9, 11, 2);
+            KQuarter kquarter6ca = new KQuarter("Q1", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
+            KQuarter kquarter6cb = new KQuarter("Q2", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter6cc = new KQuarter("Q3", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter6cd = new KQuarter("Q4", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
 
-            KQuarter kquarter7aa = new KQuarter("Q1", 18, 17, 3.6, 3.7, 3.0, 3.8, 9, 1);
-            KQuarter kquarter7ab = new KQuarter("Q2", 23, 21, 3.7, 3.8, 3.1, 3.9, 11, 2);
+            KQuarter kquarter7aa = new KQuarter("Q1", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
+            KQuarter kquarter7ab = new KQuarter("Q2", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter7ac = new KQuarter("Q3", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter7ad = new KQuarter("Q4", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
-            KQuarter kquarter7ba = new KQuarter("Q1", 18, 17, 3.6, 3.7, 3.0, 3.8, 9, 1);
-            KQuarter kquarter7bb = new KQuarter("Q2", 23, 21, 3.7, 3.8, 3.1, 3.9, 11, 2);
+            KQuarter kquarter7ba = new KQuarter("Q1", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
+            KQuarter kquarter7bb = new KQuarter("Q2", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter7bc = new KQuarter("Q3", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter7bd = new KQuarter("Q4", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
-            KQuarter kquarter7ca = new KQuarter("Q1", 18, 17, 3.6, 3.7, 3.0, 3.8, 9, 1);
-            KQuarter kquarter7cb = new KQuarter("Q2", 23, 21, 3.7, 3.8, 3.1, 3.9, 11, 2);
+            KQuarter kquarter7ca = new KQuarter("Q1", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
+            KQuarter kquarter7cb = new KQuarter("Q2", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter7cc = new KQuarter("Q3", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter7cd = new KQuarter("Q4", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
 
-            KQuarter kquarter8aa = new KQuarter("Q1", 18, 17, 3.6, 3.7, 3.0, 3.8, 9, 1);
-            KQuarter kquarter8ab = new KQuarter("Q2", 23, 21, 3.7, 3.8, 3.1, 3.9, 11, 2);
+            KQuarter kquarter8aa = new KQuarter("Q1", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
+            KQuarter kquarter8ab = new KQuarter("Q2", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter8ac = new KQuarter("Q3", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter8ad = new KQuarter("Q4", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
-            KQuarter kquarter8ba = new KQuarter("Q1", 18, 17, 3.6, 3.7, 3.0, 3.8, 9, 1);
-            KQuarter kquarter8bb = new KQuarter("Q2", 23, 21, 3.7, 3.8, 3.1, 3.9, 11, 2);
+            KQuarter kquarter8ba = new KQuarter("Q1", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
+            KQuarter kquarter8bb = new KQuarter("Q2", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter8bc = new KQuarter("Q3", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter8bd = new KQuarter("Q4", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
-            KQuarter kquarter8ca = new KQuarter("Q1", 18, 17, 3.6, 3.7, 3.0, 3.8, 9, 1);
-            KQuarter kquarter8cb = new KQuarter("Q2", 23, 21, 3.7, 3.8, 3.1, 3.9, 11, 2);
+            KQuarter kquarter8ca = new KQuarter("Q4", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
+            KQuarter kquarter8cb = new KQuarter("Q4", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter8cc = new KQuarter("Q3", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter8cd = new KQuarter("Q4", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
 
-            KQuarter kquarter9aa = new KQuarter("Q1", 18, 17, 3.6, 3.7, 3.0, 3.8, 9, 1);
-            KQuarter kquarter9ab = new KQuarter("Q2", 23, 21, 3.7, 3.8, 3.1, 3.9, 11, 2);
+            KQuarter kquarter9aa = new KQuarter("Q4", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
+            KQuarter kquarter9ab = new KQuarter("Q4", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter9ac = new KQuarter("Q3", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter9ad = new KQuarter("Q4", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
-            KQuarter kquarter9ba = new KQuarter("Q1", 18, 17, 3.6, 3.7, 3.0, 3.8, 9, 1);
-            KQuarter kquarter9bb = new KQuarter("Q2", 23, 21, 3.7, 3.8, 3.1, 3.9, 11, 2);
+            KQuarter kquarter9ba = new KQuarter("Q4", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
+            KQuarter kquarter9bb = new KQuarter("Q4", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter9bc = new KQuarter("Q3", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter9bd = new KQuarter("Q4", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
-            KQuarter kquarter9ca = new KQuarter("Q1", 18, 17, 3.6, 3.7, 3.0, 3.8, 9, 1);
-            KQuarter kquarter9cb = new KQuarter("Q2", 23, 21, 3.7, 3.8, 3.1, 3.9, 11, 2);
+            KQuarter kquarter9ca = new KQuarter("Q4", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
+            KQuarter kquarter9cb = new KQuarter("Q4", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter9cc = new KQuarter("Q3", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter9cd = new KQuarter("Q4", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
 
@@ -570,14 +570,12 @@ public class BeanConfig {
             productowner8.setMembers(List.of(member8a, member8b, member8c));
             productowner9.setMembers(List.of(member9a, member9b, member9c));
 
-            pmo1.setProductowners(List.of(productowner1, productowner2, productowner3));
-            pmo2.setProductowners(List.of(productowner4, productowner5, productowner6));
-            pmo3.setProductowners(List.of(productowner7, productowner8, productowner9));
+            pmo1.setProductowners(List.of(productowner1, productowner2, productowner3, productowner4, productowner5));
+            pmo2.setProductowners(List.of(productowner6, productowner7, productowner8, productowner9));
 
             List<PMO> pmoList = new ArrayList<>();
             pmoList.add(pmo1);
             pmoList.add(pmo2);
-            pmoList.add(pmo3);
 
             pmoRepository.saveAll(pmoList);
         };
@@ -585,21 +583,21 @@ public class BeanConfig {
 
     @Bean
     List<ProductDb> productDBThirdParty(){
-        SubtaskDb subtask1aa = new SubtaskDb("S001", "BITCOIN PURCHASING", "Done", new GregorianCalendar(2024, Calendar.JANUARY, 20).getTime(), new GregorianCalendar(2024, Calendar.FEBRUARY, 10).getTime(), "U13");
-        SubtaskDb subtask1ab = new SubtaskDb("S002", "SOLANA PURCHASING", "Done", new GregorianCalendar(2024, Calendar.FEBRUARY, 1).getTime(), new GregorianCalendar(2024, Calendar.FEBRUARY, 25).getTime(), "U13");
-        SubtaskDb subtask1ac = new SubtaskDb("S003", "SUI PURCHASING", "Done", new GregorianCalendar(2024, Calendar.FEBRUARY, 15).getTime(), new GregorianCalendar(2024, Calendar.MARCH, 5).getTime(), "U13");
-        SubtaskDb subtask1ba = new SubtaskDb("S004", "HYPERLIQUID PURCHASING", "In Progress", new GregorianCalendar(2024, Calendar.FEBRUARY, 5).getTime(), new GregorianCalendar(2024, Calendar.FEBRUARY, 25).getTime(), "U14");
-        SubtaskDb subtask1bb = new SubtaskDb("S005", "ORCA PURCHASING", "Done", new GregorianCalendar(2024, Calendar.FEBRUARY, 20).getTime(), new GregorianCalendar(2024, Calendar.MARCH, 10).getTime(), "U14");
-        SubtaskDb subtask1bc = new SubtaskDb("S006", "RAYDIUM PURCHASING", "In Progress", new GregorianCalendar(2024, Calendar.MARCH, 1).getTime(), new GregorianCalendar(2024, Calendar.MARCH, 20).getTime(), "U14");
-        SubtaskDb subtask1ca = new SubtaskDb("S007", "ARBITRUM PURCHASING", "Done", new GregorianCalendar(2024, Calendar.MARCH, 5).getTime(), new GregorianCalendar(2024, Calendar.MARCH, 25).getTime(), "U15");
-        SubtaskDb subtask1cb = new SubtaskDb("S008", "MANTA PURCHASING", "In Progress", new GregorianCalendar(2024, Calendar.MARCH, 20).getTime(), new GregorianCalendar(2024, Calendar.APRIL, 10).getTime(), "U15");
-        SubtaskDb subtask1cc = new SubtaskDb("S009", "OPTIMISTIC PURCHASING", "Done", new GregorianCalendar(2024, Calendar.APRIL, 1).getTime(), new GregorianCalendar(2024, Calendar.APRIL, 20).getTime(), "U15");
+        SubtaskDb subtask1aa = new SubtaskDb("S001", "BITCOIN PURCHASING", "Done", new GregorianCalendar(2024, Calendar.JANUARY, 1).getTime(), new GregorianCalendar(2024, Calendar.JANUARY, 5).getTime(), "U13");
+        SubtaskDb subtask1ab = new SubtaskDb("S002", "SOLANA PURCHASING", "Done", new GregorianCalendar(2024, Calendar.JANUARY, 4).getTime(), new GregorianCalendar(2024, Calendar.JANUARY, 16).getTime(), "U13");
+        SubtaskDb subtask1ac = new SubtaskDb("S003", "SUI PURCHASING", "Done", new GregorianCalendar(2024, Calendar.JANUARY, 10).getTime(), new GregorianCalendar(2024, Calendar.JANUARY, 20).getTime(), "U13");
+        SubtaskDb subtask1ba = new SubtaskDb("S004", "HYPERLIQUID PURCHASING", "In Progress", new GregorianCalendar(2024, Calendar.JANUARY, 22).getTime(), new GregorianCalendar(2024, Calendar.FEBRUARY, 1).getTime(), "U14");
+        SubtaskDb subtask1bb = new SubtaskDb("S005", "ORCA PURCHASING", "Done", new GregorianCalendar(2024, Calendar.JANUARY, 25).getTime(), new GregorianCalendar(2024, Calendar.FEBRUARY, 5).getTime(), "U14");
+        SubtaskDb subtask1bc = new SubtaskDb("S006", "RAYDIUM PURCHASING", "In Progress", new GregorianCalendar(2024, Calendar.FEBRUARY, 1).getTime(), new GregorianCalendar(2024, Calendar.FEBRUARY, 10).getTime(), "U14");
+        SubtaskDb subtask1ca = new SubtaskDb("S007", "ARBITRUM PURCHASING", "Done", new GregorianCalendar(2024, Calendar.FEBRUARY, 15).getTime(), new GregorianCalendar(2024, Calendar.FEBRUARY, 25).getTime(), "U15");
+        SubtaskDb subtask1cb = new SubtaskDb("S008", "MANTA PURCHASING", "In Progress", new GregorianCalendar(2024, Calendar.FEBRUARY, 20).getTime(), new GregorianCalendar(2024, Calendar.MARCH, 10).getTime(), "U15");
+        SubtaskDb subtask1cc = new SubtaskDb("S009", "OPTIMISTIC PURCHASING", "Done", new GregorianCalendar(2024, Calendar.MARCH, 1).getTime(), new GregorianCalendar(2024, Calendar.MARCH, 25).getTime(), "U15");
 
-        FeatureDb feature1a = new FeatureDb("FPRO1", "Feature L1", "In Progress", "Strategic Topic 1", new GregorianCalendar(2024, Calendar.JANUARY, 15).getTime(), new GregorianCalendar(2024, Calendar.MARCH, 30).getTime(), List.of(subtask1aa, subtask1ab, subtask1ac));
-        FeatureDb feature1b = new FeatureDb("FPRO2", "Feature DECENTRALIZED FINANCE", "In Progress", "Strategic Topic 1", new GregorianCalendar(2024, Calendar.FEBRUARY, 1).getTime(), new GregorianCalendar(2024, Calendar.APRIL, 15).getTime(), List.of(subtask1ba, subtask1bb, subtask1bc));
-        FeatureDb feature1c = new FeatureDb("FPRO3", "Feature L2", "In Progress", "Strategic Topic 1", new GregorianCalendar(2024, Calendar.MARCH, 1).getTime(), new GregorianCalendar(2024, Calendar.MAY, 30).getTime(), List.of(subtask1ca, subtask1cb, subtask1cc));
+        FeatureDb feature1a = new FeatureDb("FPRO1", "Feature L1", "Done", "Strategic Topic 1", new GregorianCalendar(2024, Calendar.JANUARY, 1).getTime(), new GregorianCalendar(2024, Calendar.JANUARY, 20).getTime(), List.of(subtask1aa, subtask1ab, subtask1ac));
+        FeatureDb feature1b = new FeatureDb("FPRO2", "Feature DECENTRALIZED FINANCE", "In Progress", "Strategic Topic 1", new GregorianCalendar(2024, Calendar.JANUARY, 22).getTime(), new GregorianCalendar(2024, Calendar.FEBRUARY, 10).getTime(), List.of(subtask1ba, subtask1bb, subtask1bc));
+        FeatureDb feature1c = new FeatureDb("FPRO3", "Feature L2", "In Progress", "Strategic Topic 1", new GregorianCalendar(2024, Calendar.FEBRUARY, 15).getTime(), new GregorianCalendar(2024, Calendar.MARCH, 25).getTime(), List.of(subtask1ca, subtask1cb, subtask1cc));
 
-        ProductDb productDb1 = new ProductDb("MXYZ", "Q1", "Q2", "Q3", "Q4", 2, 3, 0, 0, 2, 2, 0, 0, List.of(feature1a, feature1b, feature1c));
+        ProductDb productDb1 = new ProductDb("BTCUSD", "Q1", "Q2", "Q3", "Q4", 3, 0, 0, 0, 1, 0, 0, 0, List.of(feature1a, feature1b, feature1c));
 
         ArrayList<ProductDb> productDbArrayList = new ArrayList<>();
         productDbArrayList.add(productDb1);

@@ -20,7 +20,7 @@ public class RatedMember {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
+    long id;
     long ratingMemberId;
     long ratedMemberId;
     String period;

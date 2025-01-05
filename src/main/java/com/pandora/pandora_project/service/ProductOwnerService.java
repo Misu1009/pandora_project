@@ -3,6 +3,7 @@ package com.pandora.pandora_project.service;
 import com.pandora.pandora_project.controller.KPIController;
 import com.pandora.pandora_project.controller.MemberController;
 import com.pandora.pandora_project.controller.ProductController;
+import com.pandora.pandora_project.dto.KQuarterD;
 import com.pandora.pandora_project.thirdParty.FeatureDb;
 import com.pandora.pandora_project.thirdParty.ProductDb;
 import com.pandora.pandora_project.thirdParty.SubtaskDb;
@@ -99,6 +100,7 @@ public class ProductOwnerService{
 
         // Pquarter
         List<PQuarter> pquarters = product.getPquarters();
+        pquarters.sort(Comparator.comparing(PQuarter::getPeriod));
         PQuarter pQuarter;
 
         pQuarter = pquarters.get(0);
@@ -273,8 +275,11 @@ public class ProductOwnerService{
 
         ProductDb productDb1 = findProductDBByid_blueprint(productOwner.getProduct().getIdblueprint()); // API
 
-        updateProductDB(productDb1);
-        updateMemberDB(id);
+        if(productDb1 != null){
+            updateProductDB(productDb1);
+            updateMemberDB(id);
+        }
+
     }
 
     @Transactional

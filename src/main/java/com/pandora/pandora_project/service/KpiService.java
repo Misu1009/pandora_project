@@ -88,7 +88,7 @@ public class KpiService{
             for(Member member: memberList){
                 Row dataRow = sheet.createRow(rowIndex);
                 rowIndex++;
-                dataRow.createCell(0).setCellValue(member.getName()+"TESSSSSSS");
+                dataRow.createCell(0).setCellValue(member.getName());
                 dataRow.createCell(1).setCellValue(member.getUdomain());
                 dataRow.createCell(2).setCellValue(member.getKpi().getFinal_score());
                 int index = 2;

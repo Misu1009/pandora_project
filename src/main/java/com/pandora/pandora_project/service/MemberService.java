@@ -41,37 +41,86 @@ public class MemberService{
         this.productOwnerRepository = productOwnerRepository;
     }
 
+//    @Transactional
+//    public boolean rate(long senderId, long memberId, String period, double cust_focus, double integrity, double teamwork, double cpoe){
+//        Member sender = memberRepository.getReferenceById(senderId);
+//        Member member = memberRepository.getReferenceById(memberId);
+//        int amountOfOtherMember = member.getProductowner().getMembers().size() - 1;
+//
+//        ProductOwner productOwner = member.getProductowner();
+//        List<RatedMember> rateFlag = productOwner.getRateFlag();
+//        if(!rateFlag.isEmpty()){ // checking eligibility
+//            for(RatedMember temp: rateFlag){ // if flag already exist, sender can't rate member
+//                if(temp.getRatingMemberId()==senderId && temp.getRatedMemberId()==memberId && temp.getPeriod().equals(period)){
+//                    return false;
+//                }
+//            }
+//        }
+//
+//        KPI kpi = member.getKpi();
+//        List<KQuarter> kQuarters = kpi.getKquarters();
+//        for(KQuarter kQuarter: kQuarters){
+//            if(kQuarter.getPeriod().equals(period)){
+//                kQuarter.setCust_focus(cust_focus/amountOfOtherMember + kQuarter.getCust_focus());
+//                kQuarter.setIntegrity(integrity/amountOfOtherMember + kQuarter.getIntegrity());
+//                kQuarter.setTeamwork(teamwork/amountOfOtherMember + kQuarter.getTeamwork());
+//                kQuarter.setCpoe(cpoe/amountOfOtherMember + kQuarter.getCpoe());
+//
+//                RatedMember newFlag = new RatedMember(senderId, memberId, period);
+//                productOwner.getRateFlag().add(newFlag);
+//                productOwnerRepository.save(productOwner);
+//            }
+//        }
+//        return true;
+//    }
+
     @Transactional
-    public boolean rate(long senderId, long memberId, String period, double cust_focus, double integrity, double teamwork, double cpoe){
+    public boolean rate(long senderId, long memberId, String period, double cust_focus, double integrity, double teamwork, double cpoe) {
         Member sender = memberRepository.getReferenceById(senderId);
         Member member = memberRepository.getReferenceById(memberId);
         int amountOfOtherMember = member.getProductowner().getMembers().size() - 1;
 
         ProductOwner productOwner = member.getProductowner();
         List<RatedMember> rateFlag = productOwner.getRateFlag();
-        if(!rateFlag.isEmpty()){ // checking eligibility
-            for(RatedMember temp: rateFlag){ // if flag already exist, sender can't rate member
-                if(temp.getRatingMemberId()==senderId && temp.getRatedMemberId()==memberId && temp.getPeriod().equals(period)){
+
+        // Checking eligibility
+        if (!rateFlag.isEmpty()) {
+            for (RatedMember temp : rateFlag) {
+                if (temp.getRatingMemberId() == senderId &&
+                        temp.getRatedMemberId() == memberId &&
+                        temp.getPeriod().equals(period)) {
                     return false;
                 }
             }
         }
 
         KPI kpi = member.getKpi();
-        List<KQuarter> kQuarters = kpi.getKquarters();
-        for(KQuarter kQuarter: kQuarters){
-            if(kQuarter.getPeriod().equals(period)){
-                kQuarter.setCust_focus(cust_focus/amountOfOtherMember + kQuarter.getCust_focus());
-                kQuarter.setIntegrity(integrity/amountOfOtherMember + kQuarter.getIntegrity());
-                kQuarter.setTeamwork(teamwork/amountOfOtherMember + kQuarter.getTeamwork());
-                kQuarter.setCpoe(cpoe/amountOfOtherMember + kQuarter.getCpoe());
 
-                RatedMember newFlag = new RatedMember(senderId, memberId, period);
-                productOwner.getRateFlag().add(newFlag);
-                productOwnerRepository.save(productOwner);
+        // Cari KQuarter yang sesuai terlebih dahulu
+        KQuarter targetQuarter = null;
+        for (KQuarter kQuarter : kpi.getKquarters()) {
+            if (kQuarter.getPeriod().equals(period)) {
+                targetQuarter = kQuarter;
+                break;
             }
         }
-        return true;
+
+        // Jika quarter ditemukan, lakukan update
+        if (targetQuarter != null) {
+            targetQuarter.setCust_focus(cust_focus/amountOfOtherMember + targetQuarter.getCust_focus());
+            targetQuarter.setIntegrity(integrity/amountOfOtherMember + targetQuarter.getIntegrity());
+            targetQuarter.setTeamwork(teamwork/amountOfOtherMember + targetQuarter.getTeamwork());
+            targetQuarter.setCpoe(cpoe/amountOfOtherMember + targetQuarter.getCpoe());
+
+            // Buat dan tambahkan flag setelah selesai update KQuarter
+            RatedMember newFlag = new RatedMember(senderId, memberId, period);
+            productOwner.getRateFlag().add(newFlag);
+            productOwnerRepository.save(productOwner);
+
+            return true;
+        }
+
+        return false;
     }
 
     public ByteArrayInputStream convertToExcel(List<Member> members) throws IOException {
