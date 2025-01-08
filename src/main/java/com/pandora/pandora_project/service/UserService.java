@@ -70,7 +70,7 @@ public class UserService{
         memberRepository.save(member);
     }
     private String createUdomain(){
-        int memberTotal = memberRepository.findAll().size();
+        int memberTotal = memberRepository.findAll().size()+1+12;
         return "U"+memberTotal;
     }
 
