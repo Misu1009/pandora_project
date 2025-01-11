@@ -79,13 +79,13 @@ public class BeanConfig {
             Product product8 = new Product("MSTU", "Product 8", "MSTU Internal", 0.0);
             Product product9 = new Product("MVWX", "Product 9", "MVWX External", 0.0);
 
-            Feature feature1a = new Feature("FPRO1", "Feature 1a", "To Do", "Strategic Topic 1", new GregorianCalendar(2024, Calendar.JANUARY, 1).getTime(), new GregorianCalendar(2024, Calendar.JANUARY, 20).getTime());
-            Feature feature1b = new Feature("FPRO2", "Feature 1b", "To Do", "Strategic Topic 1", new GregorianCalendar(2024, Calendar.JANUARY, 22).getTime(), new GregorianCalendar(2024, Calendar.FEBRUARY, 10).getTime());
-            Feature feature1c = new Feature("FPRO3", "Feature 1c", "To Do", "Strategic Topic 1", new GregorianCalendar(2024, Calendar.FEBRUARY, 15).getTime(), new GregorianCalendar(2024, Calendar.MARCH, 25).getTime());
+            Feature feature1a = new Feature("FPRO1", "Feature L1", "In Progress", "Strategic Topic 1", new GregorianCalendar(2024, Calendar.JANUARY, 1).getTime(), new GregorianCalendar(2024, Calendar.JANUARY, 20).getTime());
+            Feature feature1b = new Feature("FPRO2", "Feature DECENTRALIZED FINANCE", "In Progress", "Strategic Topic 1", new GregorianCalendar(2024, Calendar.JANUARY, 22).getTime(), new GregorianCalendar(2024, Calendar.FEBRUARY, 10).getTime());
+            Feature feature1c = new Feature("FPRO3", "Feature L2", "In Progress", "Strategic Topic 1", new GregorianCalendar(2024, Calendar.FEBRUARY, 15).getTime(), new GregorianCalendar(2024, Calendar.MARCH, 25).getTime());
 
-            Feature feature2a = new Feature("FPRO4", "Feature 2a", "To Do", "Strategic Topic 2", new GregorianCalendar(2024, Calendar.FEBRUARY, 15).getTime(), new GregorianCalendar(2024, Calendar.APRIL, 30).getTime());
-            Feature feature2b = new Feature("FPRO5", "Feature 2b", "In Progress", "Strategic Topic 2", new GregorianCalendar(2024, Calendar.MARCH, 1).getTime(), new GregorianCalendar(2024, Calendar.MAY, 15).getTime());
-            Feature feature2c = new Feature("FPRO6", "Feature 2c", "Done", "Strategic Topic 2", new GregorianCalendar(2024, Calendar.APRIL, 1).getTime(), new GregorianCalendar(2024, Calendar.JUNE, 30).getTime());
+            Feature feature2a = new Feature("FPRO4", "Feature L1 SMART CONTRACT", "In Progress", "Strategic Topic 2", new GregorianCalendar(2024, Calendar.FEBRUARY, 15).getTime(), new GregorianCalendar(2024, Calendar.APRIL, 30).getTime());
+            Feature feature2b = new Feature("FPRO5", "Feature SMART CONTRACT", "In Progress", "Strategic Topic 2", new GregorianCalendar(2024, Calendar.MARCH, 1).getTime(), new GregorianCalendar(2024, Calendar.MAY, 15).getTime());
+            Feature feature2c = new Feature("FPRO6", "Feature L2 SMART CONTRACT", "In Progress", "Strategic Topic 2", new GregorianCalendar(2024, Calendar.APRIL, 1).getTime(), new GregorianCalendar(2024, Calendar.JUNE, 30).getTime());
 
             Feature feature3a = new Feature("FPRO7", "Feature 3a", "Done", "Strategic Topic 3", new GregorianCalendar(2024, Calendar.MARCH, 15).getTime(), new GregorianCalendar(2024, Calendar.MAY, 30).getTime());
             Feature feature3b = new Feature("FPRO8", "Feature 3b", "To Do", "Strategic Topic 3", new GregorianCalendar(2024, Calendar.APRIL, 1).getTime(), new GregorianCalendar(2024, Calendar.JUNE, 15).getTime());
@@ -115,24 +115,24 @@ public class BeanConfig {
             Feature feature9b = new Feature("FPRO26", "Feature 9b", "Done", "Strategic Topic 9", new GregorianCalendar(2024, Calendar.OCTOBER, 1).getTime(), new GregorianCalendar(2024, Calendar.DECEMBER, 15).getTime());
             Feature feature9c = new Feature("FPRO27", "Feature 9c", "In Progress", "Strategic Topic 9", new GregorianCalendar(2024, Calendar.NOVEMBER, 1).getTime(), new GregorianCalendar(2024, Calendar.DECEMBER, 30).getTime());
 
-            Subtask subtask1aa = new Subtask("S001", "Subtask 1aa", "Done", new GregorianCalendar(2024, Calendar.JANUARY, 20).getTime(), new GregorianCalendar(2024, Calendar.FEBRUARY, 10).getTime(), "U13");
-            Subtask subtask1ab = new Subtask("S002", "Subtask 1ab", "In Progress", new GregorianCalendar(2024, Calendar.FEBRUARY, 1).getTime(), new GregorianCalendar(2024, Calendar.FEBRUARY, 25).getTime(), "U13");
-            Subtask subtask1ac = new Subtask("S003", "Subtask 1ac", "To Do", new GregorianCalendar(2024, Calendar.FEBRUARY, 15).getTime(), new GregorianCalendar(2024, Calendar.MARCH, 5).getTime(), "U13");
-            Subtask subtask1ba = new Subtask("S004", "Subtask 1ba", "To Do", new GregorianCalendar(2024, Calendar.FEBRUARY, 5).getTime(), new GregorianCalendar(2024, Calendar.FEBRUARY, 25).getTime(), "U14");
-            Subtask subtask1bb = new Subtask("S005", "Subtask 1bb", "Done", new GregorianCalendar(2024, Calendar.FEBRUARY, 20).getTime(), new GregorianCalendar(2024, Calendar.MARCH, 10).getTime(), "U14");
-            Subtask subtask1bc = new Subtask("S006", "Subtask 1bc", "In Progress", new GregorianCalendar(2024, Calendar.MARCH, 1).getTime(), new GregorianCalendar(2024, Calendar.MARCH, 20).getTime(), "U14");
-            Subtask subtask1ca = new Subtask("S007", "Subtask 1ca", "In Progress", new GregorianCalendar(2024, Calendar.MARCH, 5).getTime(), new GregorianCalendar(2024, Calendar.MARCH, 25).getTime(), "U15");
-            Subtask subtask1cb = new Subtask("S008", "Subtask 1cb", "To Do", new GregorianCalendar(2024, Calendar.MARCH, 20).getTime(), new GregorianCalendar(2024, Calendar.APRIL, 10).getTime(), "U15");
-            Subtask subtask1cc = new Subtask("S009", "Subtask 1cc", "Done", new GregorianCalendar(2024, Calendar.APRIL, 1).getTime(), new GregorianCalendar(2024, Calendar.APRIL, 20).getTime(), "U15");
-            Subtask subtask2aa = new Subtask("S010", "Subtask 2aa", "Done", new GregorianCalendar(2024, Calendar.FEBRUARY, 20).getTime(), new GregorianCalendar(2024, Calendar.MARCH, 10).getTime(), "U16");
-            Subtask subtask2ab = new Subtask("S011", "Subtask 2ab", "In Progress", new GregorianCalendar(2024, Calendar.MARCH, 1).getTime(), new GregorianCalendar(2024, Calendar.MARCH, 25).getTime(), "U16");
-            Subtask subtask2ac = new Subtask("S012", "Subtask 2ac", "To Do", new GregorianCalendar(2024, Calendar.MARCH, 15).getTime(), new GregorianCalendar(2024, Calendar.APRIL, 5).getTime(), "U16");
-            Subtask subtask2ba = new Subtask("S013", "Subtask 2ba", "To Do", new GregorianCalendar(2024, Calendar.MARCH, 5).getTime(), new GregorianCalendar(2024, Calendar.MARCH, 25).getTime(), "U17");
-            Subtask subtask2bb = new Subtask("S014", "Subtask 2bb", "Done", new GregorianCalendar(2024, Calendar.MARCH, 20).getTime(), new GregorianCalendar(2024, Calendar.APRIL, 10).getTime(), "U17");
-            Subtask subtask2bc = new Subtask("S015", "Subtask 2bc", "In Progress", new GregorianCalendar(2024, Calendar.APRIL, 1).getTime(), new GregorianCalendar(2024, Calendar.APRIL, 20).getTime(), "U17");
-            Subtask subtask2ca = new Subtask("S016", "Subtask 2ca", "In Progress", new GregorianCalendar(2024, Calendar.APRIL, 5).getTime(), new GregorianCalendar(2024, Calendar.APRIL, 25).getTime(), "U18");
-            Subtask subtask2cb = new Subtask("S017", "Subtask 2cb", "To Do", new GregorianCalendar(2024, Calendar.APRIL, 20).getTime(), new GregorianCalendar(2024, Calendar.MAY, 10).getTime(), "U18");
-            Subtask subtask2cc = new Subtask("S018", "Subtask 2cc", "Done", new GregorianCalendar(2024, Calendar.MAY, 1).getTime(), new GregorianCalendar(2024, Calendar.MAY, 20).getTime(), "U18");
+            Subtask subtask1aa = new Subtask("S001", "BITCOIN PURCHASING", "In Progress", new GregorianCalendar(2024, Calendar.JANUARY, 20).getTime(), new GregorianCalendar(2024, Calendar.FEBRUARY, 10).getTime(), "U13");
+            Subtask subtask1ab = new Subtask("S002", "SOLANA PURCHASING", "In Progress", new GregorianCalendar(2024, Calendar.FEBRUARY, 1).getTime(), new GregorianCalendar(2024, Calendar.FEBRUARY, 25).getTime(), "U13");
+            Subtask subtask1ac = new Subtask("S003", "SUI PURCHASING", "To Do", new GregorianCalendar(2024, Calendar.FEBRUARY, 15).getTime(), new GregorianCalendar(2024, Calendar.MARCH, 5).getTime(), "U13");
+            Subtask subtask1ba = new Subtask("S004", "HYPERLIQUID PURCHASING", "To Do", new GregorianCalendar(2024, Calendar.FEBRUARY, 5).getTime(), new GregorianCalendar(2024, Calendar.FEBRUARY, 25).getTime(), "U14");
+            Subtask subtask1bb = new Subtask("S005", "ORCA PURCHASING", "In Progress", new GregorianCalendar(2024, Calendar.FEBRUARY, 20).getTime(), new GregorianCalendar(2024, Calendar.MARCH, 10).getTime(), "U14");
+            Subtask subtask1bc = new Subtask("S006", "RAYDIUM PURCHASING", "In Progress", new GregorianCalendar(2024, Calendar.MARCH, 1).getTime(), new GregorianCalendar(2024, Calendar.MARCH, 20).getTime(), "U14");
+            Subtask subtask1ca = new Subtask("S007", "ARBITRUM PURCHASING", "In Progress", new GregorianCalendar(2024, Calendar.MARCH, 5).getTime(), new GregorianCalendar(2024, Calendar.MARCH, 25).getTime(), "U15");
+            Subtask subtask1cb = new Subtask("S008", "MANTA PURCHASING", "To Do", new GregorianCalendar(2024, Calendar.MARCH, 20).getTime(), new GregorianCalendar(2024, Calendar.APRIL, 10).getTime(), "U15");
+            Subtask subtask1cc = new Subtask("S009", "OPTIMISTIC PURCHASING", "In Progress", new GregorianCalendar(2024, Calendar.APRIL, 1).getTime(), new GregorianCalendar(2024, Calendar.APRIL, 20).getTime(), "U15");
+            Subtask subtask2aa = new Subtask("S010", "ETHEREUM SMART CONTRACT", "In Progress", new GregorianCalendar(2024, Calendar.FEBRUARY, 20).getTime(), new GregorianCalendar(2024, Calendar.MARCH, 10).getTime(), "U16");
+            Subtask subtask2ab = new Subtask("S011", "TON SMART CONTRACT", "In Progress", new GregorianCalendar(2024, Calendar.MARCH, 1).getTime(), new GregorianCalendar(2024, Calendar.MARCH, 25).getTime(), "U16");
+            Subtask subtask2ac = new Subtask("S012", "SUPRA SMART CONTRACT", "To Do", new GregorianCalendar(2024, Calendar.MARCH, 15).getTime(), new GregorianCalendar(2024, Calendar.APRIL, 5).getTime(), "U16");
+            Subtask subtask2ba = new Subtask("S013", "SOLIDITY SMART CONTRACT", "To Do", new GregorianCalendar(2024, Calendar.MARCH, 5).getTime(), new GregorianCalendar(2024, Calendar.MARCH, 25).getTime(), "U17");
+            Subtask subtask2bb = new Subtask("S014", "R SMART CONTRACT", "In Progress", new GregorianCalendar(2024, Calendar.MARCH, 20).getTime(), new GregorianCalendar(2024, Calendar.APRIL, 10).getTime(), "U17");
+            Subtask subtask2bc = new Subtask("S015", "RUBY SMART CONTRACT", "In Progress", new GregorianCalendar(2024, Calendar.APRIL, 1).getTime(), new GregorianCalendar(2024, Calendar.APRIL, 20).getTime(), "U17");
+            Subtask subtask2ca = new Subtask("S016", "SOLIDITY V2 SMART CONTRACT", "In Progress", new GregorianCalendar(2024, Calendar.APRIL, 5).getTime(), new GregorianCalendar(2024, Calendar.APRIL, 25).getTime(), "U18");
+            Subtask subtask2cb = new Subtask("S017", "R V2 SMART CONTRACT", "To Do", new GregorianCalendar(2024, Calendar.APRIL, 20).getTime(), new GregorianCalendar(2024, Calendar.MAY, 10).getTime(), "U18");
+            Subtask subtask2cc = new Subtask("S018", "RUBY V2 SMART CONTRACT", "In Progress", new GregorianCalendar(2024, Calendar.MAY, 1).getTime(), new GregorianCalendar(2024, Calendar.MAY, 20).getTime(), "U18");
             Subtask subtask3aa = new Subtask("S019", "Subtask 3aa", "Done", new GregorianCalendar(2024, Calendar.MARCH, 20).getTime(), new GregorianCalendar(2024, Calendar.APRIL, 10).getTime(), "U19");
             Subtask subtask3ab = new Subtask("S020", "Subtask 3ab", "In Progress", new GregorianCalendar(2024, Calendar.APRIL, 1).getTime(), new GregorianCalendar(2024, Calendar.APRIL, 25).getTime(), "U19");
             Subtask subtask3ac = new Subtask("S021", "Subtask 3ac", "To Do", new GregorianCalendar(2024, Calendar.APRIL, 15).getTime(), new GregorianCalendar(2024, Calendar.MAY, 5).getTime(), "U19");
@@ -197,28 +197,28 @@ public class BeanConfig {
             Subtask subtask9cb = new Subtask("S080", "Subtask 9cb", "To Do", new GregorianCalendar(2024, Calendar.JULY, 20).getTime(), new GregorianCalendar(2024, Calendar.AUGUST, 10).getTime(), "U39");
             Subtask subtask9cc = new Subtask("S081", "Subtask 9cc", "Done", new GregorianCalendar(2024, Calendar.AUGUST, 1).getTime(), new GregorianCalendar(2024, Calendar.AUGUST, 20).getTime(), "U39");
 
-            KQuarter kquarter1aa = new KQuarter("Q1", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
+            KQuarter kquarter1aa = new KQuarter("Q1", 3, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter1ab = new KQuarter("Q2", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter1ac = new KQuarter("Q3", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter1ad = new KQuarter("Q4", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
-            KQuarter kquarter1ba = new KQuarter("Q1", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
+            KQuarter kquarter1ba = new KQuarter("Q1", 3, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter1bb = new KQuarter("Q2", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter1bc = new KQuarter("Q3", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter1bd = new KQuarter("Q4", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
-            KQuarter kquarter1ca = new KQuarter("Q1", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
+            KQuarter kquarter1ca = new KQuarter("Q1", 3, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter1cb = new KQuarter("Q2", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter1cc = new KQuarter("Q3", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter1cd = new KQuarter("Q4", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
 
-            KQuarter kquarter2aa = new KQuarter("Q1", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
+            KQuarter kquarter2aa = new KQuarter("Q1", 3, 1, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter2ab = new KQuarter("Q2", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter2ac = new KQuarter("Q3", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter2ad = new KQuarter("Q4", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
-            KQuarter kquarter2ba = new KQuarter("Q1", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
+            KQuarter kquarter2ba = new KQuarter("Q1", 3, 1, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter2bb = new KQuarter("Q2", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter2bc = new KQuarter("Q3", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter2bd = new KQuarter("Q4", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
-            KQuarter kquarter2ca = new KQuarter("Q1", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
+            KQuarter kquarter2ca = new KQuarter("Q1", 3, 1, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter2cb = new KQuarter("Q2", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter2cc = new KQuarter("Q3", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
             KQuarter kquarter2cd = new KQuarter("Q4", 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
@@ -343,11 +343,11 @@ public class BeanConfig {
             KPI kpi9b = new KPI();
             KPI kpi9c = new KPI();
 
-            PQuarter pQuarter1a = new PQuarter("Q1");
+            PQuarter pQuarter1a = new PQuarter("Q1", 3, 0);
             PQuarter pQuarter1b = new PQuarter("Q2");
             PQuarter pQuarter1c = new PQuarter("Q3");
             PQuarter pQuarter1d = new PQuarter("Q4");
-            PQuarter pQuarter2a = new PQuarter("Q1");
+            PQuarter pQuarter2a = new PQuarter("Q1", 3, 1);
             PQuarter pQuarter2b = new PQuarter("Q2");
             PQuarter pQuarter2c = new PQuarter("Q3");
             PQuarter pQuarter2d = new PQuarter("Q4");
@@ -583,7 +583,6 @@ public class BeanConfig {
 
     @Bean
     List<ProductDb> productDBThirdParty(){
-        // update subtask
         SubtaskDb subtask1aa = new SubtaskDb("S001", "BITCOIN PURCHASING", "Done", new GregorianCalendar(2024, Calendar.JANUARY, 1).getTime(), new GregorianCalendar(2024, Calendar.JANUARY, 5).getTime(), "U13");
         SubtaskDb subtask1ab = new SubtaskDb("S002", "SOLANA PURCHASING", "Done", new GregorianCalendar(2024, Calendar.JANUARY, 4).getTime(), new GregorianCalendar(2024, Calendar.JANUARY, 16).getTime(), "U13");
         SubtaskDb subtask1ac = new SubtaskDb("S003", "SUI PURCHASING", "Done", new GregorianCalendar(2024, Calendar.JANUARY, 10).getTime(), new GregorianCalendar(2024, Calendar.JANUARY, 20).getTime(), "U13");
@@ -594,40 +593,36 @@ public class BeanConfig {
         SubtaskDb subtask1cb = new SubtaskDb("S008", "MANTA PURCHASING", "Done", new GregorianCalendar(2024, Calendar.FEBRUARY, 20).getTime(), new GregorianCalendar(2024, Calendar.MARCH, 10).getTime(), "U15");
         SubtaskDb subtask1cc = new SubtaskDb("S009", "OPTIMISTIC PURCHASING", "Done", new GregorianCalendar(2024, Calendar.MARCH, 1).getTime(), new GregorianCalendar(2024, Calendar.MARCH, 25).getTime(), "U15");
 
-        // add subtask
-        SubtaskDb subtask1ae = new SubtaskDb("S084", "TON PURCHASING", "Done", new GregorianCalendar(2024, Calendar.MARCH, 5).getTime(), new GregorianCalendar(2024, Calendar.MARCH, 20).getTime(), "U13");
-
-        FeatureDb feature1a = new FeatureDb("FPRO1", "Feature L1", "Done", "Strategic Topic 1", new GregorianCalendar(2024, Calendar.JANUARY, 1).getTime(), new GregorianCalendar(2024, Calendar.JANUARY, 20).getTime(), List.of(subtask1aa, subtask1ab, subtask1ac, subtask1ae));
+        FeatureDb feature1a = new FeatureDb("FPRO1", "Feature L1", "Done", "Strategic Topic 1", new GregorianCalendar(2024, Calendar.JANUARY, 1).getTime(), new GregorianCalendar(2024, Calendar.JANUARY, 20).getTime(), List.of(subtask1aa, subtask1ab, subtask1ac));
         FeatureDb feature1b = new FeatureDb("FPRO2", "Feature DECENTRALIZED FINANCE", "Done", "Strategic Topic 1", new GregorianCalendar(2024, Calendar.JANUARY, 22).getTime(), new GregorianCalendar(2024, Calendar.FEBRUARY, 10).getTime(), List.of(subtask1ba, subtask1bb, subtask1bc));
         FeatureDb feature1c = new FeatureDb("FPRO3", "Feature L2", "Done", "Strategic Topic 1", new GregorianCalendar(2024, Calendar.FEBRUARY, 15).getTime(), new GregorianCalendar(2024, Calendar.MARCH, 25).getTime(), List.of(subtask1ca, subtask1cb, subtask1cc));
 
-        // add feature + subtask (multi feature)
-        SubtaskDb subtask1bd = new SubtaskDb("S082", "BITTENSOR PURCHASING", "To Do", new GregorianCalendar(2024, Calendar.FEBRUARY, 16).getTime(), new GregorianCalendar(2024, Calendar.MARCH, 25).getTime(), "U14");
-        SubtaskDb subtask1cd = new SubtaskDb("S083", "VIRTUALS PURCHASING", "In Progress", new GregorianCalendar(2024, Calendar.FEBRUARY, 16).getTime(), new GregorianCalendar(2024, Calendar.MARCH, 29).getTime(), "U15");
+        ProductDb productDb1 = new ProductDb("BTCUSD", "Q1", "Q2", "Q3", "Q4", 3, 0, 0, 0, 3, 0, 0, 0, List.of(feature1a, feature1b, feature1c));
 
-        FeatureDb feature1d = new FeatureDb("FPR28", "Feature AI", "In Progress", "Strategic Topic 1", new GregorianCalendar(2024, Calendar.FEBRUARY, 16).getTime(), new GregorianCalendar(2024, Calendar.MARCH, 29).getTime(), List.of(subtask1bd, subtask1cd));
+        //---------------
 
-        ProductDb productDb1 = new ProductDb("BTCUSD", "Q1", "Q2", "Q3", "Q4", 4, 0, 0, 0, 3, 0, 0, 0, List.of(feature1a, feature1b, feature1c, feature1d));
+        SubtaskDb subtask2aa = new SubtaskDb("S010", "ETHEREUM SMART CONTRACT", "Done", new GregorianCalendar(2024, Calendar.JANUARY, 1).getTime(), new GregorianCalendar(2024, Calendar.JANUARY, 5).getTime(), "U16");
+        SubtaskDb subtask2ab = new SubtaskDb("S011", "TON SMART CONTRACT", "Done", new GregorianCalendar(2024, Calendar.JANUARY, 4).getTime(), new GregorianCalendar(2024, Calendar.JANUARY, 16).getTime(), "U16");
+        SubtaskDb subtask2ac = new SubtaskDb("S012", "SUPRA SMART CONTRACT", "Done", new GregorianCalendar(2024, Calendar.JANUARY, 10).getTime(), new GregorianCalendar(2024, Calendar.JANUARY, 20).getTime(), "U16");
+        SubtaskDb subtask2ba = new SubtaskDb("S013", "SOLIDITY SMART CONTRACT", "Done", new GregorianCalendar(2024, Calendar.JANUARY, 22).getTime(), new GregorianCalendar(2024, Calendar.FEBRUARY, 1).getTime(), "U17");
+        SubtaskDb subtask2bb = new SubtaskDb("S014", "R SMART CONTRACT", "Done", new GregorianCalendar(2024, Calendar.JANUARY, 25).getTime(), new GregorianCalendar(2024, Calendar.FEBRUARY, 5).getTime(), "U17");
+        SubtaskDb subtask2bc = new SubtaskDb("S015", "RUBY SMART CONTRACT", "Done", new GregorianCalendar(2024, Calendar.FEBRUARY, 1).getTime(), new GregorianCalendar(2024, Calendar.FEBRUARY, 10).getTime(), "U17");
+        SubtaskDb subtask2ca = new SubtaskDb("S016", "SOLIDITY V2 SMART CONTRACT", "Done", new GregorianCalendar(2024, Calendar.FEBRUARY, 15).getTime(), new GregorianCalendar(2024, Calendar.FEBRUARY, 25).getTime(), "U18");
+        SubtaskDb subtask2cb = new SubtaskDb("S017", "R V2 SMART CONTRACT", "Done", new GregorianCalendar(2024, Calendar.FEBRUARY, 20).getTime(), new GregorianCalendar(2024, Calendar.MARCH, 10).getTime(), "U18");
+        SubtaskDb subtask2cc = new SubtaskDb("S018", "RUBY V2 SMART CONTRACT", "Done", new GregorianCalendar(2024, Calendar.MARCH, 1).getTime(), new GregorianCalendar(2024, Calendar.MARCH, 25).getTime(), "U18");
 
-        SubtaskDb subtask2aa = new SubtaskDb("S010", "SMART CONTRACT V1", "Done", new GregorianCalendar(2024, Calendar.JANUARY, 1).getTime(), new GregorianCalendar(2024, Calendar.JANUARY, 5).getTime(), "U16");
-        SubtaskDb subtask2ab = new SubtaskDb("S011", "SMART CONTRACT V2", "Done", new GregorianCalendar(2024, Calendar.JANUARY, 4).getTime(), new GregorianCalendar(2024, Calendar.JANUARY, 16).getTime(), "U16");
-        SubtaskDb subtask2ac = new SubtaskDb("S012", "SMART CONTRACT V3", "Done", new GregorianCalendar(2024, Calendar.JANUARY, 10).getTime(), new GregorianCalendar(2024, Calendar.JANUARY, 20).getTime(), "U16");
-        SubtaskDb subtask2ba = new SubtaskDb("S013", "SMART CONTRACT V4", "Done", new GregorianCalendar(2024, Calendar.JANUARY, 22).getTime(), new GregorianCalendar(2024, Calendar.FEBRUARY, 1).getTime(), "U17");
-        SubtaskDb subtask2bb = new SubtaskDb("S014", "SMART CONTRACT V5", "Done", new GregorianCalendar(2024, Calendar.JANUARY, 25).getTime(), new GregorianCalendar(2024, Calendar.FEBRUARY, 5).getTime(), "U17");
-        SubtaskDb subtask2bc = new SubtaskDb("S015", "SMART CONTRACT V6", "Done", new GregorianCalendar(2024, Calendar.FEBRUARY, 1).getTime(), new GregorianCalendar(2024, Calendar.FEBRUARY, 10).getTime(), "U17");
-        SubtaskDb subtask2ca = new SubtaskDb("S016", "SMART CONTRACT V7", "Done", new GregorianCalendar(2024, Calendar.FEBRUARY, 15).getTime(), new GregorianCalendar(2024, Calendar.FEBRUARY, 25).getTime(), "U18");
-        SubtaskDb subtask2cb = new SubtaskDb("S017", "SMART CONTRACT V8", "Done", new GregorianCalendar(2024, Calendar.FEBRUARY, 20).getTime(), new GregorianCalendar(2024, Calendar.MARCH, 10).getTime(), "U18");
-        SubtaskDb subtask2cc = new SubtaskDb("S018", "SMART CONTRACT V9", "Done", new GregorianCalendar(2024, Calendar.MARCH, 1).getTime(), new GregorianCalendar(2024, Calendar.MARCH, 25).getTime(), "U18");
-
-        FeatureDb feature2a = new FeatureDb("FPRO4", "ETHEREUM SMART CONTRACT", "Done", "Strategic Topic 1", new GregorianCalendar(2024, Calendar.JANUARY, 1).getTime(), new GregorianCalendar(2024, Calendar.JANUARY, 20).getTime(), List.of(subtask2aa, subtask2ab, subtask2ac));
-        FeatureDb feature2b = new FeatureDb("FPRO5", "SOLANA SMART CONTRACT", "Done", "Strategic Topic 1", new GregorianCalendar(2024, Calendar.JANUARY, 22).getTime(), new GregorianCalendar(2024, Calendar.FEBRUARY, 10).getTime(), List.of(subtask2ba, subtask2bb, subtask2bc));
-        FeatureDb feature2c = new FeatureDb("FPRO6", "SUI SMART CONTRACT", "Done", "Strategic Topic 1", new GregorianCalendar(2024, Calendar.FEBRUARY, 15).getTime(), new GregorianCalendar(2024, Calendar.MARCH, 25).getTime(), List.of(subtask2ca, subtask2cb, subtask2cc));
+        FeatureDb feature2a = new FeatureDb("FPRO4", "Feature L1 SMART CONTRACT", "Done", "Strategic Topic 1", new GregorianCalendar(2024, Calendar.JANUARY, 1).getTime(), new GregorianCalendar(2024, Calendar.JANUARY, 20).getTime(), List.of(subtask2aa, subtask2ab, subtask2ac));
+        FeatureDb feature2b = new FeatureDb("FPRO5", "Feature SMART CONTRACT", "Done", "Strategic Topic 1", new GregorianCalendar(2024, Calendar.JANUARY, 22).getTime(), new GregorianCalendar(2024, Calendar.FEBRUARY, 10).getTime(), List.of(subtask2ba, subtask2bb, subtask2bc));
+        FeatureDb feature2c = new FeatureDb("FPRO6", "Feature L2 SMART CONTRACT", "Done", "Strategic Topic 1", new GregorianCalendar(2024, Calendar.FEBRUARY, 15).getTime(), new GregorianCalendar(2024, Calendar.MARCH, 25).getTime(), List.of(subtask2ca, subtask2cb, subtask2cc));
 
         ProductDb productDb2 = new ProductDb("ETHUSD", "Q1", "Q2", "Q3", "Q4", 3, 0, 0, 0, 3, 0, 0, 0, List.of(feature2a, feature2b, feature2c));
+
+        //---------------
 
         ArrayList<ProductDb> productDbArrayList = new ArrayList<>();
         productDbArrayList.add(productDb1);
         productDbArrayList.add(productDb2);
+
         return productDbArrayList;
     }
 }
