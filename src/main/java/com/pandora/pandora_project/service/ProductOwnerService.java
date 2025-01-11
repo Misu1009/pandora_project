@@ -125,7 +125,6 @@ public class ProductOwnerService{
 
 
         // Feature + Subtask
-
         for(FeatureDb featureDB: productDb.getFeatures()){
             if(findFeatureByCode(product, featureDB.getCode()) != null){ // update feature
                 Feature feature = findFeatureByCode(product, featureDB.getCode());
@@ -144,6 +143,7 @@ public class ProductOwnerService{
                         subtask.setStatus(subtaskDB.getStatus());
                         subtask.setStart_date(subtaskDB.getStart_date());
                         subtask.setEnd_date(subtaskDB.getEnd_date());
+                        subtask.setDue_date(subtaskDB.getDue_date());
                         subtask.setUdomain(subtaskDB.getUdomain());
                         subtaskRepository.save(subtask);
                     } else{ // add new subtask
@@ -153,6 +153,7 @@ public class ProductOwnerService{
                                 subtaskDB.getStatus(),
                                 subtaskDB.getStart_date(),
                                 subtaskDB.getEnd_date(),
+                                subtaskDB.getDue_date(),
                                 subtaskDB.getUdomain()
                         );
                         feature.getSubtasks().add(subtask);
@@ -168,6 +169,7 @@ public class ProductOwnerService{
                             subtaskDB.getStatus(),
                             subtaskDB.getStart_date(),
                             subtaskDB.getEnd_date(),
+                            subtaskDB.getDue_date(),
                             subtaskDB.getUdomain()
                     );
                     subtasks.add(subtask);
@@ -239,7 +241,7 @@ public class ProductOwnerService{
 
             for(Subtask subtask: member.getSubtasks()){
                 String period = getQuarter(subtask.getEnd_date());
-                if(subtask.getStatus().equals("In Progress") || subtask.getStatus().equals("To Do")){
+                if(subtask.getEnd_date().after(subtask.getDue_date())){
                     lateResult.put(period, lateResult.get(period)+1);
                 }else{
                     onScheduleResult.put(period, onScheduleResult.get(period)+1);
@@ -273,8 +275,7 @@ public class ProductOwnerService{
     public void synchronize(long id){
         ProductOwner productOwner = productownerRepository.getReferenceById(id);
 
-        ProductDb productDb1 = findProductDBByid_blueprint(productOwner.getProduct().getIdblueprint()); // API
-
+        ProductDb productDb1 = findProductDBByid_blueprint(productOwner.getProduct().getIdblueprint()); // SHARING FILE
         if(productDb1 != null){
             updateProductDB(productDb1);
             updateMemberDB(id);

@@ -23,14 +23,16 @@ public class Subtask {
     String status;
     Date start_date;
     Date end_date;
+    Date due_date;
     String udomain;
 
-    public Subtask(String code, String name, String status, Date start_date, Date end_date, String udomain) {
+    public Subtask(String code, String name, String status, Date start_date, Date end_date, Date due_date, String udomain) {
         this.code = code;
         this.name = name;
         this.status = status;
         this.start_date = start_date;
         this.end_date = end_date;
+        this.due_date = due_date;
         this.udomain = udomain;
     }
 }

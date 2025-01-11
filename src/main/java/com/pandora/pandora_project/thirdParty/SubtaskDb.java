@@ -17,5 +17,6 @@ public class SubtaskDb {
     String status;
     Date start_date;
     Date end_date;
+    Date due_date;
     String udomain;
 }
