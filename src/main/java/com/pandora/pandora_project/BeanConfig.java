@@ -156,22 +156,22 @@ public class BeanConfig {
 //            Subtask subtask2ccQ4 = new Subtask("S068", "Integrasi dengan komunitas kripto untuk menyediakan informasi terbaru.", "In Progress", new GregorianCalendar(2024, Calendar.NOVEMBER, 3).getTime(), new GregorianCalendar(2024, Calendar.DECEMBER, 20).getTime(), new GregorianCalendar(2024, Calendar.DECEMBER, 25).getTime(), "U16");
 
 
-            KQuarter kquarter1aa = new KQuarter("Q1", 2, 2, 0.0, 0.0, 0.0, 0.0, 0, 0);
-            KQuarter kquarter1ab = new KQuarter("Q2", 4, 4, 0.0, 0.0, 0.0, 0.0, 0, 0);
-            KQuarter kquarter1ac = new KQuarter("Q3", 3, 3, 0.0, 0.0, 0.0, 0.0, 0, 0);
+            KQuarter kquarter1aa = new KQuarter("Q1", 2, 2, 4.0, 3.2, 3.2, 2.9, 0, 0);
+            KQuarter kquarter1ab = new KQuarter("Q2", 4, 4, 3.5, 4.0, 3.2, 3.4, 0, 0);
+            KQuarter kquarter1ac = new KQuarter("Q3", 3, 3, 4.0, 2.8, 2.9, 3.9, 0, 0);
             KQuarter kquarter1ad = new KQuarter("Q4", 3, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
-            KQuarter kquarter1ba = new KQuarter("Q1", 2, 2, 0.0, 0.0, 0.0, 0.0, 0, 0);
-            KQuarter kquarter1bb = new KQuarter("Q2", 4, 4, 0.0, 0.0, 0.0, 0.0, 0, 0);
-            KQuarter kquarter1bc = new KQuarter("Q3", 3, 3, 0.0, 0.0, 0.0, 0.0, 0, 0);
+            KQuarter kquarter1ba = new KQuarter("Q1", 2, 2, 4.0, 2.5, 3.0, 4.0, 0, 0);
+            KQuarter kquarter1bb = new KQuarter("Q2", 4, 4, 3.7, 4.0, 3.0, 3.0, 0, 0);
+            KQuarter kquarter1bc = new KQuarter("Q3", 3, 3, 2.9, 4.0, 3.0, 3.1, 0, 0);
             KQuarter kquarter1bd = new KQuarter("Q4", 3, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
 
-            KQuarter kquarter2aa = new KQuarter("Q1", 2, 2, 0.0, 0.0, 0.0, 0.0, 0, 0);
-            KQuarter kquarter2ab = new KQuarter("Q2", 4, 4, 0.0, 0.0, 0.0, 0.0, 0, 0);
-            KQuarter kquarter2ac = new KQuarter("Q3", 3, 3, 0.0, 0.0, 0.0, 0.0, 0, 0);
+            KQuarter kquarter2aa = new KQuarter("Q1", 2, 2, 4.0, 3.5, 4.0, 3.5, 0, 0);
+            KQuarter kquarter2ab = new KQuarter("Q2", 4, 4, 3.2, 4.0, 3.5, 4.0, 0, 0);
+            KQuarter kquarter2ac = new KQuarter("Q3", 3, 3, 3.2, 3.2, 4.0, 3.5, 0, 0);
             KQuarter kquarter2ad = new KQuarter("Q4", 3, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
-            KQuarter kquarter2ba = new KQuarter("Q1", 2, 2, 0.0, 0.0, 0.0, 0.0, 0, 0);
-            KQuarter kquarter2bb = new KQuarter("Q2", 4, 4, 0.0, 0.0, 0.0, 0.0, 0, 0);
-            KQuarter kquarter2bc = new KQuarter("Q3", 3, 3, 0.0, 0.0, 0.0, 0.0, 0, 0);
+            KQuarter kquarter2ba = new KQuarter("Q1", 2, 2, 3.5, 3.5, 4.0, 4.0, 0, 0);
+            KQuarter kquarter2bb = new KQuarter("Q2", 4, 4, 3.1, 4.0, 4.0, 3.1, 0, 0);
+            KQuarter kquarter2bc = new KQuarter("Q3", 3, 3, 4.0, 3.1, 4.0, 3.1, 0, 0);
             KQuarter kquarter2bd = new KQuarter("Q4", 3, 0, 0.0, 0.0, 0.0, 0.0, 0, 0);
 
             KPI kpi1a = new KPI();

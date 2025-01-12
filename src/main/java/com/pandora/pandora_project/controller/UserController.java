@@ -91,8 +91,8 @@ public class UserController {
     }
 
     @GetMapping("/getothermember")
-    public MemberMainPageDTO getOtherMember(@RequestParam long memberId) {
-        return userService.getOtherMember(memberId);
+    public MemberMainPageDTO getOtherMember(@RequestParam long memberId, @RequestParam String period) {
+        return userService.getOtherMember(memberId, period);
     }
 
     public void updateUser(long userId, String name, String division, String biro, String eselon_tier){

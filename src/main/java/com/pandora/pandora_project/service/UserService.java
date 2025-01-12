@@ -189,20 +189,25 @@ public class UserService{
         List<MemberKPID> memberKPIDList = new ArrayList<>();
         for(Member member: productOwner.getMembers()){
             List<KQuarterD> kquarterDList = new ArrayList<>();
+
+            // if semua member uda rating
+
             for(KQuarter kquarter: member.getKpi().getKquarters()){
+                String percentage = Double.toString ((double)kquarter.getDone()/(double)kquarter.getTarget()*100);
                 kquarterDList.add(
                         new KQuarterD(
                                 kquarter.getPeriod(),
                                 kquarter.getTarget(),
                                 kquarter.getDone(),
-                                Double.toString((double) kquarter.getDone() / (double)kquarter.getTarget()*100) +"%" ,
+                                (percentage==Double.toString(0/0))?"0":percentage+"%",
                                 kquarter.getCust_focus(),
                                 kquarter.getIntegrity(),
                                 kquarter.getTeamwork(),
                                 kquarter.getCpoe(),
                                 (kquarter.getCust_focus()+kquarter.getIntegrity()+kquarter.getTeamwork()+kquarter.getCpoe())/4,
                                 kquarter.getOn_schedule(),
-                                kquarter.getLate()
+                                kquarter.getLate(),
+                                0
                         )
                 );
             }
@@ -314,12 +319,23 @@ public class UserService{
     }
 
     // 19
-    public MemberMainPageDTO getOtherMember(long memberId){
+    public MemberMainPageDTO getOtherMember(long memberId, String period){
         ProductOwner productOwner = memberRepository.getReferenceById(memberId).getProductowner();
+        List<RatedMember> rateFlag = productOwner.getRateFlag();
+        List<Long> blackList = new ArrayList<>();
+
+        // Checking eligibility
+        if (!rateFlag.isEmpty()) {
+            for (RatedMember temp : rateFlag) {
+                if (temp.getRatingMemberId() == memberId && temp.getPeriod().equals(period)) {
+                    blackList.add(temp.getRatedMemberId());
+                }
+            }
+        }
 
         List<OtherMemberD> otherMemberDList = new ArrayList<>();
         for(Member member: productOwner.getMembers()){
-            if(member.getId() == memberId){
+            if(member.getId() == memberId || blackList.contains(member.getId()) ){
                 continue;
             }
             OtherMemberD otherMember = new OtherMemberD(

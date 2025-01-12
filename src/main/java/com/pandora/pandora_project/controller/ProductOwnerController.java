@@ -23,8 +23,8 @@ public class ProductOwnerController {
         this.productOwnerService = productOwnerService;
     }
     @PostMapping("/productowner/setkpiproductscore")
-    public void setKPIProductScore(@RequestParam long productOwnerId, @RequestParam double score) {
-        productOwnerService.setKpiProductScore(productOwnerId, score);
+    public boolean setKPIProductScore(@RequestParam long productOwnerId, @RequestParam double score) {
+        return productOwnerService.setKpiProductScore(productOwnerId, score);
     }
     @RequestMapping("/productowner/downloadproduct")
     public ResponseEntity<Resource> downloadProductExcel(@RequestParam long productOwnerId) throws IOException {

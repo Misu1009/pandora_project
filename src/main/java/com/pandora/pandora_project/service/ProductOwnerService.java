@@ -68,12 +68,18 @@ public class ProductOwnerService{
     public static String MEMBERKPI_SHEET_NAME = "Member_KPI_Data";
 
     @Transactional
-    public void setKpiProductScore(long id,  double score){
+    public boolean setKpiProductScore(long id,  double score){
+        long millis = System.currentTimeMillis();
+        Date now = new Date(millis);
+        if(!getQuarter(now).equals("Q4")){
+            return false;
+        }
         long productId = productownerRepository.getReferenceById(id).getProduct().getId();
 
         Product product = productRepository.getReferenceById(productId);
         product.setKpi_product_score(score);
         productRepository.save(product);
+        return true;
     }
 
     public Feature findFeatureByCode(Product product, String code){
