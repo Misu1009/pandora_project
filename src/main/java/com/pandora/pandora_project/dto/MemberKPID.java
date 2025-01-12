@@ -18,4 +18,5 @@ public class MemberKPID {
     String role;
     double kpiProductSore;
     List<KQuarterD> kquarters;
+    double kpiFinal;
 }

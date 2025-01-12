@@ -21,5 +21,4 @@ public class KQuarterD {
     double average;
     int onSchedule;
     int late;
-    double kpiFinal;
 }

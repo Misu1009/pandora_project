@@ -181,6 +181,10 @@ public class UserService{
         }
         return new LaporanMemberDTO(memberDList);
     }
+    public static double roundAvoid(double value, int places) {
+        double scale = Math.pow(10, places);
+        return Math.round(value * scale) / scale;
+    }
 
     // 10
     public LaporanMemberKPIDTO getAllMemberKPIByProductOwner(long productOwnerId){
@@ -189,29 +193,42 @@ public class UserService{
         List<MemberKPID> memberKPIDList = new ArrayList<>();
         for(Member member: productOwner.getMembers()){
             List<KQuarterD> kquarterDList = new ArrayList<>();
-
-            // if semua member uda rating
+            double kpi_final = 0.0;
+            double targetdev = 0.0;
+            double ics = 0.0;
+            double icj = 0.0;
+            double kpiPro = member.getProductowner().getProduct().getKpi_product_score()/4 * 30;
 
             for(KQuarter kquarter: member.getKpi().getKquarters()){
-                String percentage = Double.toString ((double)kquarter.getDone()/(double)kquarter.getTarget()*100);
+                double percentageTarget;
+                if(kquarter.getTarget() == 0 && kquarter.getDone() == 0){
+                    percentageTarget = 0;
+                }else{
+                    percentageTarget = (double)kquarter.getTarget()/(double)kquarter.getDone() * 100;
+                }
                 kquarterDList.add(
                         new KQuarterD(
                                 kquarter.getPeriod(),
                                 kquarter.getTarget(),
                                 kquarter.getDone(),
-                                (percentage==Double.toString(0/0))?"0":percentage+"%",
+                                Double.toString(percentageTarget)+"%",
                                 kquarter.getCust_focus(),
                                 kquarter.getIntegrity(),
                                 kquarter.getTeamwork(),
                                 kquarter.getCpoe(),
                                 (kquarter.getCust_focus()+kquarter.getIntegrity()+kquarter.getTeamwork()+kquarter.getCpoe())/4,
                                 kquarter.getOn_schedule(),
-                                kquarter.getLate(),
-                                0
+                                kquarter.getLate()
                         )
                 );
+                targetdev = targetdev + percentageTarget;
+                ics = ics + (kquarter.getCust_focus()+kquarter.getIntegrity()+kquarter.getTeamwork()+kquarter.getCpoe())/4;
+                icj = icj + kquarter.getOn_schedule() + (kquarter.getLate()*0.5);
             }
             kquarterDList.sort(Comparator.comparing(KQuarterD::getPeriod));
+
+            kpi_final = kpiPro + (targetdev/400 * 25) + (ics/16*15) + (icj/member.getSubtasks().size()*30);
+            kpi_final = roundAvoid(kpi_final*4/100, 2) ;
 
             MemberKPID memberKPID = new MemberKPID();
             memberKPID.setUdomain(member.getUdomain());
@@ -220,6 +237,7 @@ public class UserService{
             memberKPID.setRole("Member"); // fix later
             memberKPID.setKpiProductSore(member.getProductowner().getProduct().getKpi_product_score());
             memberKPID.setKquarters(kquarterDList);
+            memberKPID.setKpiFinal(kpi_final);
 
             memberKPIDList.add(memberKPID);
         }
