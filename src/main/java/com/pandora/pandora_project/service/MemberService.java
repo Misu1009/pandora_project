@@ -114,7 +114,8 @@ public class MemberService{
 
             // Buat dan tambahkan flag setelah selesai update KQuarter
             RatedMember newFlag = new RatedMember(senderId, memberId, period);
-            productOwner.getRateFlag().add(newFlag);
+            rateFlag.add(newFlag);
+            productOwner.setRateFlag(rateFlag);
             productOwnerRepository.save(productOwner);
 
             return true;

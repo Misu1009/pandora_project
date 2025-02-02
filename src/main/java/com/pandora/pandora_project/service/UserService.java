@@ -204,7 +204,7 @@ public class UserService{
                 if(kquarter.getTarget() == 0 && kquarter.getDone() == 0){
                     percentageTarget = 0;
                 }else{
-                    percentageTarget = (double)kquarter.getTarget()/(double)kquarter.getDone() * 100;
+                    percentageTarget = (double)kquarter.getDone()/(double)kquarter.getTarget() * 100;
                 }
                 kquarterDList.add(
                         new KQuarterD(
@@ -342,18 +342,26 @@ public class UserService{
         List<RatedMember> rateFlag = productOwner.getRateFlag();
         List<Long> blackList = new ArrayList<>();
 
+//        period = "Q"+period;
         // Checking eligibility
         if (!rateFlag.isEmpty()) {
+            System.out.println("RateFlag is running");
             for (RatedMember temp : rateFlag) {
+                System.out.println("rateflag id = "+temp.getRatingMemberId() +" and "+temp.getRatedMemberId()+" and period: "+temp.getPeriod()+"\n");
                 if (temp.getRatingMemberId() == memberId && temp.getPeriod().equals(period)) {
+                    System.out.println("input to blacklist "+ temp.getRatedMemberId()+"\n");
                     blackList.add(temp.getRatedMemberId());
                 }
             }
+        }
+        for(Long temp: blackList){
+            System.out.println("id blacklist: "+temp.toString()+"\n");
         }
 
         List<OtherMemberD> otherMemberDList = new ArrayList<>();
         for(Member member: productOwner.getMembers()){
             if(member.getId() == memberId || blackList.contains(member.getId()) ){
+                System.out.println(member.getId().toString());
                 continue;
             }
             OtherMemberD otherMember = new OtherMemberD(

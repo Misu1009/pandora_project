@@ -69,11 +69,11 @@ public class ProductOwnerService{
 
     @Transactional
     public boolean setKpiProductScore(long id,  double score){
-        long millis = System.currentTimeMillis();
-        Date now = new Date(millis);
-        if(!getQuarter(now).equals("Q4")){
-            return false;
-        }
+//        long millis = System.currentTimeMillis();
+//        Date now = new Date(millis);
+//        if(!getQuarter(now).equals("Q4")){
+//            return false;
+//        }
         long productId = productownerRepository.getReferenceById(id).getProduct().getId();
 
         Product product = productRepository.getReferenceById(productId);
