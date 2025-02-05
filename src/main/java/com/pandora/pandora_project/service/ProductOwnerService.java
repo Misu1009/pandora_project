@@ -247,7 +247,7 @@ public class ProductOwnerService{
 
             for(Subtask subtask: member.getSubtasks()){
                 String period = getQuarter(subtask.getEnd_date());
-                if(subtask.getEnd_date().after(subtask.getDue_date())){
+                if(subtask.getEnd_date().before(subtask.getDue_date())){
                     lateResult.put(period, lateResult.get(period)+1);
                 }else{
                     onScheduleResult.put(period, onScheduleResult.get(period)+1);

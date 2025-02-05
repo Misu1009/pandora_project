@@ -200,6 +200,19 @@ public class UserService{
             double kpiPro = member.getProductowner().getProduct().getKpi_product_score()/4 * 30;
 
             for(KQuarter kquarter: member.getKpi().getKquarters()){
+                int otherCount=0;
+                int gotRate=0;
+                for(Member otherMember: productOwner.getMembers()){
+                    if(otherMember.getId() == member.getId()){
+                        continue;
+                    }
+                    otherCount++;
+                }
+                for(RatedMember ratedMember: productOwner.getRateFlag()){
+                    if(ratedMember.getRatedMemberId() == member.getId() && ratedMember.getPeriod().equals(kquarter.getPeriod())){
+                        gotRate++;
+                    }
+                }
                 double percentageTarget;
                 if(kquarter.getTarget() == 0 && kquarter.getDone() == 0){
                     percentageTarget = 0;
@@ -208,7 +221,7 @@ public class UserService{
                 }
                 kquarterDList.add(
                         new KQuarterD(
-                                kquarter.getPeriod(),
+                                otherCount==gotRate ? kquarter.getPeriod(): kquarter.getPeriod()+"*",
                                 kquarter.getTarget(),
                                 kquarter.getDone(),
                                 Double.toString(percentageTarget)+"%",
@@ -234,7 +247,7 @@ public class UserService{
             memberKPID.setUdomain(member.getUdomain());
             memberKPID.setName(member.getName());
             memberKPID.setProductName(member.getProductowner().getProduct().getName());
-            memberKPID.setRole("Member"); // fix later
+            memberKPID.setRole("Member");
             memberKPID.setKpiProductSore(member.getProductowner().getProduct().getKpi_product_score());
             memberKPID.setKquarters(kquarterDList);
             memberKPID.setKpiFinal(kpi_final);
