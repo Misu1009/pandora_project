@@ -95,7 +95,7 @@ public class UserController {
         return userService.getOtherMember(memberId, period);
     }
 
-    public void updateUser(long userId, String name, String division, String biro, String eselon_tier){
-        userService.updateUser(userId, name, division, biro, eselon_tier);
+    public void updateUser(long userId, String role, String name, String division, String biro, String eselon_tier){
+        userService.updateUser(userId, role, name, division, biro, eselon_tier);
     }
 }

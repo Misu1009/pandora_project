@@ -387,23 +387,21 @@ public class UserService{
     }
 
     @Transactional
-    public void updateUser(long id, String name, String division, String biro, String eselon_tier){
-        Member member = memberRepository.getReferenceById(id);
-        if(member != null){
+    public void updateUser(long id, String role, String name, String division, String biro, String eselon_tier){
+        if(role.equals("Member")){
+            Member member = memberRepository.getReferenceById(id);
             member.setName(name);
             member.setDivision(division);
             member.setBiro(biro);
             member.setEselon_tier(eselon_tier);
-
             memberRepository.save(member);
+        }else{
+            ProductOwner productOwner = productownerRepository.getReferenceById(id);
+            productOwner.setName(name);
+            productOwner.setDivision(division);
+            productOwner.setBiro(biro);
+            productOwner.setEselon_tier(eselon_tier);
+            productownerRepository.save(productOwner);
         }
-        ProductOwner productOwner = productownerRepository.getReferenceById(id);
-        productOwner.setName(name);
-        productOwner.setDivision(division);
-        productOwner.setBiro(biro);
-        productOwner.setEselon_tier(eselon_tier);
-
-        productownerRepository.save(productOwner);
-
     }
 }

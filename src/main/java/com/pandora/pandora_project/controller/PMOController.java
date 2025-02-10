@@ -30,9 +30,9 @@ public class PMOController {
     }
 
     @PutMapping("/edit")
-    public void updateUser(@RequestParam long userId, @RequestParam String name,
+    public void updateUser(@RequestParam long userId, @RequestParam String role, @RequestParam String name,
                            @RequestParam String division, @RequestParam String biro,
                            @RequestParam String eselonTier) {
-        userController.updateUser(userId, name, division, biro, eselonTier);
+        userController.updateUser(userId, role, name, division, biro, eselonTier);
     }
 }
